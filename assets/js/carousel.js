@@ -1,0 +1,296 @@
+/* ==========================================================================
+   MANOHAR DENTAL CLINIC - CAROUSEL & ACCORDION SCRIPTS
+   ========================================================================== */
+
+function initBeforeAfterSlider() {
+  const sliders = document.querySelectorAll('.ba-slider');
+  
+  sliders.forEach(slider => {
+    const afterImg = slider.querySelector('.ba-after');
+    const handle = slider.querySelector('.ba-handle');
+    let isDragging = false;
+
+    if (!afterImg || !handle) return;
+
+    const moveSlider = (clientX) => {
+      const rect = slider.getBoundingClientRect();
+      const x = clientX - rect.left;
+      let position = (x / rect.width) * 100;
+
+      if (position < 0) position = 0;
+      if (position > 100) position = 100;
+
+      afterImg.style.width = position + '%';
+      handle.style.left = position + '%';
+    };
+
+    // Touch events
+    slider.addEventListener('touchstart', () => { isDragging = true; }, { passive: true });
+    window.addEventListener('touchend', () => { isDragging = false; });
+    slider.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      moveSlider(e.touches[0].clientX);
+    }, { passive: true });
+
+    // Mouse events
+    handle.addEventListener('mousedown', () => { isDragging = true; });
+    window.addEventListener('mouseup', () => { isDragging = false; });
+    slider.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      moveSlider(e.clientX);
+    });
+
+    slider.addEventListener('click', (e) => {
+      if (e.target.closest('.ba-handle-button')) return;
+      moveSlider(e.clientX);
+    });
+  });
+}
+
+function initTestimonialCarousel() {
+  const carousel = document.querySelector('.testimonial-carousel');
+  if (!carousel) return;
+
+  const track = carousel.querySelector('.testimonial-track');
+  const slides = carousel.querySelectorAll('.testimonial-slide');
+  const dotsContainer = carousel.querySelector('.testimonial-nav');
+
+  if (!track || slides.length === 0) return;
+
+  let currentIndex = 0;
+  let autoSlideTimer;
+
+  if (dotsContainer) {
+    dotsContainer.innerHTML = '';
+    slides.forEach((_, index) => {
+      const dot = document.createElement('div');
+      dot.className = `testimonial-dot ${index === 0 ? 'active' : ''}`;
+      dot.addEventListener('click', () => {
+        goToSlide(index);
+        resetAutoSlide();
+      });
+      dotsContainer.appendChild(dot);
+    });
+  }
+
+  const updateDots = () => {
+    if (!dotsContainer) return;
+    const dots = dotsContainer.querySelectorAll('.testimonial-dot');
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === currentIndex);
+    });
+  };
+
+  const goToSlide = (index) => {
+    currentIndex = index;
+    if (currentIndex >= slides.length) currentIndex = 0;
+    if (currentIndex < 0) currentIndex = slides.length - 1;
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    updateDots();
+  };
+
+  const nextSlide = () => {
+    goToSlide(currentIndex + 1);
+  };
+
+  const startAutoSlide = () => {
+    autoSlideTimer = setInterval(nextSlide, 5000);
+  };
+
+  const stopAutoSlide = () => {
+    clearInterval(autoSlideTimer);
+  };
+
+  const resetAutoSlide = () => {
+    stopAutoSlide();
+    startAutoSlide();
+  };
+
+  carousel.addEventListener('mouseenter', stopAutoSlide);
+  carousel.addEventListener('mouseleave', startAutoSlide);
+
+  startAutoSlide();
+
+  // Drag swipes
+  let startX = 0;
+  let isSwiping = false;
+
+  carousel.addEventListener('mousedown', (e) => {
+    startX = e.clientX;
+    isSwiping = true;
+  });
+
+  carousel.addEventListener('mouseup', (e) => {
+    if (!isSwiping) return;
+    const diff = e.clientX - startX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        goToSlide(currentIndex - 1);
+      } else {
+        goToSlide(currentIndex + 1);
+      }
+      resetAutoSlide();
+    }
+    isSwiping = false;
+  });
+}
+
+function initAccordion() {
+  const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+  accordionHeaders.forEach(header => {
+    header.addEventListener('click', () => {
+      const item = header.parentElement;
+      const content = item.querySelector('.accordion-content');
+      const isActive = item.classList.contains('active');
+
+      document.querySelectorAll('.accordion-item').forEach(otherItem => {
+        if (otherItem !== item) {
+          otherItem.classList.remove('active');
+          otherItem.querySelector('.accordion-content').style.maxHeight = null;
+        }
+      });
+
+      if (isActive) {
+        item.classList.remove('active');
+        content.style.maxHeight = null;
+      } else {
+        item.classList.add('active');
+        content.style.maxHeight = content.scrollHeight + 'px';
+      }
+    });
+  });
+}
+
+function initHeroDoctorSlider() {
+  const slider = document.querySelector('.hero-doctor-slider');
+  if (!slider) return;
+
+  const slides = slider.querySelectorAll('.hero-doctor-slide');
+  const prevBtn = slider.querySelector('.hero-prev');
+  const nextBtn = slider.querySelector('.hero-next');
+
+  if (slides.length === 0) return;
+
+  let currentIndex = 0;
+  let autoTimer;
+
+  const goToSlide = (index) => {
+    slides[currentIndex].classList.remove('active');
+    currentIndex = index;
+    if (currentIndex >= slides.length) currentIndex = 0;
+    if (currentIndex < 0) currentIndex = slides.length - 1;
+    slides[currentIndex].classList.add('active');
+  };
+
+  const nextSlide = () => {
+    goToSlide(currentIndex + 1);
+  };
+
+  const startAutoSlide = () => {
+    autoTimer = setInterval(nextSlide, 5000);
+  };
+
+  const stopAutoSlide = () => {
+    clearInterval(autoTimer);
+  };
+
+  const resetAutoSlide = () => {
+    stopAutoSlide();
+    startAutoSlide();
+  };
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      goToSlide(currentIndex - 1);
+      resetAutoSlide();
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      goToSlide(currentIndex + 1);
+      resetAutoSlide();
+    });
+  }
+
+  startAutoSlide();
+}
+
+function initTestimonialPremiumSlider() {
+  const card = document.querySelector('.testimonial-premium-card');
+  const navContainer = document.querySelector('.testimonial-premium-nav');
+  if (!card) return;
+
+  const images = card.querySelectorAll('.testimonial-premium-img');
+  const slides = card.querySelectorAll('.testimonial-premium-slide');
+  const prevBtn = navContainer ? navContainer.querySelector('.testimonial-prev') : null;
+  const nextBtn = navContainer ? navContainer.querySelector('.testimonial-next') : null;
+
+  if (slides.length === 0) return;
+
+  let currentIndex = 0;
+  let autoTimer;
+
+  const goToSlide = (index) => {
+    // Hide current
+    if (images[currentIndex]) images[currentIndex].classList.remove('active');
+    slides[currentIndex].classList.remove('active');
+
+    currentIndex = index;
+    if (currentIndex >= slides.length) currentIndex = 0;
+    if (currentIndex < 0) currentIndex = slides.length - 1;
+
+    // Show new
+    if (images[currentIndex]) images[currentIndex].classList.add('active');
+    slides[currentIndex].classList.add('active');
+  };
+
+  const nextSlide = () => {
+    goToSlide(currentIndex + 1);
+  };
+
+  const startAutoSlide = () => {
+    autoTimer = setInterval(nextSlide, 6000);
+  };
+
+  const stopAutoSlide = () => {
+    clearInterval(autoTimer);
+  };
+
+  const resetAutoSlide = () => {
+    stopAutoSlide();
+    startAutoSlide();
+  };
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      goToSlide(currentIndex - 1);
+      resetAutoSlide();
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      goToSlide(currentIndex + 1);
+      resetAutoSlide();
+    });
+  }
+
+  card.addEventListener('mouseenter', stopAutoSlide);
+  card.addEventListener('mouseleave', startAutoSlide);
+
+  startAutoSlide();
+}
+
+// Export initializers
+window.Carousel = {
+  initBeforeAfterSlider,
+  initTestimonialCarousel,
+  initHeroDoctorSlider,
+  initTestimonialPremiumSlider,
+  initAccordion
+};
+

@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Ravi Teja",
+    "rating": 5,
+    "review": "Excellent treatment by Dr. Srinivas Manohar. I got my dental implant done here. The process was entirely painless and the doctor explains everything very clearly. The staff is also very polite and clean environment.",
+    "source": "Google Review",
+    "date": "2 weeks ago"
+  },
+  {
+    "name": "Sujatha K.",
+    "rating": 5,
+    "review": "Very professional and friendly doctor. Visited for root canal treatment for my mother. She was very scared but doctor made her comfortable. Highly recommend Manohar Dental Clinic.",
+    "source": "Google Review",
+    "date": "1 month ago"
+  },
+  {
+    "name": "N. Prasad",
+    "rating": 5,
+    "review": "Clean aligners treatment has been amazing. The results are visible within 3 months itself. Best dental clinic in Vizag for orthodontic treatments.",
+    "source": "Google Review",
+    "date": "3 months ago"
+  },
+  {
+    "name": "Sireesha Murthy",
+    "rating": 5,
+    "review": "Amazing pediatric dental service. My daughter was not scared at all. The doctor handled her very gently. The clinic is very neat and clean.",
+    "source": "Google Review",
+    "date": "2 months ago"
+  }
+]
