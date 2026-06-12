@@ -10808,6 +10808,8 @@ select.form-control-premium {
 .doctor-trust-section {
   position: relative;
   overflow: hidden;
+  padding-top: 72px;
+  padding-bottom: 72px;
   background: linear-gradient(180deg, #fbfdff 0%, #ffffff 100%);
 }
 
@@ -10821,8 +10823,8 @@ select.form-control-premium {
 .doctor-trust-visual {
   position: relative;
   min-width: 0;
-  width: min(100%, 470px);
-  padding: 24px 16px 30px 20px;
+  width: min(100%, 455px);
+  padding: 20px 16px 26px 20px;
   isolation: isolate;
 }
 
@@ -10839,7 +10841,7 @@ select.form-control-premium {
 .doctor-trust-image-card {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1 / 1.12;
   border: 1px solid rgba(11, 31, 77, 0.08);
   border-radius: 24px;
   background: #f4f9fc;
@@ -10858,8 +10860,9 @@ select.form-control-premium {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: center;
+  object-fit: cover;
+  object-position: center 44%;
+  transform: scale(1.06);
 }
 
 .doctor-stat-badge {
@@ -11062,7 +11065,7 @@ select.form-control-premium {
   }
 
   .doctor-trust-visual {
-    width: min(100%, 500px);
+    width: min(100%, 480px);
     margin: 0 auto;
   }
 
@@ -11087,8 +11090,8 @@ select.form-control-premium {
 
 @media (max-width: 600px) {
   .doctor-trust-section {
-    padding-top: 70px;
-    padding-bottom: 74px;
+    padding-top: 58px;
+    padding-bottom: 62px;
   }
 
   .doctor-trust-grid {
@@ -11109,7 +11112,7 @@ select.form-control-premium {
 
   .doctor-trust-image-card {
     grid-column: 1 / -1;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 1 / 1.16;
     border-radius: 20px;
   }
 

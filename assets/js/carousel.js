@@ -233,27 +233,44 @@ function initTestimonialCarousel() {
 }
 
 function initAccordion() {
-  const accordionHeaders = document.querySelectorAll('.accordion-header');
+  const accordionHeaders = document.querySelectorAll('.accordion-header, .faq-accordion-header');
 
   accordionHeaders.forEach(header => {
-    header.addEventListener('click', () => {
-      const item = header.parentElement;
-      const content = item.querySelector('.accordion-content');
-      const isActive = item.classList.contains('active');
+    const itemSelector = header.classList.contains('faq-accordion-header')
+      ? '.faq-accordion-item'
+      : '.accordion-item';
+    const contentSelector = header.classList.contains('faq-accordion-header')
+      ? '.faq-accordion-content'
+      : '.accordion-content';
+    const item = header.closest(itemSelector);
+    const content = item?.querySelector(contentSelector);
+    if (!item || !content) return;
 
-      document.querySelectorAll('.accordion-item').forEach(otherItem => {
+    header.setAttribute('aria-expanded', item.classList.contains('active') ? 'true' : 'false');
+    content.style.maxHeight = item.classList.contains('active') ? `${content.scrollHeight}px` : null;
+
+    header.addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+      const accordion = item.parentElement;
+
+      accordion.querySelectorAll(itemSelector).forEach(otherItem => {
         if (otherItem !== item) {
           otherItem.classList.remove('active');
-          otherItem.querySelector('.accordion-content').style.maxHeight = null;
+          const otherContent = otherItem.querySelector(contentSelector);
+          const otherHeader = otherItem.querySelector('.accordion-header, .faq-accordion-header');
+          if (otherContent) otherContent.style.maxHeight = null;
+          if (otherHeader) otherHeader.setAttribute('aria-expanded', 'false');
         }
       });
 
       if (isActive) {
         item.classList.remove('active');
         content.style.maxHeight = null;
+        header.setAttribute('aria-expanded', 'false');
       } else {
         item.classList.add('active');
         content.style.maxHeight = content.scrollHeight + 'px';
+        header.setAttribute('aria-expanded', 'true');
       }
     });
   });
