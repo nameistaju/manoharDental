@@ -34,7 +34,8 @@ function imageOrPlaceholder(rootDir, image, alt, className = '') {
 }
 
 function videoCard(rootDir, page) {
-  return `<div class="tp-video-player"><div class="tp-video-poster">${imageOrPlaceholder(rootDir, page.image, page.title, 'tp-video-image')}<div class="tp-video-shade"></div><span class="tp-play-button" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg></span><div class="tp-video-caption"><span>Doctor Explains</span><strong>${esc(page.title)}</strong><small>2 min overview</small></div></div></div>`;
+  const poster = assetExists(rootDir, page.image) ? ` poster="${page.image}"` : '';
+  return `<div class="tp-video-player" data-video-player><video class="tp-hero-video" src="/assets/videos/video-placeholder.mp4"${poster} preload="metadata" playsinline controls></video><div class="tp-video-shade"></div><button class="tp-play-button" type="button" data-play-video aria-label="Play ${esc(page.title)} video"><iconify-icon icon="solar:play-bold" aria-hidden="true"></iconify-icon></button><div class="tp-video-caption"><span>Doctor Explains</span><strong>${esc(page.title)}</strong><small>Video overview</small></div></div>`;
 }
 
 function resultMedia(rootDir, asset, label) {
@@ -88,7 +89,7 @@ function renderTreatmentPageV2({ page, treatmentPages, clinic, commonWhy, header
 </head>
 <body class="premium-treatment-page tp-redesign"><div class="scroll-progress"></div>${headerTemplate}
 <main>
-  <section class="premium-treatment-hero tp-hero"><div class="container premium-treatment-hero-grid"><div class="premium-treatment-hero-copy"><div class="premium-kicker">${esc(treatmentLabel)}</div><h1>${esc(page.title)} in Visakhapatnam</h1><h2>${esc(page.headline)}</h2><p>${esc(page.intro)}</p><div class="premium-trust-row">${page.trust.slice(0, 4).map((item) => `<span>${esc(item)}</span>`).join('')}</div><div class="premium-hero-actions"><a class="btn btn-primary" href="#book-appointment">Book Consultation</a><a class="btn btn-outline" href="${clinic.phoneHref}">Call Now</a></div></div><div class="premium-hero-media">${videoCard(rootDir, page)}</div></div></section>
+  <section class="premium-treatment-hero tp-hero"><div class="container premium-treatment-hero-grid"><div class="premium-treatment-hero-copy"><div class="premium-kicker">${esc(treatmentLabel)}</div><h1>${esc(page.title)} in Visakhapatnam</h1><h2>${esc(page.headline)}</h2><p>${esc(page.intro)}</p><div class="premium-trust-row">${page.trust.slice(0, 4).map((item) => `<span>${esc(item)}</span>`).join('')}</div><div class="premium-hero-actions"><a class="btn btn-primary" href="#book-appointment" data-open-appointment-popup><iconify-icon icon="solar:calendar-add-bold-duotone" aria-hidden="true"></iconify-icon><span>Book Consultation</span></a><a class="btn btn-outline" href="${clinic.phoneHref}"><iconify-icon icon="solar:phone-calling-rounded-bold-duotone" aria-hidden="true"></iconify-icon><span>${esc(clinic.phone)}</span></a></div></div><div class="premium-hero-media">${videoCard(rootDir, page)}</div></div></section>
 
   <section class="premium-section tp-knowledge reveal"><div class="container"><div class="premium-section-heading tp-centered-heading"><div class="premium-kicker">Everything You Need To Know</div><h2>Clear answers. Confident decisions.</h2><p>A concise guide to understanding the treatment before your consultation.</p></div><div class="tp-knowledge-grid">${knowledge.map(([title, text, icon]) => `<article class="tp-knowledge-card"><span class="tp-card-icon">${icon}</span><h3>${esc(title)}</h3><p>${esc(text)}</p></article>`).join('')}</div></div></section>
 

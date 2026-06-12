@@ -2,7 +2,8 @@
    MANOHAR DENTAL CLINIC - MAIN STYLE SHEET (Consolidated)
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+/* Premium font stack: Plus Jakarta Sans (headings) + Inter (body) */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
   /* Color Palette */
@@ -21,7 +22,7 @@
   --border-light: #E2E8F0;
   
   /* Fonts */
-  --font-headings: 'Poppins', sans-serif;
+  --font-headings: 'Plus Jakarta Sans', sans-serif;
   --font-body: 'Inter', sans-serif;
   
   /* Layout Spacing */
@@ -277,7 +278,7 @@ button {
 
 .header-main-nav .nav-link {
   color: var(--secondary);
-  font-size: 0.92rem;
+  font-size: 1rem;
   font-weight: 600;
   padding: 24px 0;
   transition: var(--transition-fast);
@@ -295,23 +296,162 @@ button {
 }
 
 .btn-appointment {
-  background-color: var(--primary);
+  background: linear-gradient(135deg, #0b1f4d 0%, #123d73 100%);
   color: #ffffff;
   font-size: 0.88rem;
   font-weight: 700;
-  padding: 12px 24px;
+  min-height: 50px;
+  padding: 12px 22px;
   border-radius: var(--radius-full) !important;
   transition: var(--transition-normal);
   border: none;
-  box-shadow: 0 4px 12px rgba(27, 168, 232, 0.2);
+  box-shadow: 0 12px 28px rgba(11, 31, 77, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.16);
   cursor: pointer;
   white-space: nowrap;
+  gap: 9px;
+  letter-spacing: -0.01em;
+}
+
+.btn-appointment iconify-icon {
+  font-size: 1.25rem;
+  color: #7dd3fc;
 }
 
 .btn-appointment:hover {
-  background-color: var(--secondary);
-  box-shadow: 0 6px 20px rgba(11, 31, 77, 0.25);
+  background: linear-gradient(135deg, #123d73 0%, #0ea5e9 100%);
+  box-shadow: 0 16px 34px rgba(14, 165, 233, 0.24);
   transform: translateY(-2px);
+}
+
+/* Delayed appointment popup */
+body.appointment-popup-open { overflow: hidden; }
+
+.appointment-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  display: grid;
+  place-items: center;
+  padding: 24px 12px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.appointment-popup.is-open { visibility: visible; opacity: 1; }
+
+.appointment-popup-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 31, 77, 0.55);
+  backdrop-filter: blur(8px);
+}
+
+.appointment-popup-dialog {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: min(780px, calc(100vw - 24px));
+  max-height: min(90vh, 760px);
+  overflow: hidden;
+  border: 1px solid rgba(11, 31, 77, 0.09);
+  border-radius: 32px;
+  background: #ffffff;
+  box-shadow: 0 30px 80px rgba(11, 31, 77, 0.15);
+  transform: translateY(18px) scale(0.98);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.appointment-popup.is-open .appointment-popup-dialog { transform: translateY(0) scale(1); }
+
+.appointment-popup-close {
+  position: absolute;
+  top: 22px;
+  right: 24px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  color: #60708a;
+  background: #f3f7fb;
+  border: 1px solid #e1eaf2;
+  border-radius: 50%;
+  box-shadow: none;
+}
+
+.appointment-popup-close iconify-icon { font-size: 1.55rem; }
+.appointment-popup-close:hover { color: #0b1f4d; background: #e6f4fc; border-color: rgba(27, 168, 232, 0.3); }
+
+.appointment-popup-intro {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  flex: 0 0 auto;
+  gap: 15px;
+  padding: 26px 78px 20px 30px;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.appointment-popup-icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  color: #159ed9;
+  background: #edf7ff;
+  border-radius: 16px;
+}
+
+.appointment-popup-icon iconify-icon { font-size: 1.8rem; }
+.appointment-popup-kicker { display: none; }
+.appointment-popup-intro h2 { margin: 0 0 4px; color: #0b1f4d; font-size: clamp(1.65rem, 3vw, 2.05rem); line-height: 1.12; letter-spacing: -0.035em; }
+.appointment-popup-intro p { max-width: 520px; margin: 0; color: #73839b; font-size: 0.9rem; line-height: 1.45; }
+.appointment-popup-body { min-height: 0; overflow-y: auto; overscroll-behavior: contain; scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: rgba(96, 112, 138, 0.35) transparent; }
+.appointment-popup-body::-webkit-scrollbar { width: 4px; }
+.appointment-popup-body::-webkit-scrollbar-track { background: transparent; }
+.appointment-popup-body::-webkit-scrollbar-thumb { background: rgba(96, 112, 138, 0.32); border-radius: 999px; }
+.appointment-popup-card { padding: 0; background: transparent; box-shadow: none; border: 0; }
+.appointment-popup-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 18px; padding: 20px 30px 24px; }
+.appointment-popup-form .form-group { margin: 0; }
+.appointment-popup-form label { display: block; margin-bottom: 6px; color: #40506a; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+.appointment-popup-form label span { color: #94a3b8; font-size: 0.65rem; font-weight: 700; }
+.appointment-popup-form input,
+.appointment-popup-form select,
+.appointment-popup-form textarea { width: 100%; min-height: 54px; padding: 0 16px; color: #0f172a; background: #f3f6f9; border: 1px solid #e3eaf1; border-radius: 16px; font-size: 0.95rem; resize: vertical; }
+.appointment-popup-form textarea { min-height: 122px; max-height: 140px; padding-top: 14px; line-height: 1.5; }
+.appointment-popup-form input:focus,
+.appointment-popup-form select:focus,
+.appointment-popup-form textarea:focus { border-color: #1ba8e8; background: #ffffff; box-shadow: 0 0 0 3px rgba(27, 168, 232, 0.11); }
+.appointment-popup-message { grid-column: 1 / -1; }
+.appointment-popup-actions { position: sticky; bottom: -24px; z-index: 1; grid-column: 1 / -1; display: grid; gap: 10px; margin: 2px -30px -24px; padding: 14px 30px 18px; background: linear-gradient(180deg, rgba(255, 255, 255, 0.88), #ffffff 18%); }
+.appointment-popup-submit { width: 100%; min-height: 58px; gap: 9px; border-radius: 16px; background: linear-gradient(135deg, #0b1f4d 0%, #087fb8 100%); box-shadow: 0 12px 26px rgba(11, 31, 77, 0.18); font-size: 1rem; }
+.appointment-popup-submit:hover { background: linear-gradient(135deg, #123d73 0%, #0ea5e9 100%); transform: translateY(-2px); }
+.appointment-popup-submit iconify-icon { font-size: 1.25rem; }
+.appointment-popup-cancel { width: 100%; min-height: 58px; color: #60708a; background: #ffffff; border: 1px solid #d8e3ed; border-radius: 16px; font-weight: 700; }
+.appointment-popup-cancel:hover { color: #0b1f4d; border-color: #8db9d3; background: #f8fbfd; }
+.appointment-popup-security { display: flex; align-items: center; justify-content: center; gap: 7px; margin-top: 1px; color: #a4b2c3; font-size: 0.64rem; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase; }
+.appointment-popup-security iconify-icon { font-size: 0.95rem; }
+.appointment-popup-success { display: none; padding: 52px 30px; text-align: center; }
+.appointment-popup-success iconify-icon { color: #10b981; font-size: 3.5rem; }
+
+@media (max-width: 640px) {
+  .appointment-popup { padding: 12px; }
+  .appointment-popup-dialog { width: calc(100vw - 24px); max-height: 90vh; border-radius: 24px; }
+  .appointment-popup-close { top: 15px; right: 15px; width: 38px; height: 38px; }
+  .appointment-popup-intro { gap: 11px; padding: 18px 58px 16px 18px; }
+  .appointment-popup-icon { width: 44px; height: 44px; border-radius: 13px; }
+  .appointment-popup-icon iconify-icon { font-size: 1.55rem; }
+  .appointment-popup-intro h2 { font-size: 1.3rem; }
+  .appointment-popup-intro p { font-size: 0.8rem; line-height: 1.35; }
+  .appointment-popup-form { grid-template-columns: 1fr; gap: 12px; padding: 16px 16px 20px; }
+  .appointment-popup-message { grid-column: auto; }
+  .appointment-popup-form input,
+  .appointment-popup-form select { min-height: 52px; border-radius: 14px; }
+  .appointment-popup-form textarea { min-height: 112px; max-height: 130px; border-radius: 14px; }
+  .appointment-popup-actions { grid-column: auto; bottom: -20px; margin: 2px -16px -20px; padding: 12px 16px 15px; }
+  .appointment-popup-submit,
+  .appointment-popup-cancel { min-height: 54px; border-radius: 14px; }
+  .appointment-popup-security { font-size: 0.58rem; letter-spacing: 0.06em; }
 }
 
 /* Dropdown Menu (Meet Team) */

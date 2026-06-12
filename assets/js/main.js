@@ -42,6 +42,9 @@ document.addEventListener('DOMContentLoaded', () => {
     window.Utilities.initTreatmentExplorer();
     window.Utilities.initVideoTestimonialSwitcher();
     window.Utilities.initTreatmentCardFilters();
+    window.Utilities.initUniversalVideoPlayers();
+    window.Utilities.initAppointmentPopup();
+    window.Utilities.initDeferredTestimonialVideos();
   }
   
   console.log('Manohar Dental Clinic app initialized successfully.');

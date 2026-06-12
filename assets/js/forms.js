@@ -11,6 +11,8 @@ function initConsultationForm() {
   }
   
   forms.forEach(form => {
+    if (form.dataset.consultFormBound === 'true') return;
+    form.dataset.consultFormBound = 'true';
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
@@ -18,6 +20,7 @@ function initConsultationForm() {
       const phoneInput = form.querySelector('input[type="tel"]');
       const treatmentSelect = form.querySelector('select');
       const dateInput = form.querySelector('input[type="date"]');
+      const messageInput = form.querySelector('textarea[name="message"]');
       
       let isValid = true;
 
@@ -59,6 +62,7 @@ function initConsultationForm() {
         phone: phoneInput.value.trim(),
         treatment: treatmentSelect ? treatmentSelect.value : 'General Dental Consultation',
         preferred_date: dateInput ? dateInput.value : 'Flexible',
+        message: messageInput ? messageInput.value.trim() : '',
         page_url: window.location.href
       };
 
@@ -87,6 +91,7 @@ function initConsultationForm() {
         if (payload.preferred_date && payload.preferred_date !== 'Flexible') {
           whatsappText += ` on preferred date: ${payload.preferred_date}`;
         }
+        if (payload.message) whatsappText += `. Concern: ${payload.message}`;
         whatsappText += `. Please confirm my booking.`;
 
         const whatsappUrl = `https://api.whatsapp.com/send?phone=919703294358&text=${encodeURIComponent(whatsappText)}`;

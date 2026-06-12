@@ -1392,7 +1392,7 @@ function buildSupportPages() {
 
     // Render Hero Section
     let heroHtml = `
-      <section class="page-hero">
+      <section class="page-hero${page.dir === 'blog' ? ' blog-landing-hero' : ''}">
         <div class="container">
           <h1>${page.h1}</h1>
           <div class="breadcrumbs">

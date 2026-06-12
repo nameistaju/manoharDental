@@ -161,7 +161,7 @@
         </nav>
 
         <div class="header-ctas">
-          <a href="../../contact/index.html" class="btn btn-appointment">Book Appointment</a>
+          <a href="../../contact/index.html" class="btn btn-appointment" data-open-appointment-popup><iconify-icon icon="solar:calendar-add-bold-duotone" aria-hidden="true"></iconify-icon><span>Book Appointment</span></a>
         </div>
 
         <button class="mobile-menu-btn" aria-label="Toggle Navigation" aria-expanded="false">
@@ -172,7 +172,7 @@
   </header>
 
 <main>
-  <section class="premium-treatment-hero tp-hero"><div class="container premium-treatment-hero-grid"><div class="premium-treatment-hero-copy"><div class="premium-kicker">Dental Implants Treatment</div><h1>Dental Implants in Visakhapatnam</h1><h2>Replace missing teeth with fixed, natural-looking teeth that feel stable when you chew.</h2><p>Dental implants are titanium tooth roots placed inside the jawbone to support a crown, bridge, or full-arch fixed teeth. They are planned around bone volume, gum health, bite forces, and smile position so the replacement tooth does more than fill a gap.</p><div class="premium-trust-row"><span>Digital implant planning</span><span>Fixed teeth options</span><span>Bone-preserving solution</span><span>MDS specialist-led care</span></div><div class="premium-hero-actions"><a class="btn btn-primary" href="#book-appointment">Book Consultation</a><a class="btn btn-outline" href="tel:+919703294358">Call Now</a></div></div><div class="premium-hero-media"><div class="tp-video-player"><div class="tp-video-poster"><img src="../../assets/images/dentalImplants.png" alt="Dental Implants" class="tp-video-image"><div class="tp-video-shade"></div><span class="tp-play-button" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg></span><div class="tp-video-caption"><span>Doctor Explains</span><strong>Dental Implants</strong><small>2 min overview</small></div></div></div></div></div></section>
+  <section class="premium-treatment-hero tp-hero"><div class="container premium-treatment-hero-grid"><div class="premium-treatment-hero-copy"><div class="premium-kicker">Dental Implants Treatment</div><h1>Dental Implants in Visakhapatnam</h1><h2>Replace missing teeth with fixed, natural-looking teeth that feel stable when you chew.</h2><p>Dental implants are titanium tooth roots placed inside the jawbone to support a crown, bridge, or full-arch fixed teeth. They are planned around bone volume, gum health, bite forces, and smile position so the replacement tooth does more than fill a gap.</p><div class="premium-trust-row"><span>Digital implant planning</span><span>Fixed teeth options</span><span>Bone-preserving solution</span><span>MDS specialist-led care</span></div><div class="premium-hero-actions"><a class="btn btn-primary" href="#book-appointment" data-open-appointment-popup><iconify-icon icon="solar:calendar-add-bold-duotone" aria-hidden="true"></iconify-icon><span>Book Consultation</span></a><a class="btn btn-outline" href="tel:+919703294358"><iconify-icon icon="solar:phone-calling-rounded-bold-duotone" aria-hidden="true"></iconify-icon><span>+91 9703294358</span></a></div></div><div class="premium-hero-media"><div class="tp-video-player" data-video-player><video class="tp-hero-video" src="../../assets/videos/video-placeholder.mp4" poster="../../assets/images/dentalImplants.png" preload="metadata" playsinline controls></video><div class="tp-video-shade"></div><button class="tp-play-button" type="button" data-play-video aria-label="Play Dental Implants video"><iconify-icon icon="solar:play-bold" aria-hidden="true"></iconify-icon></button><div class="tp-video-caption"><span>Doctor Explains</span><strong>Dental Implants</strong><small>Video overview</small></div></div></div></div></section>
 
   <section class="premium-section tp-knowledge reveal"><div class="container"><div class="premium-section-heading tp-centered-heading"><div class="premium-kicker">Everything You Need To Know</div><h2>Clear answers. Confident decisions.</h2><p>A concise guide to understanding the treatment before your consultation.</p></div><div class="tp-knowledge-grid"><article class="tp-knowledge-card"><span class="tp-card-icon">01</span><h3>What It Is</h3><p>An implant is a biocompatible post that integrates with bone and acts as a foundation for a new tooth.</p></article><article class="tp-knowledge-card"><span class="tp-card-icon">02</span><h3>How It Works</h3><p>The process begins with scans and bite evaluation, followed by implant placement and final tooth design after healing.</p></article><article class="tp-knowledge-card"><span class="tp-card-icon">03</span><h3>Who Needs It</h3><p>Ideal candidates have one or more missing teeth, healthy gums, and enough bone support or are suitable for grafting.</p></article><article class="tp-knowledge-card"><span class="tp-card-icon">04</span><h3>Expected Results</h3><p>Implants are anchored in bone, giving strong support for everyday foods.</p></article></div></div></section>
 
@@ -270,36 +270,30 @@
     </div>
   </footer>
 
+  <!-- Script for Iconify (Only used for floating action icons) -->
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
   <!-- Premium Floating Actions -->
   <div class="premium-floating-actions-bar" aria-label="Quick contact actions">
     <!-- WhatsApp -->
     <a href="https://api.whatsapp.com/send?phone=919703294358&text=Hello%20Manohar%20Dental%20Clinic,%20I%20would%20like%20to%20book%20a%20consultation." target="_blank" rel="noopener" class="premium-float-btn float-whatsapp-btn" aria-label="WhatsApp Us">
       <span class="premium-float-label">WhatsApp Us</span>
       <span class="premium-float-icon-wrapper">
-        <svg class="premium-float-svg-icon" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12.03 2c-5.502 0-9.96 4.458-9.96 9.969 0 1.758.455 3.476 1.324 4.994L2 22l5.176-1.354c1.464.797 3.1 1.217 4.777 1.217h.004c5.502 0 9.96-4.46 9.96-9.97C21.92 6.458 17.46 2 12.03 2zm6.604 14.154c-.273.774-1.35 1.397-1.868 1.489-.354.062-1.794.525-7.51-1.844-4.838-2.001-7.85-6.853-8.09-7.18-.244-.324-1.934-2.544-1.934-4.848 0-2.304 1.185-3.436 1.606-3.882.353-.377.94-.522 1.503-.522.181 0 .344.01.479.016.398.016.596.042.857.659.324.774 1.109 2.697 1.206 2.894.098.196.162.427.032.685-.13.26-.195.42-.39.638-.195.218-.41.488-.585.655-.195.187-.4.39-.17.788.23.391 1.018 1.666 2.183 2.7 1.5 1.328 2.766 1.74 3.156 1.935.39.195.617.162.846-.1.228-.26.976-1.127 1.236-1.516.26-.39.52-.325.877-.195.358.13 2.274 1.066 2.664 1.26.39.195.65.293.748.455.098.162.098.943-.176 1.717z"/>
-        </svg>
+        <iconify-icon icon="mdi:whatsapp" style="font-size: 24px; color: #ffffff; display: block;"></iconify-icon>
       </span>
     </a>
     <!-- Call -->
     <a href="tel:+919703294358" class="premium-float-btn float-call-btn" aria-label="Call Us">
       <span class="premium-float-label">Call Us</span>
       <span class="premium-float-icon-wrapper">
-        <svg class="premium-float-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 .7a2 2 0 0 1 2 2v3.03z"></path>
-        </svg>
+        <iconify-icon icon="mdi:phone" style="font-size: 24px; color: #ffffff; display: block;"></iconify-icon>
       </span>
     </a>
     <!-- Book Appointment -->
     <a href="../../contact/index.html" class="premium-float-btn float-appointment-btn" aria-label="Book Appointment">
       <span class="premium-float-label">Book Appointment</span>
       <span class="premium-float-icon-wrapper">
-        <svg class="premium-float-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-          <line x1="16" y1="2" x2="16" y2="6"></line>
-          <line x1="8" y1="2" x2="8" y2="6"></line>
-          <line x1="3" y1="10" x2="21" y2="10"></line>
-        </svg>
+        <iconify-icon icon="mdi:calendar-month" style="font-size: 24px; color: #ffffff; display: block;"></iconify-icon>
       </span>
     </a>
   </div>

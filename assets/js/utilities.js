@@ -406,19 +406,225 @@ function initTreatmentCardFilters() {
     if (!buttons.length || !cards.length) return;
 
     buttons.forEach((button) => {
+      button.setAttribute('aria-pressed', button.classList.contains('active') ? 'true' : 'false');
       button.addEventListener('click', () => {
         const filter = button.getAttribute('data-treatment-filter');
-        buttons.forEach((item) => item.classList.remove('active'));
+        buttons.forEach((item) => {
+          item.classList.remove('active');
+          item.setAttribute('aria-pressed', 'false');
+        });
         button.classList.add('active');
+        button.setAttribute('aria-pressed', 'true');
 
         cards.forEach((card) => {
           const categories = (card.getAttribute('data-treatment-category') || '').split(/\s+/);
           const shouldShow = filter === 'all' || categories.includes(filter);
           card.hidden = !shouldShow;
+          card.setAttribute('aria-hidden', shouldShow ? 'false' : 'true');
         });
       });
     });
   });
+}
+
+function initUniversalVideoPlayers() {
+  const players = document.querySelectorAll('[data-video-player]');
+  if (!players.length) return;
+
+  players.forEach((player) => {
+    if (player.dataset.videoPlayerBound === 'true') return;
+    player.dataset.videoPlayerBound = 'true';
+
+    const video = player.querySelector('video');
+    const button = player.querySelector('[data-play-video]');
+    if (!video) return;
+
+    video.controls = true;
+
+    const syncState = () => {
+      const isPlaying = !video.paused && !video.ended;
+      player.classList.toggle('is-playing', isPlaying);
+      if (button) {
+        button.hidden = isPlaying;
+        button.setAttribute('aria-label', isPlaying ? 'Pause video' : 'Play video');
+      }
+    };
+
+    if (button) {
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        document.querySelectorAll('video').forEach((otherVideo) => {
+          if (otherVideo !== video && !otherVideo.paused) otherVideo.pause();
+        });
+
+        if (video.paused) {
+          video.play().catch(() => syncState());
+        } else {
+          video.pause();
+        }
+      });
+    }
+
+    video.addEventListener('play', syncState);
+    video.addEventListener('pause', syncState);
+    video.addEventListener('ended', syncState);
+    syncState();
+  });
+}
+
+function initDeferredTestimonialVideos() {
+  const cards = document.querySelectorAll('[data-testimonial-player]');
+  if (!cards.length) return;
+
+  cards.forEach((card) => {
+    if (card.dataset.testimonialBound === 'true') return;
+    card.dataset.testimonialBound = 'true';
+
+    const button = card.querySelector('[data-play-testimonial]');
+    const poster = card.querySelector('.reel-poster-new');
+    const source = card.dataset.videoSrc;
+    if (!button || !poster || !source) return;
+
+    const startVideo = () => {
+      if (card.classList.contains('is-loading') || card.querySelector('video')) return;
+      card.classList.add('is-loading');
+      button.setAttribute('aria-label', 'Loading testimonial video');
+
+      document.querySelectorAll('[data-testimonial-player] video').forEach((video) => video.pause());
+
+      const video = document.createElement('video');
+      video.className = 'reel-video-new';
+      video.controls = true;
+      video.playsInline = true;
+      video.preload = 'auto';
+      video.src = source;
+      video.setAttribute('aria-label', button.getAttribute('aria-label').replace('Loading ', 'Playing '));
+
+      const showPlayer = () => {
+        card.classList.remove('is-loading');
+        card.classList.add('is-playing');
+        button.hidden = true;
+        poster.hidden = true;
+      };
+
+      video.addEventListener('playing', showPlayer, { once: true });
+      video.addEventListener('error', () => {
+        card.classList.remove('is-loading');
+        button.setAttribute('aria-label', 'Retry testimonial video');
+        button.hidden = false;
+        video.remove();
+      }, { once: true });
+      video.addEventListener('ended', () => card.classList.remove('is-playing'));
+
+      card.insertBefore(video, poster);
+      video.play().catch(() => {
+        showPlayer();
+        video.controls = true;
+      });
+    };
+
+    button.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      startVideo();
+    });
+  });
+}
+
+function initAppointmentPopup() {
+  if (document.querySelector('.appointment-popup')) return;
+
+  document.querySelectorAll('.btn-appointment, .float-appointment-btn').forEach((trigger) => {
+    trigger.setAttribute('data-open-appointment-popup', '');
+    if (trigger.classList.contains('btn-appointment') && !trigger.querySelector('iconify-icon')) {
+      const icon = document.createElement('iconify-icon');
+      icon.setAttribute('icon', 'solar:calendar-add-bold-duotone');
+      icon.setAttribute('aria-hidden', 'true');
+      trigger.prepend(icon);
+    }
+  });
+
+  const isTreatmentPage = document.body.classList.contains('premium-treatment-page');
+  const pageHeading = document.querySelector('h1')?.textContent.trim() || '';
+  const treatmentName = isTreatmentPage
+    ? pageHeading.replace(/\s+in\s+Visakhapatnam.*$/i, '')
+    : 'General Dental Consultation';
+  const popup = document.createElement('div');
+  popup.className = 'appointment-popup';
+  popup.setAttribute('aria-hidden', 'true');
+  popup.innerHTML = `
+    <div class="appointment-popup-backdrop" data-close-appointment-popup></div>
+    <section class="appointment-popup-dialog" role="dialog" aria-modal="true" aria-labelledby="appointment-popup-title">
+      <button class="appointment-popup-close" type="button" data-close-appointment-popup aria-label="Close appointment form">
+        <iconify-icon icon="solar:close-circle-linear" aria-hidden="true"></iconify-icon>
+      </button>
+      <div class="appointment-popup-intro">
+        <span class="appointment-popup-icon"><iconify-icon icon="solar:calendar-mark-bold-duotone" aria-hidden="true"></iconify-icon></span>
+        <div>
+          <h2 id="appointment-popup-title">Book Your Appointment</h2>
+          <p>Schedule a specialist dental consultation with our clinical team.</p>
+        </div>
+      </div>
+      <div class="appointment-popup-body">
+        <div class="consult-card appointment-popup-card">
+          <form class="consult-form appointment-popup-form" data-email-subject="Website popup appointment request">
+            <div class="form-group"><label for="popup-name">Your name</label><input id="popup-name" type="text" name="name" placeholder="Enter your full name" required></div>
+            <div class="form-group"><label for="popup-phone">Phone number</label><input id="popup-phone" type="tel" name="phone" inputmode="numeric" placeholder="Enter 10-digit mobile number" required></div>
+            <div class="form-group"><label for="popup-treatment">Treatment</label><select id="popup-treatment" name="service"><option>${treatmentName}</option><option>Dental Implants</option><option>Root Canal Treatment</option><option>Smile Makeover</option><option>Clear Aligners</option><option>Braces Treatment</option><option>Teeth Whitening</option><option>General Dental Consultation</option></select></div>
+            <div class="form-group"><label for="popup-date">Preferred date</label><input id="popup-date" type="date" name="date"></div>
+            <div class="form-group appointment-popup-message"><label for="popup-message">Brief message <span>(optional)</span></label><textarea id="popup-message" name="message" rows="3" placeholder="Tell us more about your dental concern..."></textarea></div>
+            <div class="appointment-popup-actions">
+              <button class="btn btn-primary appointment-popup-submit" type="submit"><iconify-icon icon="solar:calendar-add-bold-duotone" aria-hidden="true"></iconify-icon><span>Confirm Appointment</span></button>
+              <button class="appointment-popup-cancel" type="button" data-close-appointment-popup>Cancel and Close</button>
+              <div class="appointment-popup-security"><iconify-icon icon="solar:shield-check-bold" aria-hidden="true"></iconify-icon><span>Private and secure appointment request</span></div>
+            </div>
+          </form>
+          <div class="form-success-message appointment-popup-success">
+            <iconify-icon icon="solar:check-circle-bold-duotone" aria-hidden="true"></iconify-icon>
+            <h3>Request submitted</h3><p>We will help you confirm the appointment details.</p>
+          </div>
+        </div>
+      </div>
+    </section>`;
+  document.body.appendChild(popup);
+
+  const dialog = popup.querySelector('.appointment-popup-dialog');
+  const firstInput = popup.querySelector('input');
+  const storageKey = `appointment-popup:${window.location.pathname}`;
+
+  const openPopup = () => {
+    popup.classList.add('is-open');
+    popup.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('appointment-popup-open');
+    window.setTimeout(() => firstInput?.focus(), 120);
+  };
+
+  const closePopup = () => {
+    popup.classList.remove('is-open');
+    popup.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('appointment-popup-open');
+    try { sessionStorage.setItem(storageKey, 'dismissed'); } catch (_) {}
+  };
+
+  document.querySelectorAll('[data-open-appointment-popup]').forEach((trigger) => {
+    trigger.addEventListener('click', (event) => {
+      event.preventDefault();
+      openPopup();
+    });
+  });
+  popup.querySelectorAll('[data-close-appointment-popup]').forEach((trigger) => trigger.addEventListener('click', closePopup));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && popup.classList.contains('is-open')) closePopup();
+  });
+  dialog.addEventListener('click', (event) => event.stopPropagation());
+
+  if (window.Forms) window.Forms.initConsultationForm();
+
+  let dismissed = false;
+  try { dismissed = sessionStorage.getItem(storageKey) === 'dismissed'; } catch (_) {}
+  if (!dismissed) window.setTimeout(openPopup, isTreatmentPage ? 5000 : 8000);
 }
 
 // Export initializers
@@ -432,5 +638,8 @@ window.Utilities = {
   initTreatmentVideoPreviews,
   initTreatmentExplorer,
   initVideoTestimonialSwitcher,
-  initTreatmentCardFilters
+  initTreatmentCardFilters,
+  initUniversalVideoPlayers,
+  initAppointmentPopup,
+  initDeferredTestimonialVideos
 };
