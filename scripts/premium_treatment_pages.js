@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { renderTreatmentPageV2 } = require('./treatment_renderer_v2');
 
 const clinic = {
   phone: '+91 9703294358',
@@ -12,19 +13,10 @@ const clinic = {
 const commonWhy = [
   ['MDS Specialists', 'Complex cases are planned by experienced postgraduate dental specialists.'],
   ['Advanced Technology', 'Digital scans, RVG imaging, magnification, and modern chairside systems support precise care.'],
-  ['Pain-Free Procedures', 'Comfort-first protocols, careful anesthesia, and calming chairside communication.'],
+  ['Pain-Free Care', 'Comfort-first protocols, careful anesthesia, and calming chairside communication.'],
   ['Digital Diagnostics', 'Clear diagnosis before treatment so patients understand the why, not only the procedure.'],
   ['High Success Rate', 'Evidence-led protocols, quality materials, and careful follow-up improve long-term outcomes.'],
-  ['Personalized Care', 'Treatment choices are matched to your bite, smile goals, medical history, and budget.'],
-  ['Follow-Up Support', 'Recovery checks and maintenance guidance are built into the patient journey.']
-];
-
-const technologies = [
-  ['Dental Microscope', 'Enhanced visibility for fine finishing, root canal precision, and conservative dentistry.'],
-  ['CBCT Scan', 'Three-dimensional planning for implants, wisdom teeth, bone position, and complex anatomy.'],
-  ['RVG Digital X-Ray', 'Low-radiation digital imaging for quick diagnosis and progress checks.'],
-  ['Intraoral Scanner', 'Comfortable digital impressions for aligners, crowns, bridges, and smile planning.'],
-  ['Laser Dentistry', 'Soft-tissue care with improved comfort, precision, and healing in selected cases.']
+  ['Personalized Care', 'Treatment choices are matched to your bite, smile goals, medical history, and budget.']
 ];
 
 const treatmentPages = [
@@ -34,7 +26,7 @@ const treatmentPages = [
     title: 'Dental Implants',
     metaTitle: 'Dental Implants in Visakhapatnam | Manohar Dental Clinic',
     metaDescription: 'Premium dental implant treatment in Visakhapatnam with digital planning, fixed teeth options, recovery guidance, and MDS specialist care.',
-    image: '/assets/images/Dental Implants.png',
+    image: '/assets/images/dentalImplants.png',
     before: '/assets/images/Dental_Implant_Befor.png',
     after: '/assets/images/Dental_Implant_after.png',
     headline: 'Replace missing teeth with fixed, natural-looking teeth that feel stable when you chew.',
@@ -82,7 +74,7 @@ const treatmentPages = [
     title: 'Teeth Whitening Treatment',
     metaTitle: 'Teeth Whitening in Visakhapatnam | Professional Smile Brightening',
     metaDescription: 'Professional teeth whitening in Visakhapatnam for stains, yellow teeth, shade correction, and safer cosmetic brightening.',
-    image: '/assets/images/Smile Makeover.png',
+    image: '/assets/images/SmileMakeOver.png',
     before: '/assets/images/smile_makeover_before.png',
     after: '/assets/images/smile_makeover_after.png',
     headline: 'Lift stains safely and brighten your smile without damaging enamel.',
@@ -106,7 +98,7 @@ const treatmentPages = [
     title: 'Smile Makeover Treatment',
     metaTitle: 'Smile Makeover in Visakhapatnam | Cosmetic Dental Design',
     metaDescription: 'Smile makeover treatment in Visakhapatnam with veneers, whitening, bonding, gum contouring, implants, and digital smile planning.',
-    image: '/assets/images/Smile Makeover.png',
+    image: '/assets/images/SmileMakeOver.png',
     before: '/assets/images/smile_makeover_before.png',
     after: '/assets/images/smile_makeover_after.png',
     headline: 'Design a confident smile that matches your face, lips, and personality.',
@@ -316,6 +308,30 @@ const treatmentPages = [
     foodsAvoid: ['Smoking', 'Sugary snacking', 'Very hard foods during tenderness', 'Skipping brushing near gums', 'Alcohol mouthwash overuse'],
     faqs: ['Why do my gums bleed while brushing?', 'Is gum treatment painful?', 'Can loose teeth become firm again?', 'What is deep cleaning?', 'How often should scaling be done?', 'Can gum disease cause bad breath?', 'Do receding gums grow back?', 'Is gum disease linked with diabetes?', 'What happens if gum disease is untreated?', 'How can I maintain gums after treatment?'],
     price: 'Packages include periodontal screening, scaling, deep cleaning options, medication guidance, and recall maintenance.'
+  },
+  {
+    slug: 'pediatric-dentistry',
+    alias: 'pediatric-dentistry.html',
+    title: 'Pediatric Dentistry',
+    metaTitle: 'Pediatric Dentists in Visakhapatnam | Manohar Dental Clinic',
+    metaDescription: 'Child-friendly pediatric dentistry in Visakhapatnam for cavities, preventive care, sealants, habit guidance, and comfortable dental visits.',
+    image: '/assets/images/treatments/pediatric-dentistry.jpg',
+    before: '/assets/images/clinic/hppy-cust.png',
+    after: '/assets/images/clinic/hppy-cust2.png',
+    headline: 'Gentle dental visits that help children feel safe, healthy, and confident.',
+    intro: 'Pediatric dentistry protects milk teeth and developing permanent teeth through prevention, early diagnosis, cavity care, sealants, habit guidance, and child-friendly communication. Positive early visits can reduce dental fear and build healthy routines for life.',
+    trust: ['MDS pediatric specialist', 'Child-friendly approach', 'Preventive cavity care', 'Parent guidance'],
+    what: ['Pediatric dentistry is dental care designed around the clinical and emotional needs of children.', 'The dentist uses age-appropriate examination, prevention, and treatment while helping the child feel comfortable.', 'Children with tooth pain, cavities, delayed eruption, dental trauma, or preventive needs benefit from pediatric care.', 'Expected results include healthier teeth, comfortable eating, better hygiene habits, and greater confidence at dental visits.'],
+    causes: [['Early childhood decay', 'Frequent sugary drinks and missed brushing can damage milk teeth quickly.'], ['Deep grooves', 'Back teeth can trap food in areas a toothbrush cannot clean well.'], ['Dental injury', 'Falls and sports can chip or loosen developing teeth.'], ['Oral habits', 'Thumb sucking or mouth breathing can influence tooth and jaw development.']],
+    symptoms: [['Tooth pain', 'A child may avoid chewing or wake at night with discomfort.'], ['Visible spots', 'White, brown, or black areas can signal early or advanced decay.'], ['Swelling', 'Gum or facial swelling needs prompt assessment.'], ['Dental fear', 'Previous difficult experiences can make routine visits stressful.']],
+    risks: [['Pain and infection', 'Untreated cavities can reach the nerve and create swelling.'], ['Eating difficulty', 'Painful teeth can affect nutrition and sleep.'], ['Space loss', 'Early milk-tooth loss can disturb permanent tooth eruption.'], ['Dental anxiety', 'Emergency-only visits can reinforce fear of dental care.']],
+    benefits: [['Early prevention', 'Fluoride, sealants, and hygiene coaching reduce cavity risk.'], ['Comfort-focused care', "Communication is matched to the child's age and confidence."], ['Protects development', 'Healthy milk teeth support speech, nutrition, and eruption guidance.'], ['Parent clarity', 'Families receive practical brushing and diet advice.'], ['Timely treatment', 'Small problems can often be managed before they become emergencies.'], ['Positive habits', 'Regular calm visits build lifelong dental confidence.']],
+    process: ["The first visit discusses the child's concern, history, habits, and comfort level.", 'A gentle examination checks teeth, gums, bite, eruption, and X-rays only when needed.', 'Parents receive a clear preventive or treatment plan with age-appropriate options.', 'Treatment is completed in short, reassuring stages with behavior guidance.', 'Home instructions help protect the treated tooth and reinforce brushing habits.', 'Recall visits monitor eruption, cavity risk, and preventive needs.'],
+    aftercare: [['After treatment', 'Wait for numbness to settle before chewing when local anesthesia is used.'], ['Daily', 'Brush twice with age-appropriate fluoride toothpaste and parent supervision.'], ['Diet', 'Limit frequent sugary sipping and sticky snacks.'], ['Recall', 'Attend preventive reviews according to the child’s cavity risk.']],
+    foodsEat: ['Balanced home meals', 'Curd', 'Eggs', 'Fresh fruit pieces', 'Water'],
+    foodsAvoid: ['Frequent candy', 'Sugary bedtime bottles', 'Sticky sweets', 'Constant juice sipping', 'Chewing while numb'],
+    faqs: ['When should my child first visit a dentist?', 'Are milk teeth important if they eventually fall out?', 'How can I prepare my child for a dental visit?', 'What are dental sealants?', 'Is pediatric dental treatment painful?', 'How often should children have dental checkups?', 'What should I do if my child breaks a tooth?', 'Can thumb sucking affect teeth?', 'How can cavities be prevented in children?', 'Are dental X-rays safe for children?'],
+    price: "Pediatric care is planned after examining the child's age, comfort, cavity risk, and treatment needs."
   }
 ];
 
@@ -378,7 +394,7 @@ function beforeAfterCard(page, label, time, summary) {
 }
 
 function faqHtml(page) {
-  return page.faqs.map((question, index) => `
+  return page.faqs.slice(0, 8).map((question, index) => `
     <div class="accordion-item">
       <button class="accordion-header" type="button">
         <h4>${esc(question)}</h4>
@@ -691,8 +707,9 @@ function renderPremiumTreatmentPage(page, headerTemplate, footerTemplate, depthP
 
 function buildPremiumTreatmentPages({ rootDir, headerTemplate, footerTemplate, ensureDir, rewritePaths }) {
   treatmentPages.forEach(page => {
-    const html = rewritePaths(renderPremiumTreatmentPage(page, headerTemplate, footerTemplate, '../../'), 2);
-    const aliasHtml = rewritePaths(renderPremiumTreatmentPage(page, headerTemplate, footerTemplate, '../'), 1);
+    const shared = { page, treatmentPages, clinic, commonWhy, headerTemplate, footerTemplate, rootDir };
+    const html = rewritePaths(renderTreatmentPageV2({ ...shared, depthPrefix: '../../' }), 2);
+    const aliasHtml = rewritePaths(renderTreatmentPageV2({ ...shared, depthPrefix: '../' }), 1);
     const dir = path.join(rootDir, 'treatments', page.slug);
     ensureDir(dir);
     fs.writeFileSync(path.join(dir, 'index.html'), html);

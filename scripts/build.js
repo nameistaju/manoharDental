@@ -750,4 +750,11 @@ function buildAll() {
   console.log('--- BUILD COMPILATION COMPLETED SUCCESSFULLY ---');
 }
 
-buildAll();
+if (require.main === module) {
+  buildAll();
+}
+
+module.exports = {
+  buildAll,
+  buildTreatmentPages
+};
