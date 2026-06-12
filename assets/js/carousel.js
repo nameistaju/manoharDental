@@ -13,15 +13,34 @@ function initBeforeAfterSlider() {
 
     if (!container || !beforeImg || !handle || !range) return;
 
-    const setPosition = (value) => {
-      const position = Math.max(0, Math.min(100, Number(value)));
-      beforeImg.style.clipPath = `inset(0 ${100 - position}% 0 0)`;
-      handle.style.left = `${position}%`;
-      range.value = position;
+    let currentPosition = 50;
+    let ticking = false;
+
+    const updateSlider = () => {
+      beforeImg.style.clipPath = `inset(0 ${100 - currentPosition}% 0 0)`;
+      handle.style.left = '0';
+      const containerWidth = container.clientWidth;
+      const x = (currentPosition / 100) * containerWidth;
+      handle.style.transform = `translate3d(${x}px, 0, 0)`;
+      range.value = currentPosition;
+      ticking = false;
     };
 
-    range.addEventListener('input', () => setPosition(range.value));
-    setPosition(range.value || 50);
+    const requestUpdate = (pos) => {
+      currentPosition = Math.max(0, Math.min(100, pos));
+      if (!ticking) {
+        requestAnimationFrame(updateSlider);
+        ticking = true;
+      }
+    };
+
+    range.addEventListener('input', () => requestUpdate(range.value));
+    
+    // Initial render
+    requestUpdate(Number(range.value) || 50);
+
+    // Update on resize
+    window.addEventListener('resize', () => requestUpdate(currentPosition));
   });
 
   const premiumGrid = document.querySelector('.ba-cards-grid');
@@ -54,16 +73,31 @@ function initBeforeAfterSlider() {
     // Ensure .ba-after container is full width so clip-path works perfectly without squishing
     afterImg.style.width = '100%';
 
+    let currentPosition = 50;
+    let ticking = false;
+
+    const updateSlider = () => {
+      afterImg.style.clipPath = `inset(0 ${100 - currentPosition}% 0 0)`;
+      handle.style.left = '0';
+      const containerWidth = slider.clientWidth;
+      const x = (currentPosition / 100) * containerWidth;
+      handle.style.transform = `translate3d(${x}px, 0, 0)`;
+      ticking = false;
+    };
+
+    const requestUpdate = (pos) => {
+      currentPosition = Math.max(0, Math.min(100, pos));
+      if (!ticking) {
+        requestAnimationFrame(updateSlider);
+        ticking = true;
+      }
+    };
+
     const moveSlider = (clientX) => {
       const rect = slider.getBoundingClientRect();
       const x = clientX - rect.left;
-      let position = (x / rect.width) * 100;
-
-      if (position < 0) position = 0;
-      if (position > 100) position = 100;
-
-      afterImg.style.clipPath = `inset(0 ${100 - position}% 0 0)`;
-      handle.style.left = position + '%';
+      const position = (x / rect.width) * 100;
+      requestUpdate(position);
     };
 
     const onMouseMove = (e) => {
@@ -103,7 +137,10 @@ function initBeforeAfterSlider() {
     });
 
     // Initialize to 50%
-    moveSlider(50);
+    requestUpdate(50);
+
+    // Update on resize
+    window.addEventListener('resize', () => requestUpdate(currentPosition));
   });
 }
 

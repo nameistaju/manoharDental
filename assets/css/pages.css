@@ -10098,157 +10098,514 @@ select.form-control-premium {
    PREMIUM THIN AND TRANSPARENT COMPARISON SLIDERS (OVERRIDE ALL)
    ========================================================================== */
 
-/* 1. Divider Line styling */
-/* Homepage sliders */
-.ba-premium-card .ba-handle-line {
-  width: 2px !important;
-  background: rgba(255, 255, 255, 0.7) !important;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15) !important;
-}
-
-/* Results and components general sliders where .ba-handle is the line */
-.ba-slider .ba-handle {
-  width: 2px !important;
-  background: rgba(255, 255, 255, 0.7) !important;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15) !important;
-}
-.ba-slider .ba-handle-line {
-  background: transparent !important;
+/* 1. Divider Line styling - Wide target zone for easy grabbing, visually thin and glassmorphic line */
+.ba-premium-card .ba-handle,
+.ba-slider .ba-handle,
+.premium-result-card .ba-handle,
+.tp-featured-result .ba-handle {
+  width: 44px !important; /* Easy-grab hit target */
+  background: transparent !important; /* Transparent container so the image is visible */
   box-shadow: none !important;
+  cursor: ew-resize !important;
+  pointer-events: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
-/* Treatment page result card sliders */
-.premium-result-card .ba-handle-line {
-  width: 2px !important;
-  background: rgba(255, 255, 255, 0.7) !important;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15) !important;
-}
-
-/* Treatment redesigned featured results */
+/* Visually thin (2px) vertical divider line with transparency and blur/glass effect */
+.ba-premium-card .ba-handle-line,
+.ba-slider .ba-handle-line,
+.premium-result-card .ba-handle-line,
 .tp-featured-result .ba-handle-line {
-  width: 2px !important;
-  background: rgba(255, 255, 255, 0.7) !important;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15) !important;
+  display: block !important;
+  width: 2px !important; /* 2px vertical divider line */
+  height: 100% !important;
+  background: rgba(255, 255, 255, 0.45) !important; /* 45% opacity semi-transparent white */
+  backdrop-filter: blur(2px) !important; /* Subtle glass effect */
+  -webkit-backdrop-filter: blur(2px) !important;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2) !important;
+  flex: 1 !important;
 }
 
-/* Also remove double divider border on treatment result cards */
+/* Ensure no double dividers or extra borders on cropped after layers */
 .premium-result-card .ba-after,
 .tp-featured-result .ba-after,
-.ba-slider-after {
+.ba-slider-after,
+.ba-img-after {
   border-right: none !important;
 }
 
-/* 2. Drag Handle Button/Circle styling */
-/* Homepage slider handles */
-.ba-premium-card .ba-handle-circle {
-  width: 36px !important;
-  height: 36px !important;
-  background: rgba(255, 255, 255, 0.8) !important;
-  backdrop-filter: blur(8px) !important;
-  -webkit-backdrop-filter: blur(8px) !important;
-  border: 1.5px solid rgba(255, 255, 255, 0.9) !important;
-  box-shadow: 0 4px 12px rgba(11, 31, 77, 0.12) !important;
-  color: #0b1f4d !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 0 !important;
-}
-
-.ba-premium-card:hover .ba-handle-circle {
-  transform: scale(1.08) !important;
-  background: rgba(255, 255, 255, 0.95) !important;
-  box-shadow: 0 6px 16px rgba(11, 31, 77, 0.18) !important;
-}
-
-.ba-premium-card .ba-handle-circle svg {
-  width: 12px !important;
-  height: 12px !important;
-}
-
-/* Results page slider handles */
-.ba-slider .ba-handle-button {
-  width: 36px !important;
-  height: 36px !important;
-  background: rgba(255, 255, 255, 0.8) !important;
-  backdrop-filter: blur(8px) !important;
-  -webkit-backdrop-filter: blur(8px) !important;
-  border: 1.5px solid rgba(255, 255, 255, 0.9) !important;
-  box-shadow: 0 4px 12px rgba(11, 31, 77, 0.12) !important;
-  color: #1ba8e8 !important;
-  font-size: 0.95rem !important;
-  line-height: 34px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-.ba-slider .ba-handle:hover .ba-handle-button,
-.ba-slider:hover .ba-handle-button {
-  transform: translate(-50%, -50%) scale(1.08) !important;
-  background: rgba(255, 255, 255, 0.95) !important;
-  box-shadow: 0 6px 16px rgba(11, 31, 77, 0.18) !important;
-}
-
-/* Treatment page result card handles */
-.premium-result-card .ba-handle-button {
-  width: 36px !important;
-  height: 36px !important;
-  background: rgba(255, 255, 255, 0.8) !important;
-  backdrop-filter: blur(8px) !important;
-  -webkit-backdrop-filter: blur(8px) !important;
-  border: 1.5px solid rgba(255, 255, 255, 0.9) !important;
-  box-shadow: 0 4px 12px rgba(11, 31, 77, 0.12) !important;
-  color: #1ba8e8 !important;
-  font-size: 0.95rem !important;
-  line-height: 34px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-.premium-result-card .ba-handle:hover .ba-handle-button,
-.premium-result-card .ba-slider:hover .ba-handle-button {
-  transform: translate(-50%, -50%) scale(1.08) !important;
-  background: rgba(255, 255, 255, 0.95) !important;
-  box-shadow: 0 6px 16px rgba(11, 31, 77, 0.18) !important;
-}
-
-/* Treatment redesigned page handles */
+/* 2. Drag Handle Button/Circle styling (Glassmorphism, 48px size) */
+.ba-premium-card .ba-handle-circle,
+.ba-slider .ba-handle-button,
+.premium-result-card .ba-handle-button,
 .tp-featured-result .ba-handle-button {
-  width: 36px !important;
-  height: 36px !important;
-  background: rgba(255, 255, 255, 0.8) !important;
-  backdrop-filter: blur(8px) !important;
-  -webkit-backdrop-filter: blur(8px) !important;
-  border: 1.5px solid rgba(255, 255, 255, 0.9) !important;
-  box-shadow: 0 4px 12px rgba(11, 31, 77, 0.12) !important;
+  width: 48px !important; /* 44px-52px size */
+  height: 48px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.45) !important; /* White glassmorphism base */
+  backdrop-filter: blur(12px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(12px) saturate(180%) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.6) !important; /* Thin borders */
+  box-shadow: 0 8px 32px rgba(11, 31, 77, 0.16), inset 0 0 0 1px rgba(255, 255, 255, 0.1) !important; /* Soft premium shadows */
   color: #0b1f4d !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important; /* Perfectly centered on divider */
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
+  z-index: 15 !important;
+  cursor: ew-resize !important;
+  pointer-events: auto !important;
 }
 
+/* Hover & Active animations for the handles */
+.ba-premium-card:hover .ba-handle-circle,
+.ba-slider:hover .ba-handle-button,
+.ba-slider .ba-handle:hover .ba-handle-button,
+.premium-result-card:hover .ba-handle-button,
+.premium-result-card .ba-handle:hover .ba-handle-button,
+.tp-featured-result:hover .ba-handle-button,
 .tp-featured-result .ba-handle:hover .ba-handle-button {
-  transform: scale(1.08) !important;
-  background: rgba(255, 255, 255, 0.95) !important;
-  box-shadow: 0 6px 16px rgba(11, 31, 77, 0.18) !important;
+  transform: translate(-50%, -50%) scale(1.08) !important; /* Sleek scale animation */
+  background: rgba(255, 255, 255, 0.65) !important; /* Increased opacity on hover for visibility */
+  border-color: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 12px 40px rgba(11, 31, 77, 0.22), inset 0 0 0 1px rgba(255, 255, 255, 0.2) !important;
 }
 
-/* 3. Mobile adjustments */
+/* Inside SVGs / arrows layout */
+.ba-premium-card .ba-handle-circle svg,
+.ba-slider .ba-handle-button svg,
+.premium-result-card .ba-handle-button svg,
+.tp-featured-result .ba-handle-button svg {
+  width: 14px !important;
+  height: 14px !important;
+  stroke: #0b1f4d !important;
+  stroke-width: 2.5 !important;
+  transition: transform 0.25s ease !important;
+}
+
+/* 3. Mobile adjustments (Compact sizing) */
 @media (max-width: 768px) {
+  .ba-premium-card .ba-handle,
+  .ba-slider .ba-handle,
+  .premium-result-card .ba-handle,
+  .tp-featured-result .ba-handle {
+    width: 36px !important;
+  }
   .ba-premium-card .ba-handle-circle,
   .ba-slider .ba-handle-button,
   .premium-result-card .ba-handle-button,
   .tp-featured-result .ba-handle-button {
-    width: 28px !important;
-    height: 28px !important;
-    font-size: 0.8rem !important;
-    line-height: 26px !important;
+    width: 36px !important; /* Scale down for compact mobile screens */
+    height: 36px !important;
   }
-  .ba-premium-card .ba-handle-circle svg {
-    width: 9px !important;
-    height: 9px !important;
+  .ba-premium-card .ba-handle-circle svg,
+  .ba-slider .ba-handle-button svg,
+  .premium-result-card .ba-handle-button svg,
+  .tp-featured-result .ba-handle-button svg {
+    width: 11px !important;
+    height: 11px !important;
   }
 }
+
+/* ==========================================================================
+   BLOG DETAIL PAGES SPECIFIC STYLES
+   ========================================================================== */
+
+/* Blog Layout Grid */
+.blog-detail-container {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  gap: 48px;
+  align-items: start;
+  margin-bottom: 80px;
+}
+
+@media (max-width: 992px) {
+  .blog-detail-container {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+/* Sidebar ToC Styling */
+.blog-sidebar {
+  position: sticky;
+  top: 140px;
+  z-index: 100;
+}
+
+.blog-toc-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(11, 31, 77, 0.05);
+  border: 1px solid var(--border-light);
+}
+
+.blog-toc-card h3 {
+  font-size: 1.15rem;
+  color: #0B1F4D;
+  margin-bottom: 16px;
+  font-weight: 700;
+  font-family: 'Outfit', sans-serif;
+  border-bottom: 2px solid #F7FAFC;
+  padding-bottom: 12px;
+}
+
+.blog-toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.blog-toc-item {
+  margin-bottom: 10px;
+}
+
+.blog-toc-link {
+  color: #64748B;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: block;
+  padding: 4px 0;
+}
+
+.blog-toc-link:hover {
+  color: #1BA8E8;
+  transform: translateX(4px);
+}
+
+.blog-toc-link.active {
+  color: #1BA8E8;
+  font-weight: 600;
+  border-left: 2px solid #1BA8E8;
+  padding-left: 8px;
+}
+
+/* Main Blog Content Typography */
+.blog-content-area {
+  color: #334155;
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.blog-content-area p {
+  margin-bottom: 24px;
+}
+
+.blog-content-area h2 {
+  font-size: 1.85rem;
+  color: #0B1F4D;
+  margin: 40px 0 16px;
+  font-weight: 800;
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: -0.02em;
+  scroll-margin-top: 140px; /* Offset for sticky header when scrolling to anchors */
+}
+
+.blog-content-area h3 {
+  font-size: 1.35rem;
+  color: #0B1F4D;
+  margin: 28px 0 12px;
+  font-weight: 700;
+  font-family: 'Outfit', sans-serif;
+}
+
+.blog-content-area ul, .blog-content-area ol {
+  margin-bottom: 24px;
+  padding-left: 24px;
+}
+
+.blog-content-area li {
+  margin-bottom: 8px;
+}
+
+/* Callout and Highlight Boxes */
+.blog-callout {
+  background-color: #F8FAFC;
+  border-left: 4px solid #1BA8E8;
+  padding: 20px 24px;
+  border-radius: 0 12px 12px 0;
+  margin: 32px 0;
+}
+
+.blog-callout p {
+  margin: 0;
+  font-style: italic;
+  color: #475569;
+}
+
+.blog-warning {
+  background-color: #FFFBEB;
+  border-left: 4px solid #F59E0B;
+  padding: 20px 24px;
+  border-radius: 0 12px 12px 0;
+  margin: 32px 0;
+}
+
+.blog-warning-title {
+  font-weight: 700;
+  color: #B45309;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.blog-warning p {
+  margin: 0;
+  color: #78350F;
+  font-size: 0.95rem;
+}
+
+/* Expert Tip Card */
+.blog-expert-card {
+  background: linear-gradient(135deg, rgba(20, 198, 198, 0.06) 0%, rgba(27, 168, 232, 0.03) 100%);
+  border: 1px solid rgba(20, 198, 198, 0.15);
+  border-radius: 20px;
+  padding: 32px;
+  margin: 48px 0;
+  display: flex;
+  gap: 24px;
+  align-items: start;
+}
+
+.blog-expert-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: #0b1f4d;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 8px 16px rgba(11, 31, 77, 0.1);
+}
+
+.blog-expert-info h4 {
+  font-size: 1.15rem;
+  color: #0B1F4D;
+  margin-bottom: 4px;
+  font-weight: 700;
+  font-family: 'Outfit', sans-serif;
+}
+
+.blog-expert-info .expert-title {
+  color: #64748b;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.blog-expert-info p {
+  margin: 0;
+  color: #475569;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 576px) {
+  .blog-expert-card {
+    flex-direction: column;
+    padding: 24px;
+    gap: 16px;
+  }
+}
+
+/* Routine Cards (Morning/Night) */
+.routine-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin: 40px 0;
+}
+
+.routine-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 28px;
+  border: 1px solid var(--border-light);
+  box-shadow: 0 10px 25px rgba(11, 31, 77, 0.03);
+}
+
+.routine-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Outfit', sans-serif;
+}
+
+.routine-card.morning .routine-card-title {
+  color: #1BA8E8;
+}
+
+.routine-card.night .routine-card-title {
+  color: #0B1F4D;
+}
+
+.routine-list {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.routine-list li {
+  font-size: 0.95rem;
+  color: #475569;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .routine-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+/* Comparison Table */
+.blog-table-container {
+  overflow-x: auto;
+  margin: 32px 0;
+  border-radius: 12px;
+  border: 1px solid var(--border-light);
+}
+
+.blog-comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.blog-comparison-table th {
+  background-color: #0B1F4D;
+  color: #ffffff;
+  padding: 16px 20px;
+  font-weight: 700;
+  font-family: 'Outfit', sans-serif;
+}
+
+.blog-comparison-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-light);
+  color: #475569;
+}
+
+.blog-comparison-table tr:last-child td {
+  border-bottom: none;
+}
+
+.blog-comparison-table tr:nth-child(even) {
+  background-color: #F8FAFC;
+}
+
+/* Related Treatments */
+.blog-related-section {
+  padding: 60px 0;
+  border-top: 1px solid var(--border-light);
+}
+
+.blog-related-title {
+  font-size: 1.75rem;
+  color: #0B1F4D;
+  margin-bottom: 32px;
+  font-weight: 800;
+  font-family: 'Outfit', sans-serif;
+  text-align: center;
+}
+
+.blog-related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 992px) {
+  .blog-related-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .blog-related-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.blog-related-card {
+  background-color: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 20px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+}
+
+.blog-related-card:hover {
+  transform: translateY(-3px);
+  border-color: #1BA8E8;
+  box-shadow: 0 8px 20px rgba(27, 168, 232, 0.1);
+}
+
+.blog-related-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: rgba(27, 168, 232, 0.1);
+  color: #1BA8E8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.blog-related-card h4 {
+  font-size: 1rem;
+  color: #0B1F4D;
+  font-weight: 700;
+  font-family: 'Outfit', sans-serif;
+  margin: 0;
+}
+
+/* FAQ Accordion Styling inside Blog */
+.blog-faq-section {
+  padding: 60px 0;
+  background-color: #F8FAFC;
+  border-radius: 24px;
+  margin-bottom: 60px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.blog-faq-title {
+  font-size: 1.75rem;
+  color: #0B1F4D;
+  margin-bottom: 32px;
+  font-weight: 800;
+  font-family: 'Outfit', sans-serif;
+  text-align: center;
+}
+
 
