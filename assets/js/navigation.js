@@ -25,6 +25,26 @@ function initMobileMenu() {
   
   if (!mobileBtn || !navLinks) return;
 
+  let mobileHeader = navLinks.querySelector('.mobile-menu-header');
+  if (!mobileHeader) {
+    const desktopLogo = document.querySelector('.header-logo img, .logo img');
+    mobileHeader = document.createElement('div');
+    mobileHeader.className = 'mobile-menu-header';
+    mobileHeader.innerHTML = `
+      <a class="mobile-menu-logo" href="${desktopLogo?.closest('a')?.getAttribute('href') || '#'}" aria-label="Manohar Dental Clinic home">
+        ${desktopLogo ? `<img src="${desktopLogo.getAttribute('src')}" alt="Manohar Dental Clinic">` : ''}
+      </a>
+      <button class="mobile-menu-close" type="button" aria-label="Close navigation menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round">
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+        </svg>
+      </button>`;
+    navLinks.prepend(mobileHeader);
+  }
+
+  const closeButton = mobileHeader.querySelector('.mobile-menu-close');
+
   // Create overlay for mobile drawer if it doesn't exist yet
   let overlay = document.querySelector('.mobile-menu-overlay');
   if (!overlay) {
@@ -61,6 +81,7 @@ function initMobileMenu() {
   };
 
   mobileBtn.addEventListener('click', toggleMenu);
+  closeButton?.addEventListener('click', closeMenu);
   overlay.addEventListener('click', closeMenu);
 
   accordionTriggers.forEach(trigger => {

@@ -1,0 +1,726 @@
+/* ==========================================================================
+   MANOHAR DENTAL CLINIC - PREMIUM MOBILE REDESIGN
+   Applies ONLY to screens < 768px
+   Sections: 1. Navigation Drawer  2. Hero Section  3. Results Carousel
+   ========================================================================== */
+
+/* ==========================================================================
+   1. PREMIUM MOBILE NAVIGATION DRAWER
+   Inspired by Apple, Linear, Stripe — clean, minimal, full-screen drawer
+   ========================================================================== */
+
+/* ── Drawer Shell ── */
+@media (max-width: 767px) {
+
+  /* Reset any floating/overlapping CTA from header on mobile */
+  .header-ctas {
+    display: none !important;
+  }
+
+  /* Hide desktop nav, show hamburger */
+  .nav-links {
+    /* Override the inherited display:flex that may be set at 968px */
+    display: none !important;
+  }
+
+  /* Premium Drawer — slide in from right, full screen */
+  .mobile-nav-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    background: #ffffff;
+    z-index: 1200;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+    visibility: hidden;
+    overflow: hidden;
+  }
+
+  .mobile-nav-drawer.open {
+    transform: translateX(0);
+    visibility: visible;
+  }
+
+  /* Blur overlay behind drawer */
+  .mobile-drawer-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(11, 31, 77, 0.35);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 1199;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+  }
+
+  .mobile-drawer-overlay.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  /* ── Drawer Header ── */
+  .drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    height: 72px;
+    border-bottom: 1px solid #f1f5f9;
+    flex-shrink: 0;
+  }
+
+  .drawer-logo img {
+    height: 48px;
+    width: auto;
+  }
+
+  .drawer-close-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #0B1F4D;
+    flex-shrink: 0;
+    transition: background 0.2s ease;
+  }
+
+  .drawer-close-btn:hover {
+    background: #e2e8f0;
+  }
+
+  /* ── Nav Body (scrollable) ── */
+  .drawer-nav-body {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 8px 0 0;
+  }
+
+  .drawer-nav-body::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* ── Simple Nav Items ── */
+  .drawer-nav-item {
+    display: block;
+    padding: 0 20px;
+  }
+
+  .drawer-nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    color: #0B1F4D;
+    font-size: 1.05rem;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+    border-bottom: 1px solid #f1f5f9;
+    transition: color 0.18s ease;
+    cursor: pointer;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    width: 100%;
+    text-align: left;
+    outline: none;
+  }
+
+  .drawer-nav-link:active {
+    color: #1BA8E8;
+  }
+
+  .drawer-nav-link svg.drawer-chevron {
+    flex-shrink: 0;
+    color: #94a3b8;
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .drawer-nav-item.accordion-open .drawer-nav-link svg.drawer-chevron {
+    transform: rotate(180deg);
+  }
+
+  /* ── Accordion Panel (Treatments) ── */
+  .drawer-accordion-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1), padding 0.25s ease;
+    background: #f8fafc;
+    margin: 0 -0px;
+  }
+
+  .drawer-nav-item.accordion-open .drawer-accordion-panel {
+    max-height: 800px;
+    padding: 8px 0 12px;
+  }
+
+  .drawer-accordion-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 28px;
+    color: #334155;
+    font-size: 0.96rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.15s ease, background 0.15s ease;
+  }
+
+  .drawer-accordion-link:hover,
+  .drawer-accordion-link:active {
+    color: #0B1F4D;
+    background: rgba(11, 31, 77, 0.04);
+  }
+
+  .drawer-accordion-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #1BA8E8;
+    flex-shrink: 0;
+  }
+
+  /* ── Drawer Footer (Bottom Section) ── */
+  .drawer-footer {
+    flex-shrink: 0;
+    padding: 20px;
+    border-top: 1px solid #f1f5f9;
+    background: #ffffff;
+  }
+
+  .drawer-cta-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .drawer-btn-book {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 52px;
+    background: #0B1F4D;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 14px;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    transition: background 0.2s ease, transform 0.2s ease;
+    letter-spacing: 0.01em;
+  }
+
+  .drawer-btn-book:active {
+    transform: scale(0.98);
+  }
+
+  .drawer-btn-call {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 52px;
+    background: #ffffff;
+    color: #0B1F4D;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 14px;
+    border: 1.5px solid #0B1F4D;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .drawer-btn-call:active {
+    background: #f8fafc;
+    transform: scale(0.98);
+  }
+
+  /* ── Bottom Info Row ── */
+  .drawer-bottom-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .drawer-google-rating {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .drawer-stars {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    color: #f59e0b;
+    font-size: 0.9rem;
+  }
+
+  .drawer-rating-text {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #0B1F4D;
+  }
+
+  .drawer-rating-count {
+    font-size: 0.78rem;
+    color: #64748b;
+    font-weight: 500;
+  }
+
+  .drawer-contact-info {
+    text-align: right;
+  }
+
+  .drawer-contact-info a {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #1BA8E8;
+    text-decoration: none;
+  }
+
+  .drawer-contact-info span {
+    font-size: 0.76rem;
+    color: #94a3b8;
+  }
+
+  /* ── Active state for hamburger button ── */
+  .mobile-menu-btn.drawer-open {
+    background: #0B1F4D !important;
+    color: #ffffff !important;
+    border-color: #0B1F4D !important;
+  }
+
+}
+
+/* ==========================================================================
+   2. PREMIUM MOBILE HERO SECTION REDESIGN
+   Applies ONLY to screens < 768px
+   Apple + Stripe inspired — minimal, conversion-focused
+   ========================================================================== */
+
+@media (max-width: 767px) {
+
+  /* Remove ANY extra top spacing */
+  .hero-section {
+    padding-top: 20px !important;
+    padding-bottom: 36px !important;
+    min-height: auto !important;
+    background-image:
+      linear-gradient(180deg, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.92) 60%, rgba(255,255,255,0.78) 100%),
+      url('../images/mobileheroBG.png') !important;
+    background-size: cover !important;
+    background-position: center top !important;
+  }
+
+  /* Single column stacked layout */
+  .hero-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+  }
+
+  /* ── Left Content Block ── */
+  .hero-left-content {
+    order: 1;
+    padding: 0 !important;
+    text-align: left !important;
+  }
+
+  /* Eyebrow */
+  .hero-eyebrow-text {
+    font-size: 0.78rem !important;
+    letter-spacing: 0.08em !important;
+    color: #1BA8E8 !important;
+    margin-bottom: 12px !important;
+    opacity: 0.9;
+  }
+
+  /* Headline — max 3 lines, powerful */
+  .hero-headline {
+    font-size: 2.1rem !important;
+    line-height: 1.2 !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.025em !important;
+    color: #0B1F4D !important;
+    margin-bottom: 14px !important;
+  }
+
+  /* Supporting copy — max 2 lines */
+  .hero-supporting-copy {
+    font-size: 0.97rem !important;
+    line-height: 1.55 !important;
+    color: #475569 !important;
+    margin-bottom: 20px !important;
+    max-width: 95% !important;
+  }
+
+  /* ── Trust Row (replaces category pills) ── */
+  .hero-trust-row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 10px 20px !important;
+    margin-bottom: 24px !important;
+    padding: 14px 0 !important;
+    border-top: 1px solid #f1f5f9 !important;
+    border-bottom: 1px solid #f1f5f9 !important;
+  }
+
+  .trust-pill-item {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    font-size: 0.88rem !important;
+    font-weight: 600 !important;
+    color: #0B1F4D !important;
+    white-space: nowrap;
+  }
+
+  .trust-pill-check {
+    color: #14C6C6 !important;
+    font-weight: 900 !important;
+    font-size: 1rem !important;
+  }
+
+  /* ── Remove category tags on mobile ── */
+  .hero-categories {
+    display: none !important;
+  }
+
+  /* ── Premium CTA Buttons ── */
+  .hero-cta-buttons {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    margin-bottom: 28px !important;
+    width: 100% !important;
+  }
+
+  /* Primary: Book Appointment — navy, full width */
+  .hero-cta-buttons .btn-primary-navy,
+  .hero-cta-buttons a:first-child {
+    width: 100% !important;
+    height: 56px !important;
+    border-radius: 18px !important;
+    background: #0B1F4D !important;
+    color: #ffffff !important;
+    border: none !important;
+    font-size: 1.02rem !important;
+    font-weight: 700 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 4px 16px rgba(11, 31, 77, 0.22) !important;
+    padding: 0 !important;
+    letter-spacing: 0.01em;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+    text-decoration: none;
+  }
+
+  .hero-cta-buttons .btn-primary-navy:active,
+  .hero-cta-buttons a:first-child:active {
+    transform: scale(0.98) !important;
+  }
+
+  /* Secondary: Call Now — white, navy border */
+  .hero-cta-buttons .btn-accent-outline,
+  .hero-cta-buttons a:last-child {
+    width: 100% !important;
+    height: 56px !important;
+    border-radius: 18px !important;
+    background: #ffffff !important;
+    color: #0B1F4D !important;
+    border: 1.5px solid #0B1F4D !important;
+    font-size: 1.02rem !important;
+    font-weight: 700 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    padding: 0 !important;
+    box-shadow: 0 2px 8px rgba(11, 31, 77, 0.06) !important;
+    transition: transform 0.2s ease !important;
+    text-decoration: none;
+  }
+
+  .hero-cta-buttons .btn-accent-outline:active,
+  .hero-cta-buttons a:last-child:active {
+    background: #f8fafc !important;
+    transform: scale(0.98) !important;
+  }
+
+  /* ── Video Card (Right Media) ── */
+  .hero-right-media {
+    order: 2;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  /* Full-width video, clean thumbnail, no text overlays */
+  .hero-video-wrapper-16-9 {
+    border-radius: 24px !important;
+    box-shadow: 0 12px 36px rgba(11, 31, 77, 0.08) !important;
+    overflow: hidden !important;
+    width: 100% !important;
+    background: #0B1F4D !important;
+  }
+
+  /* Hide all text overlays on mobile video card */
+  .glass-video-overlay-caption,
+  .video-duration-badge-pill,
+  .video-caption-kicker {
+    display: none !important;
+  }
+
+  /* Keep play button, make it centered and large */
+  .video-play-button-overlay {
+    width: 68px !important;
+    height: 68px !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-radius: 50% !important;
+    box-shadow: 0 8px 24px rgba(11, 31, 77, 0.18) !important;
+    transition: transform 0.25s ease !important;
+  }
+
+  .video-play-button-overlay:active {
+    transform: translate(-50%, -50%) scale(0.94) !important;
+  }
+
+  .play-icon-arrow {
+    border-width: 9px 0 9px 16px !important;
+    border-left-color: #0B1F4D !important;
+    margin-left: 4px !important;
+  }
+
+}
+
+/* ==========================================================================
+   3. PREMIUM MOBILE RESULTS CAROUSEL
+   Full touch-swipe carousel — 1.1 cards visible
+   No desktop styles changed
+   ========================================================================== */
+
+/* Shared: show/hide carousel dots */
+.ba-carousel-dots {
+  display: none;
+}
+
+@media (max-width: 767px) {
+
+  /* ── Section Header ── */
+  #before-after-results .text-center > h2 {
+    font-size: 1.75rem !important;
+    font-weight: 800 !important;
+    margin-bottom: 10px !important;
+  }
+
+  #before-after-results .text-center {
+    margin-bottom: 28px !important;
+    padding: 0 4px;
+  }
+
+  /* ── Swipe Carousel Container ── */
+  #before-after-results .grid-4 {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    gap: 14px !important;
+    padding: 4px 20px 24px !important;
+    margin-left: -20px !important;
+    margin-right: -20px !important;
+    margin-bottom: 0 !important;
+    scroll-padding-left: 20px;
+    cursor: grab;
+  }
+
+  #before-after-results .grid-4:active {
+    cursor: grabbing;
+  }
+
+  #before-after-results .grid-4::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  /* ── Individual Result Card ── */
+  #before-after-results .before-after-card-simple {
+    flex: 0 0 calc(100% - 40px) !important; /* Show 1.1 cards (next card peeks) */
+    scroll-snap-align: start !important;
+    background: #ffffff !important;
+    border-radius: 20px !important;
+    box-shadow: 0 4px 24px rgba(11, 31, 77, 0.07), 0 1px 4px rgba(11, 31, 77, 0.04) !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border: 1px solid rgba(226, 232, 240, 0.8) !important;
+    padding: 0 !important;
+  }
+
+  /* ── Before/After Images (top, hero element) ── */
+  #before-after-results .before-after-images-simple {
+    width: 100% !important;
+    height: 250px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    border-radius: 0 !important;
+    overflow: hidden !important;
+    margin-bottom: 0 !important;
+    flex-shrink: 0;
+  }
+
+  #before-after-results .before-after-images-simple .img-half {
+    flex: 1 !important;
+    position: relative !important;
+    overflow: hidden !important;
+    height: 100% !important;
+  }
+
+  #before-after-results .before-after-images-simple .img-half img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+    border-radius: 0 !important;
+  }
+
+  /* Before/After Badge */
+  #before-after-results .ba-badge-simple {
+    position: absolute !important;
+    bottom: 8px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    background: rgba(11, 31, 77, 0.75) !important;
+    color: #ffffff !important;
+    font-size: 0.72rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.06em !important;
+    text-transform: uppercase !important;
+    padding: 4px 10px !important;
+    border-radius: 20px !important;
+    white-space: nowrap;
+  }
+
+  /* ── Card Content Area ── */
+  #before-after-results .ba-card-content {
+    padding: 16px 18px !important;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #before-after-results .ba-card-content h3 {
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    color: #0B1F4D !important;
+    margin-bottom: 5px !important;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  #before-after-results .ba-card-content > p {
+    font-size: 0.88rem !important;
+    line-height: 1.45 !important;
+    color: #64748b !important;
+    margin-bottom: 14px !important;
+  }
+
+  /* ── Info Row ── */
+  .ba-card-info-row {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 10px 0 !important;
+    margin-bottom: 14px !important;
+    border-top: 1px solid #f1f5f9 !important;
+    border-bottom: 1px solid #f1f5f9 !important;
+    font-size: 0.82rem !important;
+    color: #64748b !important;
+    gap: 8px;
+  }
+
+  .ba-card-info-row span {
+    font-size: 0.82rem;
+    white-space: nowrap;
+  }
+
+  .ba-card-info-row strong {
+    color: #0B1F4D !important;
+    font-weight: 600;
+  }
+
+  /* ── View Result CTA ── */
+  .btn-ba-view-result {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 44px !important;
+    background: #f8fafc !important;
+    color: #0B1F4D !important;
+    font-weight: 700 !important;
+    font-size: 0.9rem !important;
+    border-radius: 12px !important;
+    text-decoration: none !important;
+    transition: background 0.2s ease, color 0.2s ease !important;
+    border: 1px solid #e2e8f0 !important;
+    margin-top: auto;
+  }
+
+  .btn-ba-view-result:active {
+    background: #0B1F4D !important;
+    color: #ffffff !important;
+  }
+
+  /* ── Pagination Dots ── */
+  .ba-carousel-dots {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 6px !important;
+    margin-top: 20px !important;
+    margin-bottom: 24px !important;
+  }
+
+  .ba-dot {
+    width: 7px !important;
+    height: 7px !important;
+    border-radius: 50% !important;
+    background: rgba(11, 31, 77, 0.15) !important;
+    cursor: pointer !important;
+    transition: all 0.25s ease !important;
+    border: none;
+    padding: 0;
+  }
+
+  .ba-dot.active {
+    width: 22px !important;
+    border-radius: 4px !important;
+    background: #0B1F4D !important;
+  }
+
+}
+
+/* Tablet: 2 cards per row */
+@media (min-width: 768px) and (max-width: 1024px) {
+  #before-after-results .grid-4 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}

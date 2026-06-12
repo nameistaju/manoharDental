@@ -486,6 +486,54 @@ button {
   pointer-events: auto;
 }
 
+.mobile-menu-header {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .nav-links.active {
+    padding-top: 0;
+  }
+
+  .mobile-menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 14px 14px 18px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid #e8eef5;
+  }
+
+  .mobile-menu-logo {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .mobile-menu-logo img {
+    display: block;
+    width: auto;
+    height: 44px;
+    max-width: 150px;
+    object-fit: contain;
+  }
+
+  .mobile-menu-close {
+    width: 42px;
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    padding: 0;
+    color: #0b1f4d;
+    background: #f1f6fb;
+    border: 1px solid #dbe7f1;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+}
+
 .no-scroll {
   overflow: hidden;
 }

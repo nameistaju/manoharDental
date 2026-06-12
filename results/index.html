@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
@@ -200,51 +200,186 @@
     </div>
   </section>
 
-  
-        <section class="section-padding reveal">
-          <div class="container">
-            <div class="text-center" style="margin-bottom: 48px;">
-              <h2>Proven Smile Transformations</h2>
-              <p style="color: var(--muted); margin-top: 10px;">Drag the slider handles to see the before and after dental treatment outcomes.</p>
-            </div>
-            
-            <div class="grid grid-2" style="margin-bottom: 48px;">
-              <div class="card" style="padding: 0;">
-                <div class="ba-slider">
-                  <div class="ba-image ba-before" style="background-image: url('../assets/images/Dental_Implant_Befor.png');"></div>
-                  <div class="ba-image ba-after" style="background-image: url('../assets/images/Dental_Implant_after.png');"></div>
-                  <span class="ba-label ba-label-before">BEFORE</span>
-                  <span class="ba-label ba-label-after">AFTER</span>
-                  <div class="ba-handle">
-                    <div class="ba-handle-line"></div>
-                    <div class="ba-handle-button">↔</div>
-                  </div>
-                </div>
-                <div style="padding: 24px;">
-                  <h4 style="margin-bottom: 8px;">Full Mouth Dental Implants</h4>
-                  <p style="color: var(--muted); font-size: 0.9rem;">Replaced missing arches with fixed immediate-load implants.</p>
-                </div>
-              </div>
+  <section class="ba-premium-section" id="before-after-results">
 
-              <div class="card" style="padding: 0;">
-                <div class="ba-slider">
-                  <div class="ba-image ba-before" style="background-image: url('../assets/images/alinerBefore.png');"></div>
-                  <div class="ba-image ba-after" style="background-image: url('../assets/images/alinersAfter.png');"></div>
-                  <span class="ba-label ba-label-before">BEFORE</span>
-                  <span class="ba-label ba-label-after">AFTER</span>
-                  <div class="ba-handle">
-                    <div class="ba-handle-line"></div>
-                    <div class="ba-handle-button">↔</div>
-                  </div>
-                </div>
-                <div style="padding: 24px;">
-                  <h4 style="margin-bottom: 8px;">Clear Aligners Transformation</h4>
-                  <p style="color: var(--muted); font-size: 0.9rem;">Corrected misaligned arches using premium invisible custom aligners.</p>
-                </div>
+    <!-- Decorative background glows -->
+    <div class="ba-bg-glow ba-glow-1"></div>
+    <div class="ba-bg-glow ba-glow-2"></div>
+
+    <div class="container">
+      <!-- Section Header -->
+      <div class="ba-section-header">
+        <span class="ba-eyebrow">BEFORE &amp; AFTER RESULTS</span>
+        <h2 class="ba-headline">Real Smile Transformations</h2>
+        <p class="ba-subheadline">Authentic treatment outcomes from dental implants, aligners, smile makeovers, and restorative dentistry performed at Manohar Dental.</p>
+      </div>
+
+      <!-- Cards Grid: 2 per row desktop -->
+      <div class="ba-cards-grid">
+
+        <!-- Card 1: Dental Implants -->
+        <article class="ba-premium-card" data-case="implants">
+          <div class="ba-slider-wrap">
+            <div class="ba-slider-container">
+              <!-- After image (bottom layer, full width) -->
+              <div class="ba-img-after">
+                <img src="../assets/images/Dental_Implant_after.png" alt="Dental Implants After">
+                <span class="ba-label ba-label-after">After</span>
               </div>
+              <!-- Before image (top layer, clipped by slider) -->
+              <div class="ba-img-before">
+                <img src="../assets/images/Dental_Implant_Befor.png" alt="Dental Implants Before">
+                <span class="ba-label ba-label-before">Before</span>
+              </div>
+              <!-- Drag Handle -->
+              <div class="ba-handle">
+                <div class="ba-handle-line"></div>
+                <div class="ba-handle-circle">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </div>
+                <div class="ba-handle-line"></div>
+              </div>
+              <input type="range" class="ba-range-input" min="0" max="100" value="50" aria-label="Before after comparison slider">
             </div>
           </div>
-        </section>
+          <div class="ba-card-info">
+            <div class="ba-card-title-row">
+              <h3 class="ba-treatment-name">Dental Implants</h3>
+              <span class="ba-success-badge">✓ Successful</span>
+            </div>
+            <p class="ba-result-summary">Complete smile restoration with fixed implant-supported teeth and restored bite function.</p>
+            <div class="ba-meta-row">
+              <span class="ba-meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 3 Months</span>
+              <span class="ba-meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> Fixed Implant</span>
+              <span class="ba-meta-pill ba-pill-blue">Age: 38</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2: Clear Aligners -->
+        <article class="ba-premium-card" data-case="aligners">
+          <div class="ba-slider-wrap">
+            <div class="ba-slider-container">
+              <div class="ba-img-after">
+                <img src="../assets/images/alinersAfter.png" alt="Clear Aligners After">
+                <span class="ba-label ba-label-after">After</span>
+              </div>
+              <div class="ba-img-before">
+                <img src="../assets/images/alinerBefore.png" alt="Clear Aligners Before">
+                <span class="ba-label ba-label-before">Before</span>
+              </div>
+              <div class="ba-handle">
+                <div class="ba-handle-line"></div>
+                <div class="ba-handle-circle">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </div>
+                <div class="ba-handle-line"></div>
+              </div>
+              <input type="range" class="ba-range-input" min="0" max="100" value="50" aria-label="Before after comparison slider">
+            </div>
+          </div>
+          <div class="ba-card-info">
+            <div class="ba-card-title-row">
+              <h3 class="ba-treatment-name">Clear Aligners</h3>
+              <span class="ba-success-badge">✓ Successful</span>
+            </div>
+            <p class="ba-result-summary">Corrected crowding and improved smile alignment with invisible removable trays.</p>
+            <div class="ba-meta-row">
+              <span class="ba-meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 8 Months</span>
+              <span class="ba-meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> Invisible Aligners</span>
+              <span class="ba-meta-pill ba-pill-blue">Age: 25</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3: Smile Makeover -->
+        <article class="ba-premium-card" data-case="smile">
+          <div class="ba-slider-wrap">
+            <div class="ba-slider-container">
+              <div class="ba-img-after">
+                <img src="../assets/images/SmileMakeOver.png" alt="Smile Makeover After">
+                <span class="ba-label ba-label-after">After</span>
+              </div>
+              <div class="ba-img-before">
+                <img src="../assets/images/smile_makeover_before.png" alt="Smile Makeover Before">
+                <span class="ba-label ba-label-before">Before</span>
+              </div>
+              <div class="ba-handle">
+                <div class="ba-handle-line"></div>
+                <div class="ba-handle-circle">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </div>
+                <div class="ba-handle-line"></div>
+              </div>
+              <input type="range" class="ba-range-input" min="0" max="100" value="50" aria-label="Before after comparison slider">
+            </div>
+          </div>
+          <div class="ba-card-info">
+            <div class="ba-card-title-row">
+              <h3 class="ba-treatment-name">Smile Makeover</h3>
+              <span class="ba-success-badge">✓ Successful</span>
+            </div>
+            <p class="ba-result-summary">Natural-looking cosmetic improvement with veneers and precision shade matching.</p>
+            <div class="ba-meta-row">
+              <span class="ba-meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 5–7 Days</span>
+              <span class="ba-meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> Cosmetic Veneers</span>
+              <span class="ba-meta-pill ba-pill-blue">Age: 31</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 4: Root Canal -->
+        <article class="ba-premium-card" data-case="rootcanal">
+          <div class="ba-slider-wrap">
+            <div class="ba-slider-container">
+              <div class="ba-img-after">
+                <img src="../assets/images/root_canal_after.png" alt="Root Canal After">
+                <span class="ba-label ba-label-after">After</span>
+              </div>
+              <div class="ba-img-before">
+                <img src="../assets/images/root_canal_before.png" alt="Root Canal Before">
+                <span class="ba-label ba-label-before">Before</span>
+              </div>
+              <div class="ba-handle">
+                <div class="ba-handle-line"></div>
+                <div class="ba-handle-circle">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </div>
+                <div class="ba-handle-line"></div>
+              </div>
+              <input type="range" class="ba-range-input" min="0" max="100" value="50" aria-label="Before after comparison slider">
+            </div>
+          </div>
+          <div class="ba-card-info">
+            <div class="ba-card-title-row">
+              <h3 class="ba-treatment-name">Root Canal</h3>
+              <span class="ba-success-badge">✓ Successful</span>
+            </div>
+            <p class="ba-result-summary">Saved tooth structure fully restored with painless single-visit endodontic therapy.</p>
+            <div class="ba-meta-row">
+              <span class="ba-meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 1 Visit</span>
+              <span class="ba-meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> Painless Endo</span>
+              <span class="ba-meta-pill ba-pill-blue">Age: 44</span>
+            </div>
+          </div>
+        </article>
+
+      </div><!-- /.ba-cards-grid -->
+
+      <!-- Mobile pagination dots (mobile only) -->
+      <div class="ba-carousel-dots" id="ba-mobile-dots">
+        <button class="ba-dot active" data-index="0" aria-label="Case 1"></button>
+        <button class="ba-dot" data-index="1" aria-label="Case 2"></button>
+        <button class="ba-dot" data-index="2" aria-label="Case 3"></button>
+        <button class="ba-dot" data-index="3" aria-label="Case 4"></button>
+      </div>
+
+    </div><!-- /.container -->
+  </section>
       
 
     <!-- Footer Section -->
@@ -331,28 +466,28 @@
     </div>
   </footer>
 
-  <!-- Floating Actions -->
-  <div class="floating-actions">
-    <!-- Call Us -->
-    <a href="tel:+919703294358" class="float-btn-wrapper float-phone-wrapper" aria-label="Call Clinic">
-      <span class="float-label float-phone-label">Call Us</span>
-      <div class="float-circle float-phone-circle">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 .7a2 2 0 0 1 2 2v3.03z"></path></svg>
-      </div>
+
+  <!-- Premium Floating Actions -->
+  <div class="premium-floating-actions-bar" aria-label="Quick contact actions">
+    <a href="../contact/index.html" class="premium-float-btn float-appointment-btn" aria-label="Book Appointment">
+      <span class="premium-float-label">Book Appointment</span>
+      <span class="premium-float-icon-wrapper">
+        <img src="../assets/images/appointment.png" alt="" class="premium-float-png-icon">
+      </span>
     </a>
-    
-    <!-- Chat with us -->
-    <a href="https://api.whatsapp.com/send?phone=919703294358&text=Hello%20Manohar%20Dental%20Clinic,%20I%20would%20like%20to%20book%20a%20consultation." target="_blank" class="float-btn-wrapper float-whatsapp-wrapper" aria-label="Consult on WhatsApp">
-      <span class="float-label float-whatsapp-label">Chat with us</span>
-      <div class="float-circle float-whatsapp-circle">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12.03 2c-5.502 0-9.96 4.458-9.96 9.969 0 1.758.455 3.476 1.324 4.994L2 22l5.176-1.354c1.464.797 3.1 1.217 4.777 1.217h.004c5.502 0 9.96-4.46 9.96-9.97C21.92 6.458 17.46 2 12.03 2zm6.604 14.154c-.273.774-1.35 1.397-1.868 1.489-.354.062-1.794.525-7.51-1.844-4.838-2.001-7.85-6.853-8.09-7.18-.244-.324-1.934-2.544-1.934-4.848 0-2.304 1.185-3.436 1.606-3.882.353-.377.94-.522 1.503-.522.181 0 .344.01.479.016.398.016.596.042.857.659.324.774 1.109 2.697 1.206 2.894.098.196.162.427.032.685-.13.26-.195.42-.39.638-.195.218-.41.488-.585.655-.195.187-.4.39-.17.788.23.391 1.018 1.666 2.183 2.7 1.5 1.328 2.766 1.74 3.156 1.935.39.195.617.162.846-.1.228-.26.976-1.127 1.236-1.516.26-.39.52-.325.877-.195.358.13 2.274 1.066 2.664 1.26.39.195.65.293.748.455.098.162.098.943-.176 1.717z"/>
-        </svg>
-      </div>
+    <a href="https://api.whatsapp.com/send?phone=919703294358&amp;text=Hello%20Manohar%20Dental%20Clinic,%20I%20would%20like%20to%20book%20a%20consultation." target="_blank" rel="noopener" class="premium-float-btn float-whatsapp-btn" aria-label="Consult on WhatsApp">
+      <span class="premium-float-label">Chat with Us</span>
+      <span class="premium-float-icon-wrapper">
+        <img src="../assets/images/whatsapp.png" alt="" class="premium-float-png-icon">
+      </span>
+    </a>
+    <a href="tel:+919703294358" class="premium-float-btn float-call-btn" aria-label="Call Clinic">
+      <span class="premium-float-label">Call Us</span>
+      <span class="premium-float-icon-wrapper">
+        <img src="../assets/images/telephone.png" alt="" class="premium-float-png-icon">
+      </span>
     </a>
   </div>
-
-
 
   <!-- Scripts -->
   <script src="../assets/js/main.js"></script>
@@ -361,5 +496,5 @@
   <script src="../assets/js/carousel.js"></script>
   <script src="../assets/js/forms.js"></script>
   <script src="../assets/js/utilities.js"></script>
-  </body>
+</body>
 </html>

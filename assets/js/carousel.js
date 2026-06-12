@@ -3,6 +3,46 @@
    ========================================================================== */
 
 function initBeforeAfterSlider() {
+  const premiumCards = document.querySelectorAll('.ba-premium-card');
+
+  premiumCards.forEach(card => {
+    const container = card.querySelector('.ba-slider-container');
+    const beforeImg = card.querySelector('.ba-img-before');
+    const handle = card.querySelector('.ba-handle');
+    const range = card.querySelector('.ba-range-input');
+
+    if (!container || !beforeImg || !handle || !range) return;
+
+    const setPosition = (value) => {
+      const position = Math.max(0, Math.min(100, Number(value)));
+      beforeImg.style.clipPath = `inset(0 ${100 - position}% 0 0)`;
+      handle.style.left = `${position}%`;
+      range.value = position;
+    };
+
+    range.addEventListener('input', () => setPosition(range.value));
+    setPosition(range.value || 50);
+  });
+
+  const premiumGrid = document.querySelector('.ba-cards-grid');
+  const premiumDots = document.querySelectorAll('#ba-mobile-dots .ba-dot');
+  if (premiumGrid && premiumCards.length && premiumDots.length) {
+    const cardWidth = () => premiumCards[0].getBoundingClientRect().width + 14;
+
+    premiumGrid.addEventListener('scroll', () => {
+      const activeIndex = Math.round(premiumGrid.scrollLeft / cardWidth());
+      premiumDots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === activeIndex);
+      });
+    }, { passive: true });
+
+    premiumDots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        premiumGrid.scrollTo({ left: index * cardWidth(), behavior: 'smooth' });
+      });
+    });
+  }
+
   const sliders = document.querySelectorAll('.ba-slider');
   
   sliders.forEach(slider => {
@@ -293,4 +333,3 @@ window.Carousel = {
   initTestimonialPremiumSlider,
   initAccordion
 };
-
