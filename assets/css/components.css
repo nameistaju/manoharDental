@@ -283,7 +283,7 @@ select.form-control {
 .ba-after {
   z-index: 2;
   width: 50%; /* Initial width */
-  border-right: 2px solid #ffffff;
+  border-right: none;
 }
 
 .ba-label {
@@ -325,23 +325,29 @@ select.form-control {
 .ba-handle-line {
   width: 2px;
   height: 100%;
-  background-color: #ffffff;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  background-color: rgba(255, 255, 255, 0.7);
+  box-shadow: none;
 }
 
 .ba-handle-button {
   position: absolute;
-  width: 44px;
-  height: 44px;
+  width: 36px;
+  height: 36px;
   background-color: #ffffff;
   border-radius: 50%;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--primary);
-  font-size: 1.1rem;
-  border: 2px solid var(--secondary);
+  color: #1BA8E8;
+  font-size: 0.95rem;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.2s ease;
+}
+
+.ba-handle:hover .ba-handle-button {
+  transform: scale(1.1);
+  border-color: #1BA8E8;
 }
 
 /* Testimonial Carousel */

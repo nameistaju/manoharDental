@@ -113,8 +113,82 @@ function initMobileMenu() {
   });
 }
 
+function initSmoothScroll() {
+  document.addEventListener('click', (event) => {
+    const link = event.target.closest('a');
+    if (!link) return;
+
+    const href = link.getAttribute('href');
+    if (!href) return;
+
+    // Check if the link points to a homepage section anchor
+    const hashMatch = href.match(/(?:index\.html)?(#(?:results-section|testimonials-section|gallery-section|before-after-results|testimonials|clinic-gallery|home|treatments|doctors|contact|smile-journey|modern-facility|testimonial-videos|faq|appointment))$/);
+    if (!hashMatch) return;
+
+    const hash = hashMatch[1];
+    
+    // Check if we are currently on the homepage
+    const isHomepage = window.location.pathname === '/' || 
+                       window.location.pathname.endsWith('/index.html') || 
+                       window.location.pathname.includes('/dental-clinic-in-vizag/') ||
+                       (!document.querySelector('.about-hero') && !document.querySelector('.premium-treatment-hero') && !document.querySelector('.doctor-hero'));
+
+    if (isHomepage) {
+      const target = document.querySelector(hash);
+      if (target) {
+        event.preventDefault();
+        
+        // Close mobile menu if open
+        const navLinks = document.querySelector('.nav-links');
+        const mobileBtn = document.querySelector('.mobile-menu-btn');
+        const overlay = document.querySelector('.mobile-menu-overlay');
+        if (navLinks && navLinks.classList.contains('active')) {
+          mobileBtn?.setAttribute('aria-expanded', 'false');
+          navLinks.classList.remove('active');
+          overlay?.classList.remove('active');
+          document.body.classList.remove('no-scroll');
+        }
+        
+        // Scroll smoothly to target with sticky header offset
+        const header = document.querySelector('.header');
+        const offset = header ? header.offsetHeight : 80;
+        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+
+        // Update URL hash without reload
+        history.pushState(null, null, hash);
+      }
+    }
+  });
+
+  // Handle scroll position adjustment on page load if landing on a hash
+  window.addEventListener('load', () => {
+    if (window.location.hash) {
+      const hash = window.location.hash;
+      const target = document.querySelector(hash);
+      if (target) {
+        setTimeout(() => {
+          const header = document.querySelector('.header');
+          const offset = header ? header.offsetHeight : 80;
+          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'auto'
+          });
+        }, 150);
+      }
+    }
+  });
+}
+
 // Export initializers
 window.Navigation = {
   initStickyHeader,
-  initMobileMenu
+  initMobileMenu,
+  initSmoothScroll
 };

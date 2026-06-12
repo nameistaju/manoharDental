@@ -48,9 +48,11 @@ function initBeforeAfterSlider() {
   sliders.forEach(slider => {
     const afterImg = slider.querySelector('.ba-after');
     const handle = slider.querySelector('.ba-handle');
-    let isDragging = false;
 
     if (!afterImg || !handle) return;
+
+    // Ensure .ba-after container is full width so clip-path works perfectly without squishing
+    afterImg.style.width = '100%';
 
     const moveSlider = (clientX) => {
       const rect = slider.getBoundingClientRect();
@@ -60,30 +62,48 @@ function initBeforeAfterSlider() {
       if (position < 0) position = 0;
       if (position > 100) position = 100;
 
-      afterImg.style.width = position + '%';
+      afterImg.style.clipPath = `inset(0 ${100 - position}% 0 0)`;
       handle.style.left = position + '%';
     };
 
-    // Touch events
-    slider.addEventListener('touchstart', () => { isDragging = true; }, { passive: true });
-    window.addEventListener('touchend', () => { isDragging = false; });
-    slider.addEventListener('touchmove', (e) => {
-      if (!isDragging) return;
-      moveSlider(e.touches[0].clientX);
-    }, { passive: true });
-
-    // Mouse events
-    handle.addEventListener('mousedown', () => { isDragging = true; });
-    window.addEventListener('mouseup', () => { isDragging = false; });
-    slider.addEventListener('mousemove', (e) => {
-      if (!isDragging) return;
+    const onMouseMove = (e) => {
       moveSlider(e.clientX);
+    };
+
+    const onMouseUp = () => {
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseup', onMouseUp);
+    };
+
+    handle.addEventListener('mousedown', (e) => {
+      e.preventDefault();
+      window.addEventListener('mousemove', onMouseMove);
+      window.addEventListener('mouseup', onMouseUp);
+    });
+
+    const onTouchMove = (e) => {
+      if (e.touches && e.touches[0]) {
+        moveSlider(e.touches[0].clientX);
+      }
+    };
+
+    const onTouchEnd = () => {
+      window.removeEventListener('touchmove', onTouchMove);
+      window.removeEventListener('touchend', onTouchEnd);
+    };
+
+    handle.addEventListener('touchstart', (e) => {
+      window.addEventListener('touchmove', onTouchMove, { passive: true });
+      window.addEventListener('touchend', onTouchEnd);
     });
 
     slider.addEventListener('click', (e) => {
       if (e.target.closest('.ba-handle-button')) return;
       moveSlider(e.clientX);
     });
+
+    // Initialize to 50%
+    moveSlider(50);
   });
 }
 

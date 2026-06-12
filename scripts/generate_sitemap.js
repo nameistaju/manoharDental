@@ -9,9 +9,6 @@ const STATIC_PAGES = [
   '',
   'about/',
   'contact/',
-  'gallery/',
-  'testimonials/',
-  'results/',
   'blog/',
   'faqs/',
 ];

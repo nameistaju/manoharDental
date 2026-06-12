@@ -2,7 +2,7 @@
    MANOHAR DENTAL CLINIC - MAIN STYLE SHEET (Consolidated)
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
 :root {
   /* Color Palette */
@@ -1383,126 +1383,7 @@ select.form-control {
 /* ==========================================================================
    FLOATING ACTIONS & SCROLL PROGRESS
    ========================================================================== */
-.floating-actions {
-  position: fixed;
-  bottom: 28px;
-  right: 28px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  z-index: 9000;
-  align-items: flex-end;
-}
 
-.float-btn-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 0;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.float-whatsapp-wrapper { order: 1; }
-.float-phone-wrapper { order: 2; }
-
-.float-circle {
-  width: 104px;
-  height: 104px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-  color: #ffffff;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  flex-shrink: 0;
-  border: 2px solid rgba(255,255,255,0.35);
-  margin-left: -1px;
-}
-
-.float-circle svg {
-  display: block;
-  width: 46px;
-  height: 46px;
-}
-
-.float-label {
-  min-width: 236px;
-  min-height: 60px;
-  padding: 14px 28px;
-  color: #080b18;
-  font-size: 1.28rem;
-  font-weight: 900;
-  border-radius: 18px 0 0 18px;
-  box-shadow: 0 14px 30px rgba(15,23,42,0.08);
-  position: relative;
-  white-space: nowrap;
-  letter-spacing: 0.01em;
-  opacity: 1;
-  transform: translateX(0);
-  transition: all 0.25s ease;
-  pointer-events: auto;
-  display: grid;
-  place-items: center;
-  background: #fff;
-}
-
-.float-label::after {
-  display: none;
-}
-
-.float-btn-wrapper:hover .float-label {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* Call Us - Brand Blue */
-.float-phone-circle {
-  background: linear-gradient(145deg, #6b22d9 0%, #b114b9 100%);
-}
-.float-phone-label {
-  border: 1.5px solid #4669d8;
-}
-.float-phone-label::after {
-  border-color: transparent transparent transparent #0B1F4D;
-}
-
-/* WhatsApp - Green */
-.float-whatsapp-circle {
-  background: linear-gradient(145deg, #18c873 0%, #0ca789 100%);
-}
-.float-whatsapp-label {
-  border: 1.5px solid #25d366;
-}
-.float-whatsapp-label::after {
-  border-color: transparent transparent transparent #25D366;
-}
-
-.float-btn-wrapper:hover .float-circle {
-  transform: scale(1.1);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
-}
-
-@keyframes float-pulse {
-  0%, 100% { box-shadow: 0 8px 25px rgba(0,0,0,0.2), 0 0 0 0 rgba(27,168,232,0.4); }
-  50% { box-shadow: 0 8px 25px rgba(0,0,0,0.2), 0 0 0 10px rgba(27,168,232,0); }
-}
-
-.float-whatsapp-circle {
-  animation: float-pulse-green 2.5s infinite;
-}
-
-@keyframes float-pulse-green {
-  0%, 100% { box-shadow: 0 8px 25px rgba(0,0,0,0.2), 0 0 0 0 rgba(37,211,102,0.5); }
-  50% { box-shadow: 0 8px 25px rgba(0,0,0,0.2), 0 0 0 12px rgba(37,211,102,0); }
-}
-
-@media (max-width: 768px) {
-  .float-label { display: none; }
-  .floating-actions { bottom: 16px; right: 16px; gap: 10px; }
-  .float-circle { width: 58px; height: 58px; margin-left: 0; }
-}
 
 .scroll-progress {
   position: fixed;
@@ -1520,14 +1401,34 @@ select.form-control {
    ========================================================================== */
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transform: translateY(40px);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
 }
 
 .reveal.active {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Staggered items helper */
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-stagger.active > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-stagger.active > *:nth-child(1) { transition-delay: 0.1s; }
+.reveal-stagger.active > *:nth-child(2) { transition-delay: 0.2s; }
+.reveal-stagger.active > *:nth-child(3) { transition-delay: 0.3s; }
+.reveal-stagger.active > *:nth-child(4) { transition-delay: 0.4s; }
+.reveal-stagger.active > *:nth-child(5) { transition-delay: 0.5s; }
+.reveal-stagger.active > *:nth-child(6) { transition-delay: 0.6s; }
 
 @keyframes scaleIn {
   0% { transform: scale(0.9); opacity: 0; }

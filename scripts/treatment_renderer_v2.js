@@ -66,12 +66,7 @@ function faqs(page) {
   return page.faqs.slice(0, 8).map((question, index) => `<div class="accordion-item"><button class="accordion-header" type="button"><h4>${esc(question)}</h4><div class="accordion-icon">+</div></button><div class="accordion-content"><div class="accordion-content-inner">${esc(faqAnswer(page.title, index))}</div></div></div>`).join('');
 }
 
-function floatingActions(depthPrefix, clinic) {
-  return `<div class="premium-floating-actions-bar" aria-label="Quick contact actions"><a href="${depthPrefix}contact/index.html" class="premium-float-btn float-appointment-btn" aria-label="Book Appointment"><span class="premium-float-label">Book Appointment</span><span class="premium-float-icon-wrapper"><img src="${depthPrefix}assets/images/appointment.png" alt="" class="premium-float-png-icon"></span></a><a href="${clinic.whatsapp}" target="_blank" rel="noopener" class="premium-float-btn float-whatsapp-btn" aria-label="Consult on WhatsApp"><span class="premium-float-label">Chat with Us</span><span class="premium-float-icon-wrapper"><img src="${depthPrefix}assets/images/whatsapp.png" alt="" class="premium-float-png-icon"></span></a><a href="${clinic.phoneHref}" class="premium-float-btn float-call-btn" aria-label="Call Clinic"><span class="premium-float-label">Call Us</span><span class="premium-float-icon-wrapper"><img src="${depthPrefix}assets/images/telephone.png" alt="" class="premium-float-png-icon"></span></a></div>`;
-}
-
 function renderTreatmentPageV2({ page, treatmentPages, clinic, commonWhy, headerTemplate, footerTemplate, depthPrefix, rootDir }) {
-  const cleanFooter = footerTemplate.replace(/\s*<!-- Floating Actions -->[\s\S]*?<div class="floating-actions">[\s\S]*?<\/div>\s*$/i, '');
   const treatmentLabel = /\btreatment$/i.test(page.title) ? page.title : `${page.title} Treatment`;
   const options = treatmentPages.map((t) => `<option${t.title === page.title ? ' selected' : ''}>${esc(t.title)}</option>`).join('');
   const knowledge = [
@@ -107,7 +102,7 @@ function renderTreatmentPageV2({ page, treatmentPages, clinic, commonWhy, header
 
   <section id="book-appointment" class="premium-section premium-booking-section tp-booking reveal"><div class="container premium-booking-grid"><div class="tp-booking-copy"><div class="premium-kicker">Book Consultation</div><h2>Take the next step toward a healthier smile.</h2><p>Meet an MDS specialist, understand your options clearly, and receive a personalized treatment plan.</p><ul class="tp-booking-benefits"><li>Specialist clinical evaluation</li><li>Digital diagnosis when required</li><li>Clear treatment and follow-up guidance</li></ul><div class="premium-clinic-hours"><strong>Call ${esc(clinic.phone)}</strong><span>${esc(clinic.timings)}</span></div><div class="tp-direct-actions"><a href="${clinic.phoneHref}" class="btn btn-outline">Call Clinic</a><a href="${clinic.whatsapp}" target="_blank" rel="noopener" class="btn tp-whatsapp-btn">WhatsApp</a></div></div><form class="premium-appointment-form consult-form"><label>Your Name<input type="text" name="name" placeholder="Enter your full name" required></label><label>Phone Number<input type="tel" name="phone" placeholder="Enter 10-digit mobile number" required></label><label>Preferred Date<input type="date" name="date" required></label><label>Treatment Selection<select name="service">${options}</select></label><label class="premium-form-wide">Message<textarea name="message" rows="3" placeholder="Tell us what you are experiencing"></textarea></label><button class="btn btn-primary premium-form-wide" type="submit">Book Consultation</button></form></div></section>
 </main>
-${cleanFooter}${floatingActions(depthPrefix, clinic)}
+${footerTemplate}
 <script src="${depthPrefix}assets/js/main.js"></script><script src="${depthPrefix}assets/js/navigation.js"></script><script src="${depthPrefix}assets/js/animations.js"></script><script src="${depthPrefix}assets/js/carousel.js"></script><script src="${depthPrefix}assets/js/forms.js"></script><script src="${depthPrefix}assets/js/utilities.js"></script>
 </body></html>`;
 }

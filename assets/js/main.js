@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (window.Navigation) {
     window.Navigation.initStickyHeader();
     window.Navigation.initMobileMenu();
+    window.Navigation.initSmoothScroll();
   }
 
   // Animations Init

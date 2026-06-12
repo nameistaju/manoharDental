@@ -318,8 +318,9 @@
 
 .tp-featured-result .ba-after {
   z-index: 2;
-  width: 50%;
-  border-right: 1px solid rgba(255, 255, 255, 0.9);
+  width: 100%;
+  clip-path: inset(0 50% 0 0);
+  border-right: none;
 }
 
 .tp-featured-result .ba-image {
@@ -378,27 +379,54 @@
 .tp-featured-result .ba-label-after { right: 10px; left: auto; }
 
 .tp-featured-result .ba-handle {
-  width: 30px;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 40px;
   transform: translateX(-50%);
+  margin-left: 0;
+  z-index: 30;
+  cursor: ew-resize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .tp-featured-result .ba-handle-line {
-  width: 1px;
-  background: rgba(255, 255, 255, 0.9);
+  width: 2px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: none;
+  transition: width 0.2s ease;
+}
+
+.tp-featured-result .ba-slider:hover .ba-handle-line {
+  width: 2px;
 }
 
 .tp-featured-result .ba-handle-button {
-  width: 30px;
-  height: 30px;
-  color: var(--tp-dark);
-  background: #fff;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 4px 12px rgba(11, 31, 77, 0.14);
+  width: 36px;
+  height: 36px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  background: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0b1f4d;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.2s ease;
+}
+
+.tp-featured-result .ba-handle:hover .ba-handle-button {
+  transform: scale(1.1);
+  border-color: #5BBEF0;
 }
 
 .tp-featured-result .ba-handle-button svg {
-  width: 13px;
-  height: 13px;
+  width: 14px;
+  height: 14px;
+  stroke: #5BBEF0;
 }
 
 .tp-result-details {
@@ -569,4 +597,162 @@
   .tp-redesign .premium-form-wide { grid-column: 1; }
   .tp-direct-actions { display: grid; grid-template-columns: 1fr 1fr; }
   .tp-direct-actions .btn { min-width: 0; padding-inline: 12px; }
+}
+
+/* ==========================================================================
+   PREMIUM THIN AND TRANSPARENT COMPARISON SLIDERS (OVERRIDE ALL)
+   ========================================================================== */
+
+/* 1. Divider Line styling */
+/* Homepage sliders */
+.ba-premium-card .ba-handle-line {
+  width: 2px !important;
+  background: rgba(255, 255, 255, 0.7) !important;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Results and components general sliders where .ba-handle is the line */
+.ba-slider .ba-handle {
+  width: 2px !important;
+  background: rgba(255, 255, 255, 0.7) !important;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15) !important;
+}
+.ba-slider .ba-handle-line {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Treatment page result card sliders */
+.premium-result-card .ba-handle-line {
+  width: 2px !important;
+  background: rgba(255, 255, 255, 0.7) !important;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Treatment redesigned featured results */
+.tp-featured-result .ba-handle-line {
+  width: 2px !important;
+  background: rgba(255, 255, 255, 0.7) !important;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Also remove double divider border on treatment result cards */
+.premium-result-card .ba-after,
+.tp-featured-result .ba-after,
+.ba-slider-after {
+  border-right: none !important;
+}
+
+/* 2. Drag Handle Button/Circle styling */
+/* Homepage slider handles */
+.ba-premium-card .ba-handle-circle {
+  width: 36px !important;
+  height: 36px !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 4px 12px rgba(11, 31, 77, 0.12) !important;
+  color: #0b1f4d !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0 !important;
+}
+
+.ba-premium-card:hover .ba-handle-circle {
+  transform: scale(1.08) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 6px 16px rgba(11, 31, 77, 0.18) !important;
+}
+
+.ba-premium-card .ba-handle-circle svg {
+  width: 12px !important;
+  height: 12px !important;
+}
+
+/* Results page slider handles */
+.ba-slider .ba-handle-button {
+  width: 36px !important;
+  height: 36px !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 4px 12px rgba(11, 31, 77, 0.12) !important;
+  color: #1ba8e8 !important;
+  font-size: 0.95rem !important;
+  line-height: 34px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.ba-slider .ba-handle:hover .ba-handle-button,
+.ba-slider:hover .ba-handle-button {
+  transform: translate(-50%, -50%) scale(1.08) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 6px 16px rgba(11, 31, 77, 0.18) !important;
+}
+
+/* Treatment page result card handles */
+.premium-result-card .ba-handle-button {
+  width: 36px !important;
+  height: 36px !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 4px 12px rgba(11, 31, 77, 0.12) !important;
+  color: #1ba8e8 !important;
+  font-size: 0.95rem !important;
+  line-height: 34px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.premium-result-card .ba-handle:hover .ba-handle-button,
+.premium-result-card .ba-slider:hover .ba-handle-button {
+  transform: translate(-50%, -50%) scale(1.08) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 6px 16px rgba(11, 31, 77, 0.18) !important;
+}
+
+/* Treatment redesigned page handles */
+.tp-featured-result .ba-handle-button {
+  width: 36px !important;
+  height: 36px !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 4px 12px rgba(11, 31, 77, 0.12) !important;
+  color: #0b1f4d !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.tp-featured-result .ba-handle:hover .ba-handle-button {
+  transform: scale(1.08) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 6px 16px rgba(11, 31, 77, 0.18) !important;
+}
+
+/* 3. Mobile adjustments */
+@media (max-width: 768px) {
+  .ba-premium-card .ba-handle-circle,
+  .ba-slider .ba-handle-button,
+  .premium-result-card .ba-handle-button,
+  .tp-featured-result .ba-handle-button {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 0.8rem !important;
+    line-height: 26px !important;
+  }
+  .ba-premium-card .ba-handle-circle svg {
+    width: 9px !important;
+    height: 9px !important;
+  }
 }

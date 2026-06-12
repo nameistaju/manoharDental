@@ -176,7 +176,9 @@ function stripFloatingActions(html) {
   // Remove comment labels
   result = result.replace(/<!-- Floating Actions -->/gi, '');
   result = result.replace(/<!-- Floating Call & WhatsApp Buttons -->/gi, '');
+  result = result.replace(/<!-- Premium Floating Actions -->/gi, '');
   
+  // Strip <div class="floating-actions">
   let index = result.indexOf('<div class="floating-actions">');
   while (index !== -1) {
     let openDivs = 1;
@@ -195,6 +197,29 @@ function stripFloatingActions(html) {
     result = result.substring(0, index) + result.substring(pos);
     index = result.indexOf('<div class="floating-actions">');
   }
+
+  // Strip <div class="premium-floating-actions-bar">
+  let indexBar = result.indexOf('<div class="premium-floating-actions-bar"');
+  while (indexBar !== -1) {
+    let openDivs = 1;
+    let tagEnd = result.indexOf('>', indexBar);
+    if (tagEnd === -1) break;
+    let pos = tagEnd + 1;
+    while (openDivs > 0 && pos < result.length) {
+      if (result.substring(pos, pos + 4) === '<div') {
+        openDivs++;
+        pos += 4;
+      } else if (result.substring(pos, pos + 6) === '</div>') {
+        openDivs--;
+        pos += 6;
+      } else {
+        pos++;
+      }
+    }
+    result = result.substring(0, indexBar) + result.substring(pos);
+    indexBar = result.indexOf('<div class="premium-floating-actions-bar"');
+  }
+  
   return result;
 }
 
@@ -314,7 +339,7 @@ function buildDoctorPages() {
     }
 
     // Extract credentials grid
-    let credentialsContent = extractSection(sourceHtml, '<div class="credentials-grid">', '<a href="/contact/"');
+    let credentialsContent = extractSection(sourceHtml, '<div class="credentials-grid">', '<a');
     if (credentialsContent) {
       const lastDivIndex = credentialsContent.lastIndexOf('</div>');
       if (lastDivIndex !== -1) {
@@ -669,7 +694,35 @@ function buildSupportPages() {
   pagesToGenerate.forEach(page => {
     const dirPath = path.join(ROOT_DIR, page.dir);
     ensureDir(dirPath);
-    
+
+    // Redirect standalone pages to their homepage sections (results, testimonials, gallery)
+    const redirects = {
+      'results': '../index.html#results-section',
+      'testimonials': '../index.html#testimonials-section',
+      'gallery': '../index.html#gallery-section'
+    };
+
+    if (redirects[page.dir]) {
+      const targetUrl = redirects[page.dir];
+      const redirectHtml = `<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="0; url=${targetUrl}">
+  <title>Redirecting...</title>
+  <script type="text/javascript">
+    window.location.href = "${targetUrl}";
+  </script>
+</head>
+<body>
+  <p>Redirecting to <a href="${targetUrl}">${page.h1}</a>...</p>
+</body>
+</html>`;
+      fs.writeFileSync(path.join(dirPath, 'index.html'), redirectHtml);
+      console.log(`Generated HTML Redirect for: /${page.dir}/ -> ${targetUrl}`);
+      return;
+    }
+
     // Construct page layout using standard structure
     let html = `<!DOCTYPE html>
 <html lang="en-US">
