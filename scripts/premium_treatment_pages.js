@@ -456,6 +456,47 @@ function renderPremiumTreatmentPage(page, headerTemplate, footerTemplate, depthP
           <h1>${esc(page.title)} in Visakhapatnam</h1>
           <h2>${esc(page.headline)}</h2>
           <p>${esc(page.intro)}</p>
+
+          <!-- Large Screen Optimization: Benefits Checklist -->
+          <div class="premium-hero-checklist">
+            <div class="checklist-item">
+              <span class="checklist-icon">✓</span>
+              <span class="checklist-text">Minimally Invasive Procedure</span>
+            </div>
+            <div class="checklist-item">
+              <span class="checklist-icon">✓</span>
+              <span class="checklist-text">Faster Recovery Time</span>
+            </div>
+            <div class="checklist-item">
+              <span class="checklist-icon">✓</span>
+              <span class="checklist-text">Experienced Specialists</span>
+            </div>
+            <div class="checklist-item">
+              <span class="checklist-icon">✓</span>
+              <span class="checklist-text">Advanced Technology</span>
+            </div>
+          </div>
+
+          <!-- Large Screen Optimization: Trust Metrics Row -->
+          <div class="premium-hero-metrics">
+            <div class="metric-chip">
+              <span class="metric-bullet">•</span>
+              <span class="metric-label">5000+ Successful Procedures</span>
+            </div>
+            <div class="metric-chip">
+              <span class="metric-bullet">•</span>
+              <span class="metric-label">15+ Years Experience</span>
+            </div>
+            <div class="metric-chip">
+              <span class="metric-bullet">•</span>
+              <span class="metric-label">MDS Specialists</span>
+            </div>
+            <div class="metric-chip">
+              <span class="metric-bullet">•</span>
+              <span class="metric-label">Personalized Care</span>
+            </div>
+          </div>
+
           <div class="premium-trust-row">${bulletChips(page.trust)}</div>
           <div class="premium-hero-actions">
             <a class="btn btn-primary" href="${clinic.phoneHref}">Call Now</a>
@@ -464,6 +505,20 @@ function renderPremiumTreatmentPage(page, headerTemplate, footerTemplate, depthP
         </div>
         <div class="premium-hero-media">
           ${videoCard(`${page.title} explained by doctor`, page.image, 'premium-hero-video')}
+          
+          <!-- Large Screen Optimization: Floating elements -->
+          <div class="premium-hero-float float-consultation">
+            <iconify-icon icon="solar:chat-line-bold-duotone" aria-hidden="true"></iconify-icon>
+            <span><strong>Same Day</strong> Consultation</span>
+          </div>
+          <div class="premium-hero-float float-tech">
+            <iconify-icon icon="solar:cpu-bold-duotone" aria-hidden="true"></iconify-icon>
+            <span><strong>Advanced</strong> Technology</span>
+          </div>
+          <div class="premium-hero-float float-team">
+            <iconify-icon icon="solar:users-group-rounded-bold-duotone" aria-hidden="true"></iconify-icon>
+            <span><strong>Expert</strong> Care Team</span>
+          </div>
         </div>
       </div>
     </section>

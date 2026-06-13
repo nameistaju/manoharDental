@@ -12038,3 +12038,184 @@ select.form-control-premium {
     color: #1ba8e8;
   }
 }
+
+/* ==========================================================================
+   TREATMENT HERO: LARGE SCREEN OPTIMIZATIONS (>1400px)
+   ========================================================================== */
+
+/* Default styles for new elements (hidden on screens <= 1400px) */
+.premium-hero-checklist,
+.premium-hero-metrics,
+.premium-hero-float {
+  display: none !important;
+}
+
+@media (min-width: 1401px) {
+  /* Increase container width on large screens to fit the enhanced layout */
+  .premium-treatment-hero .container {
+    max-width: 1360px !important;
+    padding-right: 40px !important;
+    padding-left: 40px !important;
+  }
+
+  .premium-treatment-hero-grid {
+    grid-template-columns: 0.58fr 0.42fr !important;
+    gap: 60px !important;
+    align-items: center !important;
+  }
+
+  .premium-treatment-hero-copy {
+    max-width: 760px !important;
+  }
+
+  /* 1. Benefits Checklist (2-column grid) */
+  .premium-hero-checklist {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 24px;
+    margin-top: 24px !important;
+    margin-bottom: 24px !important;
+    width: 100%;
+  }
+
+  .checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .checklist-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: rgba(27, 168, 232, 0.12);
+    color: #1ba8e8;
+    font-size: 0.8rem;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  .checklist-text {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.88rem;
+    color: #4b5563;
+    font-weight: 600;
+  }
+
+  /* 2. Trust Metrics Row (statistic chips) */
+  .premium-hero-metrics {
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+    margin-top: 20px !important;
+    margin-bottom: 28px !important;
+    width: 100%;
+  }
+
+  .metric-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(11, 31, 77, 0.06);
+    padding: 6px 14px;
+    border-radius: 99px;
+    box-shadow: 0 4px 12px rgba(11, 31, 77, 0.03);
+    backdrop-filter: blur(4px);
+  }
+
+  .metric-bullet {
+    color: #1ba8e8;
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+
+  .metric-label {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.82rem;
+    color: #52617a;
+    font-weight: 600;
+  }
+
+  /* Adjust action buttons spacing */
+  .premium-hero-actions {
+    margin-top: 24px !important;
+  }
+
+  /* 3. Wider Video Card (Increase width by ~15-20% and lock height) */
+  .premium-hero-media {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .premium-video-card.premium-hero-video {
+    width: 530px !important;
+    height: 300px !important;
+    aspect-ratio: auto !important;
+    box-shadow: 0 32px 80px rgba(11, 31, 77, 0.22), 0 12px 30px rgba(27, 168, 232, 0.12) !important;
+  }
+
+  /* 4. Floating Elements */
+  .premium-hero-float {
+    display: flex !important;
+    position: absolute;
+    z-index: 5;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.94);
+    color: #52617a;
+    box-shadow: 0 12px 28px rgba(11, 31, 77, 0.08);
+    backdrop-filter: blur(8px);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.74rem;
+    line-height: 1.25;
+    transition: transform 0.2s ease;
+  }
+
+  .premium-hero-float:hover {
+    transform: scale(1.05);
+  }
+
+  .premium-hero-float iconify-icon {
+    flex: 0 0 auto;
+    font-size: 1.3rem;
+    color: #1ba8e8;
+  }
+
+  .premium-hero-float strong {
+    color: #0b1f4d;
+    font-size: 0.9rem;
+    font-weight: 750;
+    display: block;
+  }
+
+  /* Position floating elements around the wider video card */
+  .float-consultation {
+    top: -24px;
+    left: -20px;
+    animation: float 4.5s ease-in-out infinite alternate;
+  }
+
+  .float-tech {
+    bottom: -20px;
+    right: -20px;
+    animation: float 5s ease-in-out infinite alternate-reverse;
+    animation-delay: 0.5s;
+  }
+
+  .float-team {
+    bottom: 60px;
+    left: -35px;
+    animation: float 4.8s ease-in-out infinite alternate;
+    animation-delay: 1s;
+  }
+}
+
