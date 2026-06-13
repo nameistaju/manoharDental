@@ -32,26 +32,49 @@ function initBeforeAfterSlider() {
       handle.style.left = position + '%';
     };
 
-    // Touch events for mobile
-    slider.addEventListener('touchstart', () => { isDragging = true; }, { passive: true });
-    window.addEventListener('touchend', () => { isDragging = false; });
-    slider.addEventListener('touchmove', (e) => {
-      if (!isDragging) return;
-      moveSlider(e.touches[0].clientX);
-    }, { passive: true });
-
-    // Mouse events for desktop
-    handle.addEventListener('mousedown', () => { isDragging = true; });
-    window.addEventListener('mouseup', () => { isDragging = false; });
-    slider.addEventListener('mousemove', (e) => {
+    const onMouseMove = (e) => {
       if (!isDragging) return;
       moveSlider(e.clientX);
+    };
+
+    const onMouseUp = () => {
+      isDragging = false;
+      slider.classList.remove('ba-dragging');
+      document.body.classList.remove('ba-grabbing-active');
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseup', onMouseUp);
+    };
+
+    handle.addEventListener('mousedown', (e) => {
+      e.preventDefault();
+      isDragging = true;
+      slider.classList.add('ba-dragging');
+      document.body.classList.add('ba-grabbing-active');
+      window.addEventListener('mousemove', onMouseMove);
+      window.addEventListener('mouseup', onMouseUp);
     });
 
-    // Support clicking anywhere on slider to jump
-    slider.addEventListener('click', (e) => {
-      if (e.target.closest('.ba-handle-button')) return; // Avoid drag button conflict
-      moveSlider(e.clientX);
+    const onTouchMove = (e) => {
+      if (!isDragging) return;
+      if (e.touches && e.touches[0]) {
+        moveSlider(e.touches[0].clientX);
+      }
+    };
+
+    const onTouchEnd = () => {
+      isDragging = false;
+      slider.classList.remove('ba-dragging');
+      document.body.classList.remove('ba-grabbing-active');
+      window.removeEventListener('touchmove', onTouchMove);
+      window.removeEventListener('touchend', onTouchEnd);
+    };
+
+    handle.addEventListener('touchstart', (e) => {
+      isDragging = true;
+      slider.classList.add('ba-dragging');
+      document.body.classList.add('ba-grabbing-active');
+      window.addEventListener('touchmove', onTouchMove, { passive: true });
+      window.addEventListener('touchend', onTouchEnd);
     });
   });
 }

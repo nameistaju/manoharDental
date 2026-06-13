@@ -9645,7 +9645,7 @@ select.form-control-premium {
    ABOUT US PAGE HERO BACKGROUND & OVERLAY
    ========================================================================== */
 .page-hero.about-hero {
-  margin-top: 120px; /* Shift below fixed header on desktop */
+  margin-top: 0; /* Shift below fixed header on desktop */
   background-color: #0b1f4d !important;
   background-image: linear-gradient(90deg, #0b1f4d 35%, rgba(11, 31, 77, 0.85) 65%, rgba(11, 31, 77, 0.2) 100%), url('../images/abtHeaderBg.png') !important;
   background-size: cover !important;
@@ -11477,6 +11477,656 @@ select.form-control-premium {
   .about-doctor-photo img,
   .about-doctor-content > a iconify-icon {
     transition: none;
+  }
+}
+
+/* Results page visibility and hierarchy */
+.results-page .results-hero {
+  padding: 86px 0 70px;
+  background:
+    radial-gradient(circle at 80% 20%, rgba(27, 168, 232, 0.28), transparent 28%),
+    linear-gradient(135deg, #0b1f4d 0%, #123873 100%);
+}
+
+.results-page .results-gallery-section {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: none !important;
+  min-height: 480px;
+}
+
+.results-page .ba-premium-card {
+  visibility: visible;
+  content-visibility: auto;
+  contain-intrinsic-size: 680px;
+}
+
+/* About page: compact trust story and image placeholders */
+.about-page .home-about-section {
+  padding: 64px 0 72px;
+}
+
+.about-page .home-about-visual {
+  min-height: 470px;
+}
+
+.about-page .home-about-grid {
+  gap: clamp(44px, 6vw, 76px);
+}
+
+.about-page .about-care-section {
+  padding: 76px 0 84px;
+}
+
+.about-care-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.about-care-card {
+  position: relative;
+  overflow: hidden;
+  min-width: 0;
+  border: 1px solid rgba(11, 31, 77, 0.09);
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow: 0 14px 38px rgba(11, 31, 77, 0.08);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.about-care-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 22px 48px rgba(11, 31, 77, 0.13);
+}
+
+.about-care-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1402 / 1122;
+  object-fit: cover;
+  object-position: center;
+  background: #eaf7fd;
+  transition: transform 350ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.about-care-card:hover .about-care-image {
+  transform: scale(1.025);
+}
+
+.about-care-placeholder {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 10px;
+  aspect-ratio: 4 / 3;
+  padding: 24px;
+  background:
+    linear-gradient(135deg, rgba(27, 168, 232, 0.12), rgba(20, 198, 198, 0.08)),
+    repeating-linear-gradient(135deg, transparent 0 18px, rgba(255, 255, 255, 0.6) 18px 19px);
+  color: #159ed9;
+  text-align: center;
+}
+
+.about-care-placeholder iconify-icon {
+  font-size: 2.5rem;
+}
+
+.about-care-placeholder span {
+  color: #57708f;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.about-care-card-copy {
+  position: relative;
+  padding: 23px 64px 25px 24px;
+}
+
+.about-care-card-copy > span {
+  color: #159ed9;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.about-care-card-copy h3 {
+  margin: 7px 0 9px;
+  color: #0b1f4d;
+  font-size: 1.2rem;
+  line-height: 1.25;
+}
+
+.about-care-card-copy p {
+  margin: 0;
+  color: #68788f;
+  font-size: 0.86rem;
+  line-height: 1.6;
+}
+
+.about-care-card-copy a {
+  position: absolute;
+  right: 20px;
+  bottom: 22px;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #0b1f4d;
+  color: #ffffff;
+}
+
+/* Contact page: map-led appointment experience */
+.contact-page .contact-page-hero {
+  padding: 78px 0 68px;
+  background:
+    radial-gradient(circle at 78% 24%, rgba(27, 168, 232, 0.3), transparent 26%),
+    linear-gradient(135deg, #0b1f4d, #123873);
+}
+
+.contact-hero-kicker,
+.contact-section-label {
+  display: block;
+  color: #55c9f4;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.contact-page-hero > .container > p {
+  max-width: 620px;
+  margin: 0 auto 20px;
+  color: #d7e7f4;
+  font-size: 1.02rem;
+  line-height: 1.65;
+}
+
+.contact-premium-section {
+  padding: 76px 0 88px;
+  background: linear-gradient(180deg, #f6fbfe 0%, #ffffff 100%);
+}
+
+.contact-visit-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(420px, 0.92fr);
+  gap: 30px;
+  align-items: stretch;
+}
+
+.contact-map-card,
+.contact-booking-card {
+  border: 1px solid rgba(11, 31, 77, 0.09);
+  border-radius: 28px;
+  background: #ffffff;
+  box-shadow: 0 22px 60px rgba(11, 31, 77, 0.11);
+}
+
+.contact-map-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 610px;
+}
+
+.contact-map-card iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 610px;
+  border: 0;
+  filter: saturate(0.85) contrast(0.96);
+}
+
+.contact-map-badge {
+  position: absolute;
+  right: 22px;
+  bottom: 22px;
+  left: 22px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  width: fit-content;
+  max-width: calc(100% - 44px);
+  padding: 15px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 17px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 14px 34px rgba(11, 31, 77, 0.18);
+  backdrop-filter: blur(10px);
+}
+
+.contact-map-badge iconify-icon {
+  color: #1ba8e8;
+  font-size: 2rem;
+}
+
+.contact-map-badge strong,
+.contact-map-badge span {
+  display: block;
+}
+
+.contact-map-badge strong { color: #0b1f4d; }
+.contact-map-badge span { margin-top: 2px; color: #68788f; font-size: 0.78rem; }
+
+.contact-booking-card {
+  padding: clamp(28px, 4vw, 42px);
+}
+
+.contact-booking-card h2,
+.contact-hours-panel h2 {
+  margin: 9px 0 12px;
+  color: #0b1f4d;
+  font-size: clamp(2rem, 3vw, 2.65rem);
+  line-height: 1.1;
+}
+
+.contact-booking-card > p {
+  margin: 0 0 25px;
+  color: #68788f;
+  line-height: 1.65;
+}
+
+.contact-page-form {
+  display: grid;
+  gap: 14px;
+}
+
+.contact-page-form .form-group { margin: 0; }
+.contact-page-form .form-label { margin-bottom: 7px; font-size: 0.76rem; }
+.contact-page-form .form-control { min-height: 52px; border-radius: 14px; background: #f6f9fc; }
+.contact-page-form textarea.form-control { min-height: 92px; resize: vertical; }
+.contact-page-form .form-submit-btn { width: 100%; min-height: 56px; margin-top: 3px; gap: 8px; border-radius: 15px; }
+
+.contact-success-message {
+  display: none;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.contact-success-message iconify-icon { color: #16a36a; font-size: 4rem; }
+
+.contact-options-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.contact-option-card {
+  min-width: 0;
+  padding: 23px;
+  border: 1px solid rgba(11, 31, 77, 0.09);
+  border-radius: 20px;
+  background: #ffffff;
+  color: inherit;
+  box-shadow: 0 12px 34px rgba(11, 31, 77, 0.07);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.contact-option-card:hover { transform: translateY(-4px); box-shadow: 0 18px 42px rgba(11, 31, 77, 0.12); }
+.contact-option-card iconify-icon { color: #1ba8e8; font-size: 2rem; }
+.contact-option-card span { display: block; margin: 14px 0 7px; color: #159ed9; font-size: 0.66rem; font-weight: 800; letter-spacing: 0.1em; }
+.contact-option-card strong { display: block; overflow-wrap: anywhere; color: #0b1f4d; font-size: 1rem; }
+.contact-option-card p { margin: 7px 0 0; overflow-wrap: anywhere; color: #718096; font-size: 0.78rem; line-height: 1.5; }
+
+.contact-hours-panel {
+  width: 100%;
+  margin-top: 28px;
+  background: #0b1f4d;
+  color: #ffffff;
+}
+
+.contact-hours-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(330px, 0.7fr);
+  gap: clamp(38px, 7vw, 90px);
+  align-items: center;
+  padding-top: clamp(38px, 5vw, 64px);
+  padding-bottom: clamp(38px, 5vw, 64px);
+}
+
+.contact-hours-panel h2 { color: #ffffff; }
+.contact-hours-panel p { margin: 0; color: #bdd0e2; line-height: 1.65; }
+.contact-hours-list p { display: flex; justify-content: space-between; gap: 24px; padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,0.13); }
+.contact-hours-list p span { color: #bdd0e2; }
+.contact-hours-list p strong { color: #ffffff; }
+.contact-hours-list a { display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; color: #55c9f4; font-weight: 750; }
+
+@media (max-width: 980px) {
+  .about-care-grid,
+  .contact-options-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .contact-visit-grid { grid-template-columns: 1fr; }
+  .contact-map-card,
+  .contact-map-card iframe { min-height: 460px; }
+}
+
+@media (max-width: 640px) {
+  .results-page .results-hero,
+  .contact-page .contact-page-hero { padding: 62px 0 54px; }
+  .about-page .home-about-section { padding: 48px 0 56px; }
+  .about-page .home-about-visual { min-height: 390px; }
+  .about-page .about-care-section { padding: 58px 0 64px; }
+  .about-care-grid,
+  .contact-options-grid,
+  .contact-form-row,
+  .contact-hours-inner { grid-template-columns: 1fr; }
+  .contact-premium-section { padding: 52px 0 64px; }
+  .contact-map-card,
+  .contact-map-card iframe { min-height: 360px; }
+  .contact-map-badge { right: 14px; bottom: 14px; left: 14px; max-width: calc(100% - 28px); }
+  .contact-booking-card { border-radius: 22px; }
+  .contact-hours-inner { gap: 28px; }
+}
+
+/* Contact page: treatment loop, urgent care, directions, and page-only footer */
+.contact-treatment-marquee {
+  overflow: hidden;
+  padding: 76px 0 82px;
+  border-top: 1px solid rgba(11, 31, 77, 0.07);
+  border-bottom: 1px solid rgba(11, 31, 77, 0.07);
+  background: #ffffff;
+}
+
+.contact-marquee-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.contact-marquee-heading h2 {
+  max-width: 620px;
+  margin: 0;
+  color: #0b1f4d;
+  font-size: clamp(1.8rem, 3vw, 2.55rem);
+  line-height: 1.15;
+  text-align: right;
+}
+
+.contact-marquee-window {
+  position: relative;
+  overflow: hidden;
+  padding: 8px 0 16px;
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+}
+
+.contact-marquee-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  animation: contact-treatment-loop 46s linear infinite;
+}
+
+.contact-marquee-window:hover .contact-marquee-track {
+  animation-play-state: paused;
+}
+
+.contact-marquee-track a {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 13px;
+  min-width: 210px;
+  padding: 13px 18px 13px 13px;
+  border: 1px solid rgba(11, 31, 77, 0.09);
+  border-radius: 18px;
+  background: #f8fcff;
+  color: #0b1f4d;
+  box-shadow: 0 8px 24px rgba(11, 31, 77, 0.06);
+  font-size: 0.9rem;
+  font-weight: 750;
+  transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
+}
+
+.contact-marquee-track a:hover {
+  border-color: rgba(27, 168, 232, 0.28);
+  background: #ffffff;
+  transform: translateY(-3px);
+}
+
+.contact-marquee-track img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  padding: 5px;
+  border-radius: 13px;
+  background: #eaf7fd;
+}
+
+@keyframes contact-treatment-loop {
+  to { transform: translateX(calc(-50% - 8px)); }
+}
+
+.contact-support-section {
+  padding: 86px 0;
+  background: #f5f9fc;
+}
+
+.contact-support-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  gap: 24px;
+}
+
+.contact-emergency-card,
+.contact-directions-card {
+  min-width: 0;
+  border-radius: 26px;
+}
+
+.contact-emergency-card {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  min-height: 480px;
+  align-items: flex-end;
+  overflow: hidden;
+  padding: clamp(30px, 4vw, 46px);
+  background: #0b1f4d;
+  color: #ffffff;
+  box-shadow: 0 24px 58px rgba(11, 31, 77, 0.2);
+}
+
+.contact-emergency-card::after {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(5, 20, 51, 0.97) 0%, rgba(8, 30, 68, 0.88) 46%, rgba(8, 30, 68, 0.28) 76%, rgba(8, 30, 68, 0.12) 100%),
+    linear-gradient(0deg, rgba(5, 20, 51, 0.72), transparent 60%);
+  content: '';
+}
+
+.contact-emergency-card > img {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 58% center;
+  transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.contact-emergency-card:hover > img {
+  transform: scale(1.025);
+}
+
+.contact-emergency-content {
+  max-width: 500px;
+}
+
+.contact-emergency-card span {
+  color: #67d1f6;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.contact-emergency-card h2,
+.contact-directions-card h2 {
+  margin: 8px 0 12px;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  line-height: 1.12;
+}
+
+.contact-emergency-card h2 { color: #ffffff; }
+.contact-emergency-card p { max-width: 440px; margin: 0 0 19px; color: #d7e5f2; line-height: 1.65; }
+
+.contact-emergency-signals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-bottom: 24px;
+}
+
+.contact-emergency-signals span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  color: #dff5ff;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.contact-emergency-card a {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 48px;
+  padding: 0 20px;
+  border-radius: 999px;
+  color: #0b1f4d;
+  background: #ffffff;
+  box-shadow: 0 10px 28px rgba(5, 20, 51, 0.22);
+  font-weight: 800;
+}
+
+.contact-directions-card {
+  padding: clamp(30px, 4vw, 46px);
+  border: 1px solid rgba(11, 31, 77, 0.09);
+  background: #ffffff;
+  box-shadow: 0 18px 48px rgba(11, 31, 77, 0.09);
+}
+
+.contact-directions-card h2 { color: #0b1f4d; }
+.contact-directions-card > p { margin: 0; color: #68788f; line-height: 1.7; }
+
+.contact-landmarks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 24px 0;
+}
+
+.contact-landmarks span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 12px;
+  border-radius: 999px;
+  background: #eef8fd;
+  color: #244264;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.contact-landmarks iconify-icon { color: #1ba8e8; font-size: 1rem; }
+.contact-directions-card > a { display: inline-flex; align-items: center; gap: 8px; color: #0b1f4d; font-weight: 800; }
+
+.contact-page .contact-footer {
+  position: relative;
+  isolation: isolate;
+  background:
+    linear-gradient(100deg, rgba(5, 20, 51, 0.97), rgba(11, 31, 77, 0.9)),
+    url('../images/bg6.png') center / cover no-repeat;
+}
+
+.contact-page .contact-premium-section ~ .section-padding.reveal {
+  display: none !important;
+}
+
+.contact-page .contact-footer::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: radial-gradient(circle at 80% 15%, rgba(27, 168, 232, 0.24), transparent 32%);
+  content: '';
+}
+
+.contact-page .contact-footer .footer-map {
+  display: none !important;
+}
+
+.contact-page .contact-footer .footer-top {
+  padding-top: 18px;
+}
+
+.contact-page .contact-footer .footer-title,
+.contact-page .contact-footer .footer-contact-text h5 {
+  color: #ffffff;
+}
+
+.contact-page .contact-footer .footer-about,
+.contact-page .contact-footer .footer-links a,
+.contact-page .contact-footer .footer-contact-text p,
+.contact-page .contact-footer .footer-bottom,
+.contact-page .contact-footer .footer-bottom a {
+  color: #c5d4e4;
+}
+
+.contact-page .contact-footer .footer-links a:hover,
+.contact-page .contact-footer .footer-bottom a:hover {
+  color: #67d1f6;
+}
+
+.contact-page .contact-footer .social-icon {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  backdrop-filter: blur(8px);
+}
+
+.contact-page .contact-footer .footer-bottom {
+  border-color: rgba(255, 255, 255, 0.13);
+}
+
+@media (max-width: 820px) {
+  .contact-marquee-heading { align-items: flex-start; flex-direction: column; gap: 12px; }
+  .contact-marquee-heading h2 { text-align: left; }
+  .contact-support-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .contact-treatment-marquee { padding: 58px 0 62px; }
+  .contact-marquee-track { gap: 12px; }
+  .contact-marquee-track a { min-width: 184px; padding: 11px 14px 11px 11px; }
+  .contact-marquee-track img { width: 43px; height: 43px; }
+  .contact-support-section { padding: 62px 0; }
+  .contact-emergency-card {
+    min-height: 540px;
+    padding: 28px 22px;
+  }
+  .contact-emergency-card::after {
+    background: linear-gradient(0deg, rgba(5, 20, 51, 0.98) 0%, rgba(8, 30, 68, 0.84) 48%, rgba(8, 30, 68, 0.14) 82%);
+  }
+  .contact-emergency-card > img { object-position: 62% center; }
+  .contact-emergency-card h2 { font-size: 2rem; }
+  .contact-emergency-card a { width: 100%; justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-marquee-track {
+    animation-play-state: paused;
   }
 }
 

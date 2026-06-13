@@ -75,6 +75,7 @@ function initBeforeAfterSlider() {
 
     let currentPosition = 50;
     let ticking = false;
+    let isDragging = false;
 
     const updateSlider = () => {
       afterImg.style.clipPath = `inset(0 ${100 - currentPosition}% 0 0)`;
@@ -82,6 +83,7 @@ function initBeforeAfterSlider() {
       const containerWidth = slider.clientWidth;
       const x = (currentPosition / 100) * containerWidth;
       handle.style.transform = `translate3d(${x}px, 0, 0)`;
+      slider.setAttribute('aria-valuenow', String(Math.round(currentPosition)));
       ticking = false;
     };
 
@@ -101,39 +103,66 @@ function initBeforeAfterSlider() {
     };
 
     const onMouseMove = (e) => {
+      if (!isDragging) return;
       moveSlider(e.clientX);
     };
 
     const onMouseUp = () => {
+      isDragging = false;
+      slider.classList.remove('ba-dragging');
+      document.body.classList.remove('ba-grabbing-active');
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('mouseup', onMouseUp);
     };
 
-    handle.addEventListener('mousedown', (e) => {
+    const startMouseDrag = (e) => {
       e.preventDefault();
+      isDragging = true;
+      slider.classList.add('ba-dragging');
+      document.body.classList.add('ba-grabbing-active');
+      moveSlider(e.clientX);
       window.addEventListener('mousemove', onMouseMove);
       window.addEventListener('mouseup', onMouseUp);
-    });
+    };
+
+    slider.addEventListener('mousedown', startMouseDrag);
 
     const onTouchMove = (e) => {
+      if (!isDragging) return;
       if (e.touches && e.touches[0]) {
+        e.preventDefault();
         moveSlider(e.touches[0].clientX);
       }
     };
 
     const onTouchEnd = () => {
+      isDragging = false;
+      slider.classList.remove('ba-dragging');
+      document.body.classList.remove('ba-grabbing-active');
       window.removeEventListener('touchmove', onTouchMove);
       window.removeEventListener('touchend', onTouchEnd);
     };
 
-    handle.addEventListener('touchstart', (e) => {
-      window.addEventListener('touchmove', onTouchMove, { passive: true });
+    slider.addEventListener('touchstart', (e) => {
+      if (!e.touches || !e.touches[0]) return;
+      isDragging = true;
+      slider.classList.add('ba-dragging');
+      document.body.classList.add('ba-grabbing-active');
+      moveSlider(e.touches[0].clientX);
+      window.addEventListener('touchmove', onTouchMove, { passive: false });
       window.addEventListener('touchend', onTouchEnd);
-    });
+    }, { passive: true });
 
-    slider.addEventListener('click', (e) => {
-      if (e.target.closest('.ba-handle-button')) return;
-      moveSlider(e.clientX);
+    slider.addEventListener('keydown', (e) => {
+      const keyPositions = { Home: 0, End: 100 };
+      let nextPosition = keyPositions[e.key];
+
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') nextPosition = currentPosition - 5;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowUp') nextPosition = currentPosition + 5;
+      if (nextPosition === undefined) return;
+
+      e.preventDefault();
+      requestUpdate(nextPosition);
     });
 
     // Initialize to 50%

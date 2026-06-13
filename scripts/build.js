@@ -23,7 +23,7 @@ const treatmentsData = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'data', 't
 const doctorsData = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'data', 'doctors.json'), 'utf-8'));
 const testimonialsData = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'data', 'testimonials.json'), 'utf-8'));
 const faqData = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'data', 'faq.json'), 'utf-8'));
-const { buildPremiumTreatmentPages } = require('./premium_treatment_pages');
+const { buildPremiumTreatmentPages, treatmentPages } = require('./premium_treatment_pages');
 
 // Helper to extract section content
 function extractSection(html, startIndicator, endIndicator) {
@@ -139,7 +139,7 @@ function rewritePaths(html, depth = 0) {
     }
     let newPath = pathVal;
     
-    const supportPages = ['about', 'contact', 'gallery', 'testimonials', 'results', 'blog', 'faqs'];
+    const supportPages = ['about', 'contact', 'gallery', 'testimonials', 'results', 'blog', 'faqs', 'treatments'];
     
     // Trim trailing slash
     let cleanPath = pathVal;
@@ -626,52 +626,232 @@ function buildSupportPages() {
       desc: "View proven smile makeover results, orthodontic alignments, and implant transformations by Dr. Srinivas Manohar in Visakhapatnam.",
       h1: "Treatment Results",
       breadcrumb: "Transformations",
-      body: `
-        <section class="section-padding reveal">
-          <div class="container">
-            <div class="text-center" style="margin-bottom: 48px;">
-              <h2>Proven Smile Transformations</h2>
-              <p style="color: var(--muted); margin-top: 10px;">Drag the slider handles to see the before and after dental treatment outcomes.</p>
-            </div>
-            
-            <div class="grid grid-2" style="margin-bottom: 48px;">
-              <div class="card" style="padding: 0;">
-                <div class="ba-slider">
-                  <div class="ba-image ba-before" style="background-image: url('/assets/images/Dental_Implant_Befor.png');"></div>
-                  <div class="ba-image ba-after" style="background-image: url('/assets/images/Dental_Implant_after.png');"></div>
-                  <span class="ba-label ba-label-before">BEFORE</span>
-                  <span class="ba-label ba-label-after">AFTER</span>
+      body: (() => {
+        const categoryMap = {
+          'dental-implants': 'implants',
+          'dentures': 'implants',
+          'teeth-whitening': 'cosmetic',
+          'smile-makeover': 'cosmetic',
+          'crowns-bridges': 'cosmetic',
+          'dental-fillings': 'restorative',
+          'preventive-dentistry': 'restorative',
+          'root-canal-treatment': 'restorative',
+          'braces-treatment': 'ortho',
+          'clear-aligners': 'ortho',
+          'wisdom-tooth-removal': 'restorative',
+          'gum-treatment': 'restorative',
+          'pediatric-dentistry': 'restorative'
+        };
+
+        const summaries = {
+          'dental-implants': "Full mouth smile restoration with fixed, stable implant-supported arches, restoring 100% chew function.",
+          'dentures': "Custom flexible partial dentures restoring natural smile aesthetics, facial volume, and speech clarity.",
+          'teeth-whitening': "In-office teeth whitening lifting deep stains and restoring a bright, natural shade in a single session.",
+          'smile-makeover': "Comprehensive smile transformation combining cosmetic restorations to correct spacing, chips, and alignment.",
+          'crowns-bridges': "High-strength metal-free crowns protecting root canal treated teeth and restoring chewing bite.",
+          'dental-fillings': "Composite tooth-colored fillings restoring decayed cavities invisibly while preventing future infection.",
+          'preventive-dentistry': "Professional plaque removal and scaling restoring healthy pink gums and fresh breath.",
+          'root-canal-treatment': "Microscopic root canal treatment relieving throbbing nerve pain and saving the natural tooth structure.",
+          'braces-treatment': "Metal and ceramic braces aligning crowded teeth and correcting bite discrepancies for a healthy smile.",
+          'clear-aligners': "Invisible removable custom aligners gradually aligning teeth discreetly without metal brackets.",
+          'wisdom-tooth-removal': "Safe extraction of painful, impacted third molar wisdom tooth, resolving jaw swelling and discomfort.",
+          'gum-treatment': "Advanced gum deep cleaning and scaling treatment reversing inflammation and bleeding.",
+          'pediatric-dentistry': "Friendly, pain-free pediatric cavity treatment and sealants restoring a child's healthy smile."
+        };
+
+        const durations = {
+          'dental-implants': "3 Months",
+          'dentures': "2 Weeks",
+          'teeth-whitening': "1 Hour",
+          'smile-makeover': "3 Weeks",
+          'crowns-bridges': "1 Week",
+          'dental-fillings': "30 Mins",
+          'preventive-dentistry': "45 Mins",
+          'root-canal-treatment': "2 Sessions",
+          'braces-treatment': "12 Months",
+          'clear-aligners': "8 Months",
+          'wisdom-tooth-removal': "45 Mins",
+          'gum-treatment': "2 Weeks",
+          'pediatric-dentistry': "30 Mins"
+        };
+
+        const types = {
+          'dental-implants': "Fixed Implant",
+          'dentures': "Flexible Denture",
+          'teeth-whitening': "Laser Whitening",
+          'smile-makeover': "Veneers & Crowns",
+          'crowns-bridges': "Zirconia Crown",
+          'dental-fillings': "Composite Bonding",
+          'preventive-dentistry': "Deep Scaling",
+          'root-canal-treatment': "Single Visit RCT",
+          'braces-treatment': "Ceramic Braces",
+          'clear-aligners': "Clear Aligners",
+          'wisdom-tooth-removal': "Surgical Extraction",
+          'gum-treatment': "Laser Curettage",
+          'pediatric-dentistry': "Fluoride Sealant"
+        };
+
+        const gridCards = treatmentPages.map(page => {
+          const cat = categoryMap[page.slug] || 'restorative';
+          const summary = summaries[page.slug] || "Advanced smile correction restoring function and appearance.";
+          const duration = durations[page.slug] || "1 Session";
+          const type = types[page.slug] || "Restorative Care";
+
+          return `
+            <article class="ba-premium-card" data-category="${cat}">
+              <div class="ba-slider-wrap">
+                <div class="ba-slider-container">
+                  <!-- After image (bottom layer, full width) -->
+                  <div class="ba-img-after">
+                    <img src="${page.after}" alt="${page.title} After">
+                    <span class="ba-label ba-label-after">After</span>
+                  </div>
+                  <!-- Before image (top layer, clipped by slider) -->
+                  <div class="ba-img-before">
+                    <img src="${page.before}" alt="${page.title} Before">
+                    <span class="ba-label ba-label-before">Before</span>
+                  </div>
+                  <!-- Drag Handle -->
                   <div class="ba-handle">
                     <div class="ba-handle-line"></div>
-                    <div class="ba-handle-button">↔</div>
+                    <div class="ba-handle-circle">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </div>
+                    <div class="ba-handle-line"></div>
                   </div>
+                  <input type="range" class="ba-range-input" min="0" max="100" value="50" aria-label="Before after comparison slider">
                 </div>
-                <div style="padding: 24px;">
-                  <h4 style="margin-bottom: 8px;">Full Mouth Dental Implants</h4>
-                  <p style="color: var(--muted); font-size: 0.9rem;">Replaced missing arches with fixed immediate-load implants.</p>
+              </div>
+              <div class="ba-card-info">
+                <div class="ba-card-title-row">
+                  <h3 class="ba-treatment-name">${page.title}</h3>
+                  <span class="ba-success-badge">✓ Successful</span>
                 </div>
+                <p class="ba-result-summary">${summary}</p>
+                <div class="ba-meta-row">
+                  <span class="ba-meta-pill">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 
+                    ${duration}
+                  </span>
+                  <span class="ba-meta-pill">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> 
+                    ${type}
+                  </span>
+                </div>
+                <div style="margin-top: 20px; border-top: 1px solid var(--border-light); padding-top: 16px;">
+                  <a href="/treatments/${page.slug}/index.html" class="btn btn-outline-blue" style="width: 100%; justify-content: center; display: inline-flex; font-size: 0.9rem; padding: 10px 16px; border-radius: 8px; text-decoration: none; font-weight: 600;">View Treatment Details →</a>
+                </div>
+              </div>
+            </article>
+          `;
+        }).join('');
+
+        return `
+          <style>
+            .ba-premium-card {
+              opacity: 1;
+              transform: scale(1);
+              transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.32s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease !important;
+            }
+            .ba-premium-card.card-hidden {
+              opacity: 0 !important;
+              transform: scale(0.96) !important;
+              pointer-events: none !important;
+            }
+            .ba-premium-card.d-none {
+              display: none !important;
+            }
+            .filter-nav .filter-btn {
+              padding: 10px 24px;
+              border-radius: var(--radius-full);
+              background-color: #ffffff;
+              color: var(--muted);
+              border: 1px solid var(--border-light);
+              cursor: pointer;
+              font-family: var(--font-body);
+              font-weight: 600;
+              transition: all 0.25s ease;
+            }
+            .filter-nav .filter-btn:hover,
+            .filter-nav .filter-btn.active {
+              background-color: var(--primary) !important;
+              color: #ffffff !important;
+              border-color: var(--primary) !important;
+            }
+          </style>
+
+          <section class="section-padding reveal" style="background-color: var(--light-bg); padding: 80px 0;">
+            <div class="container">
+              <div class="text-center" style="max-width: 700px; margin: 0 auto 48px;">
+                <span style="color: #1BA8E8; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.15em; display: inline-block; margin-bottom: 12px;">Smile Gallery</span>
+                <h2 style="font-size: 2.5rem; font-weight: 800; color: #0B1F4D; font-family: 'Outfit', sans-serif;">Proven Smile Transformations</h2>
+                <p style="color: var(--muted); margin-top: 12px; font-size: 1.1rem; line-height: 1.6;">Drag the slider handles to see the authentic before and after outcomes of our clinical treatments.</p>
               </div>
 
-              <div class="card" style="padding: 0;">
-                <div class="ba-slider">
-                  <div class="ba-image ba-before" style="background-image: url('/assets/images/alinerBefore.png');"></div>
-                  <div class="ba-image ba-after" style="background-image: url('/assets/images/alinersAfter.png');"></div>
-                  <span class="ba-label ba-label-before">BEFORE</span>
-                  <span class="ba-label ba-label-after">AFTER</span>
-                  <div class="ba-handle">
-                    <div class="ba-handle-line"></div>
-                    <div class="ba-handle-button">↔</div>
-                  </div>
-                </div>
-                <div style="padding: 24px;">
-                  <h4 style="margin-bottom: 8px;">Clear Aligners Transformation</h4>
-                  <p style="color: var(--muted); font-size: 0.9rem;">Corrected misaligned arches using premium invisible custom aligners.</p>
-                </div>
+              <!-- Filter Pills -->
+              <div class="filter-nav" style="margin-bottom: 48px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; padding: 0 10px;">
+                <button class="filter-btn active" data-filter="all">All Treatments</button>
+                <button class="filter-btn" data-filter="implants">Implants & Dentures</button>
+                <button class="filter-btn" data-filter="ortho">Orthodontics</button>
+                <button class="filter-btn" data-filter="cosmetic">Cosmetic Dentistry</button>
+                <button class="filter-btn" data-filter="restorative">Restorative & General</button>
+              </div>
+
+              <!-- Grid -->
+              <div class="ba-cards-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px; margin-bottom: 60px;">
+                ${gridCards}
+              </div>
+
+              <!-- CTA Block -->
+              <div class="card" style="background: linear-gradient(135deg, #0B1F4D 0%, #173B8C 100%); border-radius: 24px; padding: 50px 40px; text-align: center; color: #ffffff; box-shadow: 0 20px 40px rgba(11, 31, 77, 0.25); border: none;">
+                <h3 style="font-size: 2rem; font-weight: 700; color: #ffffff; margin-bottom: 12px; font-family: 'Outfit', sans-serif;">Ready for Your Own Smile Transformation?</h3>
+                <p style="color: #cbd5e1; max-width: 600px; margin: 0 auto 32px; font-size: 1.05rem; line-height: 1.6;">Schedule a customized consultation with our MDS dental specialists to discuss implant, cosmetic, or aligner plans tailored for you.</p>
+                <a href="/contact/index.html" class="btn btn-primary" style="background-color: #1BA8E8; border-color: #1BA8E8; padding: 14px 32px; font-size: 1.05rem; border-radius: 8px; color: #ffffff; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 8px;">Book Consultation Appointment</a>
               </div>
             </div>
-          </div>
-        </section>
-      `
+
+            <!-- Client side filtering JS code -->
+            <script type="text/javascript">
+              document.addEventListener('DOMContentLoaded', () => {
+                const filterBtns = document.querySelectorAll('.filter-nav .filter-btn');
+                const cards = document.querySelectorAll('.ba-premium-card');
+
+                if (filterBtns.length === 0 || cards.length === 0) return;
+
+                filterBtns.forEach(btn => {
+                  btn.addEventListener('click', () => {
+                    // Update active button classes
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const filterValue = btn.getAttribute('data-filter');
+
+                    cards.forEach(card => {
+                      const category = card.getAttribute('data-category');
+                      const matches = filterValue === 'all' || category === filterValue;
+
+                      if (matches) {
+                        card.classList.remove('d-none');
+                        // Force reflow
+                        card.offsetHeight;
+                        card.classList.remove('card-hidden');
+                      } else {
+                        card.classList.add('card-hidden');
+                        setTimeout(() => {
+                          if (card.classList.contains('card-hidden')) {
+                            card.classList.add('d-none');
+                          }
+                        }, 300);
+                      }
+                    });
+                  });
+                });
+              });
+            </script>
+          </section>
+        `;
+      })()
     },
     {
       dir: 'gallery',
@@ -1267,9 +1447,8 @@ function buildSupportPages() {
     const dirPath = path.join(ROOT_DIR, page.dir);
     ensureDir(dirPath);
 
-    // Redirect standalone pages to their homepage sections (results, testimonials, gallery)
+    // Redirect standalone pages to their homepage sections (testimonials, gallery)
     const redirects = {
-      'results': '../index.html#results-section',
       'testimonials': '../index.html#testimonials-section',
       'gallery': '../index.html#gallery-section'
     };
