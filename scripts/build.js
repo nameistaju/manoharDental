@@ -91,9 +91,9 @@ function rewritePaths(html, depth = 0) {
   rewritten = rewritten.replace(/\/wp-content\/uploads\/2023\/08\/IMG_1623-min-scaled-1\.jpg/gi, '/assets/images/clinic/chair.jpg');
   
   // Treatments
-  rewritten = rewritten.replace(/\/wp-content\/uploads\/2023\/07\/smile-designing\.jpg/gi, '/assets/images/treatments/smile-makeover.jpg');
-  rewritten = rewritten.replace(/\/wp-content\/uploads\/2023\/06\/smiling-dentist-explaining-tooth-implantation\.jpg/gi, '/assets/images/treatments/implants.jpg');
-  rewritten = rewritten.replace(/\/wp-content\/uploads\/2023\/06\/best-family-dentist-near-you-in-danvers\.jpg/gi, '/assets/images/treatments/general-dentistry.jpg');
+  rewritten = rewritten.replace(/\/wp-content\/uploads\/2023\/07\/smile-designing\.jpg/gi, '/assets/images/treatments/Veneers Blog Image.png');
+  rewritten = rewritten.replace(/\/wp-content\/uploads\/2023\/06\/smiling-dentist-explaining-tooth-implantation\.jpg/gi, '/assets/images/treatments/implantsBlog.png');
+  rewritten = rewritten.replace(/\/wp-content\/uploads\/2023\/06\/best-family-dentist-near-you-in-danvers\.jpg/gi, '/assets/images/treatments/Oral Hygiene Blog Image.png');
   
   // Testimonials
   rewritten = rewritten.replace(/\/wp-content\/uploads\/2023\/06\/close-up-happy-client-dental-clinic\.jpg/gi, '/assets/images/testimonials/happy-client.jpg');
@@ -159,7 +159,11 @@ function rewritePaths(html, depth = 0) {
       newPath = `doctors/${slug}/index.html`;
     } else if (cleanPath.startsWith('blog/')) {
       const slug = cleanPath.split('/').slice(1).join('/');
-      newPath = `blog/${slug}/index.html`;
+      if (slug === 'index.html' || slug === '') {
+        newPath = 'blog/index.html';
+      } else {
+        newPath = `blog/${slug}/index.html`;
+      }
     }
     
     return `${attr}="${prefix}${newPath}"`;
@@ -727,7 +731,7 @@ function buildSupportPages() {
                 </div>
               </div>
               <div class="gallery-item" data-category="patients">
-                <img src="/assets/images/treatments/general-dentistry.jpg" alt="Family Smile">
+                <img src="/assets/images/treatments/Oral Hygiene Blog Image.png" alt="Family Smile">
                 <div class="gallery-item-hover">
                   <h4>Family Dental Care</h4>
                   <p>Delivering happy oral smiles</p>
@@ -807,7 +811,7 @@ function buildSupportPages() {
             <div class="grid grid-3">
               <div class="card" style="padding: 0; display: flex; flex-direction: column;">
                 <div style="height: 200px; overflow: hidden; background-color: var(--light-bg);">
-                  <img src="/assets/images/treatments/implants.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+                  <img src="/assets/images/treatments/implantsBlog.png" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
                 <div style="padding: 24px; display: flex; flex-direction: column; flex-grow: 1;">
                   <span style="font-size: 0.75rem; color: var(--secondary); font-weight: 600; text-transform: uppercase; margin-bottom: 8px;">Dental Implants</span>
@@ -819,7 +823,7 @@ function buildSupportPages() {
 
               <div class="card" style="padding: 0; display: flex; flex-direction: column;">
                 <div style="height: 200px; overflow: hidden; background-color: var(--light-bg);">
-                  <img src="/assets/images/treatments/smile-makeover.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+                  <img src="/assets/images/treatments/Veneers Blog Image.png" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
                 <div style="padding: 24px; display: flex; flex-direction: column; flex-grow: 1;">
                   <span style="font-size: 0.75rem; color: var(--accent); font-weight: 600; text-transform: uppercase; margin-bottom: 8px;">Cosmetic Dentistry</span>
@@ -831,7 +835,7 @@ function buildSupportPages() {
 
               <div class="card" style="padding: 0; display: flex; flex-direction: column;">
                 <div style="height: 200px; overflow: hidden; background-color: var(--light-bg);">
-                  <img src="/assets/images/treatments/general-dentistry.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+                  <img src="/assets/images/treatments/Oral Hygiene Blog Image.png" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
                 <div style="padding: 24px; display: flex; flex-direction: column; flex-grow: 1;">
                   <span style="font-size: 0.75rem; color: var(--muted); font-weight: 600; text-transform: uppercase; margin-bottom: 8px;">Oral Hygiene</span>
@@ -853,7 +857,7 @@ function buildSupportPages() {
       readingTime: "6 min read",
       date: "June 12, 2026",
       publishDateIso: "2026-06-12",
-      featuredImage: "/assets/images/treatments/implants.jpg",
+      featuredImage: "/assets/images/treatments/implantsBlog.png",
       title: "Recovery Guide: What to Expect After Dental Implants Surgery | Manohar Dental",
       desc: "An expert recovery guide detailing what to expect after dental implants placement, including diet, pain control, and hygiene. Written by MDS specialists.",
       h1: "What to Expect After Dental Implants Surgery",
@@ -973,7 +977,7 @@ function buildSupportPages() {
       readingTime: "7 min read",
       date: "June 10, 2026",
       publishDateIso: "2026-06-10",
-      featuredImage: "/assets/images/treatments/smile-makeover.jpg",
+      featuredImage: "/assets/images/treatments/Veneers Blog Image.png",
       title: "Are Veneers Right for You? A Guide to Veneer Types | Manohar Dental Clinic",
       desc: "Compare composite veneers and porcelain E-max veneers to understand costs, lifespans, and smile aesthetics suitability. Written by MDS cosmetic specialists.",
       h1: "Are Veneers Right for You? A Guide to Veneer Types",
@@ -1135,7 +1139,7 @@ function buildSupportPages() {
       readingTime: "5 min read",
       date: "June 8, 2026",
       publishDateIso: "2026-06-08",
-      featuredImage: "/assets/images/treatments/general-dentistry.jpg",
+      featuredImage: "/assets/images/treatments/Oral Hygiene Blog Image.png",
       title: "The Right Brushing Technique: Stop Enamel Decay | Manohar Dental",
       desc: "Learn the Modified Bass brushing technique to prevent enamel decay and gum recession. Read guide by Manohar Dental MDS preventive team.",
       h1: "The Right Brushing Technique: Stop Enamel Decay",
