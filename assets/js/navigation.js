@@ -25,6 +25,18 @@ function initMobileMenu() {
   
   if (!mobileBtn || !navLinks) return;
 
+  const syncMobileButtonState = () => {
+    const isOpen = mobileBtn.getAttribute('aria-expanded') === 'true';
+    mobileBtn.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+  };
+
+  const buttonStateObserver = new MutationObserver(syncMobileButtonState);
+  buttonStateObserver.observe(mobileBtn, {
+    attributes: true,
+    attributeFilter: ['aria-expanded']
+  });
+  syncMobileButtonState();
+
   let mobileHeader = navLinks.querySelector('.mobile-menu-header');
   if (!mobileHeader) {
     const desktopLogo = document.querySelector('.header-logo img, .logo img');
@@ -44,6 +56,22 @@ function initMobileMenu() {
   }
 
   const closeButton = mobileHeader.querySelector('.mobile-menu-close');
+
+  let mobileFooter = navLinks.querySelector('.mobile-menu-footer');
+  if (!mobileFooter) {
+    mobileFooter = document.createElement('div');
+    mobileFooter.className = 'mobile-menu-footer';
+    mobileFooter.innerHTML = `
+      <button type="button" class="mobile-menu-book" data-open-appointment-popup>
+        <span>Book Appointment</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><line x1="16" y1="3" x2="16" y2="7"></line><line x1="8" y1="3" x2="8" y2="7"></line><line x1="3" y1="11" x2="21" y2="11"></line></svg>
+      </button>
+      <a class="mobile-menu-call" href="tel:+919703294358">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        <span>Call Clinic</span>
+      </a>`;
+    navLinks.appendChild(mobileFooter);
+  }
 
   // Create overlay for mobile drawer if it doesn't exist yet
   let overlay = document.querySelector('.mobile-menu-overlay');

@@ -1587,7 +1587,7 @@ function buildSupportPages() {
 
     if (page.isBlog) {
       heroHtml = `
-        <section class="page-hero blog-detail-hero" style="background-image: linear-gradient(180deg, rgba(11, 31, 77, 0.95) 0%, rgba(11, 31, 77, 0.85) 100%); padding: 140px 0 60px; margin-top: 120px;">
+        <section class="page-hero blog-detail-hero" style="background-image: linear-gradient(180deg, rgba(11, 31, 77, 0.95) 0%, rgba(11, 31, 77, 0.85) 100%); padding: 140px 0 60px; margin-top: 0;">
           <div class="container">
             <div class="blog-hero-content" style="max-width: 800px; margin: 0 auto; text-align: center;">
               <span class="blog-hero-category" style="color: #1BA8E8; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.15em; display: inline-block; margin-bottom: 16px;">${page.category}</span>

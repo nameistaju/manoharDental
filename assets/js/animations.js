@@ -6,6 +6,14 @@ function initScrollReveal() {
   const reveals = document.querySelectorAll('.reveal');
   if (reveals.length === 0) return;
 
+  // Keep page content available when observers are unsupported or interrupted.
+  if (!('IntersectionObserver' in window)) {
+    reveals.forEach(reveal => reveal.classList.add('active'));
+    return;
+  }
+
+  document.documentElement.classList.add('reveal-ready');
+
   const revealObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -14,13 +22,35 @@ function initScrollReveal() {
       }
     });
   }, {
-    threshold: 0.15,
-    rootMargin: '0px 0px -50px 0px'
+    // Large mobile sections can never occupy 15% of the viewport/section ratio.
+    // A small threshold reveals them as soon as their leading edge arrives.
+    threshold: 0.01,
+    rootMargin: '0px 0px 80px 0px'
   });
 
   reveals.forEach(reveal => {
+    if (reveal.getBoundingClientRect().top < window.innerHeight + 80) {
+      reveal.classList.add('active');
+    }
     revealObserver.observe(reveal);
   });
+
+  // Fail open if a browser extension or runtime error prevents observer delivery.
+  window.setTimeout(() => {
+    document.querySelectorAll('.reveal:not(.active)').forEach(reveal => {
+      if (reveal.getBoundingClientRect().top < window.innerHeight * 1.5) {
+        reveal.classList.add('active');
+      }
+    });
+  }, 1200);
+
+  window.addEventListener('scroll', () => {
+    document.querySelectorAll('.reveal:not(.active)').forEach(reveal => {
+      if (reveal.getBoundingClientRect().top < window.innerHeight + 100) {
+        reveal.classList.add('active');
+      }
+    });
+  }, { passive: true });
 }
 
 function initCounters() {
