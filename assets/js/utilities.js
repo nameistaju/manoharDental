@@ -432,6 +432,7 @@ function initUniversalVideoPlayers() {
   if (!players.length) return;
 
   players.forEach((player) => {
+    if (player.hasAttribute('data-youtube-video')) return;
     if (player.dataset.videoPlayerBound === 'true') return;
     player.dataset.videoPlayerBound = 'true';
 
@@ -471,6 +472,91 @@ function initUniversalVideoPlayers() {
     video.addEventListener('pause', syncState);
     video.addEventListener('ended', syncState);
     syncState();
+  });
+}
+
+function initVideoModal() {
+  const triggers = document.querySelectorAll('[data-youtube-video] [data-play-video], [data-play-video][data-youtube-video]');
+  if (!triggers.length) return;
+
+  const getVideoId = (value) => {
+    const source = String(value || '').trim();
+    if (/^[a-zA-Z0-9_-]{11}$/.test(source)) return source;
+
+    try {
+      const url = new URL(source);
+      if (url.hostname.includes('youtu.be')) return url.pathname.split('/').filter(Boolean)[0] || '';
+      if (url.pathname.startsWith('/embed/') || url.pathname.startsWith('/shorts/')) {
+        return url.pathname.split('/').filter(Boolean)[1] || '';
+      }
+      return url.searchParams.get('v') || '';
+    } catch (_) {
+      return '';
+    }
+  };
+
+  const modal = document.createElement('div');
+  modal.className = 'video-modal';
+  modal.hidden = true;
+  modal.setAttribute('role', 'dialog');
+  modal.setAttribute('aria-modal', 'true');
+  modal.setAttribute('aria-label', 'Video player');
+  modal.innerHTML = `
+    <div class="video-modal-backdrop" data-close-video-modal></div>
+    <div class="video-modal-dialog">
+      <button class="video-modal-close" type="button" aria-label="Close video" data-close-video-modal>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="18" y1="6" x2="6" y2="18"></line></svg>
+      </button>
+      <div class="video-modal-frame" data-video-modal-frame></div>
+    </div>`;
+  document.body.appendChild(modal);
+
+  const frame = modal.querySelector('[data-video-modal-frame]');
+  const closeButton = modal.querySelector('.video-modal-close');
+  let activeTrigger = null;
+
+  const closeModal = () => {
+    if (modal.hidden) return;
+    modal.hidden = true;
+    frame.replaceChildren();
+    document.body.classList.remove('video-modal-open');
+    activeTrigger?.focus();
+    activeTrigger = null;
+  };
+
+  const openModal = (trigger) => {
+    const source = trigger.getAttribute('data-youtube-video') || trigger.closest('[data-youtube-video]')?.getAttribute('data-youtube-video');
+    const videoId = getVideoId(source);
+    if (!videoId) return;
+
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+    iframe.title = trigger.getAttribute('aria-label') || 'YouTube video';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    iframe.allowFullscreen = true;
+    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+
+    frame.replaceChildren(iframe);
+    activeTrigger = trigger;
+    modal.hidden = false;
+    document.body.classList.add('video-modal-open');
+    closeButton.focus();
+  };
+
+  triggers.forEach((trigger) => {
+    trigger.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      openModal(trigger);
+    });
+  });
+
+  modal.querySelectorAll('[data-close-video-modal]').forEach((control) => {
+    control.addEventListener('click', closeModal);
+  });
+
+  window.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeModal();
   });
 }
 
@@ -639,6 +725,7 @@ window.Utilities = {
   initTreatmentExplorer,
   initVideoTestimonialSwitcher,
   initTreatmentCardFilters,
+  initVideoModal,
   initUniversalVideoPlayers,
   initAppointmentPopup,
   initDeferredTestimonialVideos

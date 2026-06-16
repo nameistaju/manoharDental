@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.Utilities.initTreatmentExplorer();
     window.Utilities.initVideoTestimonialSwitcher();
     window.Utilities.initTreatmentCardFilters();
+    window.Utilities.initVideoModal();
     window.Utilities.initUniversalVideoPlayers();
     window.Utilities.initAppointmentPopup();
     window.Utilities.initDeferredTestimonialVideos();

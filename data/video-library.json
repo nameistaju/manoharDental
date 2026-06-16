@@ -1,0 +1,10 @@
+{
+  "hero": {
+    "url": "https://www.youtube.com/watch?v=0wPaQ4IVpRc",
+    "id": "0wPaQ4IVpRc"
+  },
+  "treatments": {
+    "defaultUrl": "https://www.youtube.com/watch?v=0wPaQ4IVpRc",
+    "bySlug": {}
+  }
+}

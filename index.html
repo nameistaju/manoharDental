@@ -119,6 +119,24 @@
   
   
   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 </head>
 <body class="home page">
   <div id="page-container">
@@ -126,7 +144,7 @@
   <!-- ===========================
        HEADER / NAVBAR
        =========================== -->
-                                                                              <!-- Header Section -->
+                                                                                                <!-- Header Section -->
   <header class="header">
     <!-- Row 1: Top Info Bar -->
     <div class="header-top-bar">
@@ -324,6 +342,15 @@
 
 
 
+
+
+
+
+
+
+
+
+
   <!-- ===========================
        SECTION 1: HERO REDESIGN
        =========================== -->
@@ -385,20 +412,28 @@
         </div>
         <div class="hero-right-media">
           <div class="hero-reel-stage">
-            <div class="hero-video-wrapper-16-9" data-video-player>
-              <video class="hero-widescreen-video" src="assets/videos/video-placeholder.mp4" poster="assets/images/heroRight.png" preload="none" playsinline controls></video>
-              <div class="hero-reel-shade" aria-hidden="true"></div>
-              <div class="hero-reel-copy">
-                <strong>Meet Your Dental Specialists</strong>
-                <span>Expert care, thoughtfully planned for you.</span>
+            <div class="hero-video-showcase-header">
+              <div class="hero-video-feature-label">
+                <span class="hero-video-feature-icon"><iconify-icon icon="solar:play-circle-bold-duotone" aria-hidden="true"></iconify-icon></span>
+                <span><small>Featured introduction</small><strong>Meet your specialist dental team</strong></span>
               </div>
+              <span class="hero-video-watch-label">Watch now</span>
+            </div>
+            <div class="hero-video-wrapper-16-9" data-video-player data-youtube-video="https://www.youtube.com/watch?v=0wPaQ4IVpRc">
+              <img class="hero-widescreen-video" src="assets/images/heroRight.png" alt="Dr. Srinivas Manohar and Dr. Sirisha video thumbnail" width="1279" height="1920">
+              <div class="hero-reel-shade" aria-hidden="true"></div>
               <button class="video-play-button-overlay" type="button" aria-label="Play patient story" data-play-video>
               <span class="play-icon-arrow"></span>
               </button>
             </div>
+            <div class="hero-video-trust-footer" aria-label="Clinic trust highlights">
+              <span><iconify-icon icon="solar:star-bold" aria-hidden="true"></iconify-icon><strong>4.9</strong> Google rating</span>
+              <span><iconify-icon icon="solar:users-group-rounded-bold-duotone" aria-hidden="true"></iconify-icon><strong>5000+</strong> smiles</span>
+              <span><iconify-icon icon="solar:shield-check-bold-duotone" aria-hidden="true"></iconify-icon><strong>15+</strong> years</span>
+            </div>
             <div class="hero-reel-badge">
               <iconify-icon icon="solar:verified-check-bold-duotone" aria-hidden="true"></iconify-icon>
-              <span><strong>MDS Specialists</strong> trusted expertise</span>
+              <span><strong>MDS</strong><b>Specialists</b><small>Trusted expertise</small></span>
             </div>
 
             <!-- Large Screen Optimization: Floating Trust Elements -->
@@ -509,8 +544,8 @@
       </div>
       <div class="signature-grid treatment-card-grid">
         <article class="signature-card-new" data-treatment-category="restorative">
-          <div class="signature-video-new">
-            <video src="assets/videos/dental_implant_testimonial.mp4" poster="assets/images/dentalImplants.png" preload="metadata" muted playsinline></video>
+          <div class="signature-video-new" data-youtube-video="https://www.youtube.com/watch?v=0wPaQ4IVpRc">
+            <img class="signature-video-poster" src="assets/images/dentalImplants.png" alt="" loading="lazy" decoding="async">
             <button class="video-play-button" type="button" data-play-video aria-label="Play Dental Implants video"><span></span></button>
             <small class="card-treatment-tag">Teeth Replacement</small>
           </div>
@@ -522,8 +557,8 @@
         </article>
         
         <article class="signature-card-new" data-treatment-category="restorative">
-          <div class="signature-video-new">
-            <video src="assets/videos/video-placeholder.mp4" poster="assets/images/Denture.png" preload="metadata" muted playsinline></video>
+          <div class="signature-video-new" data-youtube-video="https://www.youtube.com/watch?v=0wPaQ4IVpRc">
+            <img class="signature-video-poster" src="assets/images/Denture.png" alt="" loading="lazy" decoding="async">
             <button class="video-play-button" type="button" data-play-video aria-label="Play Denture Treatment video"><span></span></button>
             <small class="card-treatment-tag">Replacement Teeth</small>
           </div>
@@ -535,8 +570,8 @@
         </article>
         
         <article class="signature-card-new" data-treatment-category="cosmetic">
-          <div class="signature-video-new">
-            <video src="assets/videos/clinic_tour_testimonial.mp4" poster="assets/images/SmileMakeOver.png" preload="metadata" muted playsinline></video>
+          <div class="signature-video-new" data-youtube-video="https://www.youtube.com/watch?v=0wPaQ4IVpRc">
+            <img class="signature-video-poster" src="assets/images/SmileMakeOver.png" alt="" loading="lazy" decoding="async">
             <button class="video-play-button" type="button" data-play-video aria-label="Play Smile Makeover Treatment video"><span></span></button>
             <small class="card-treatment-tag">Cosmetic Dentistry</small>
           </div>
@@ -548,8 +583,8 @@
         </article>
         
         <article class="signature-card-new" data-treatment-category="cosmetic">
-          <div class="signature-video-new">
-            <video src="assets/videos/general_dental_review.mp4" poster="assets/images/Teeth Whitening.png" preload="metadata" muted playsinline></video>
+          <div class="signature-video-new" data-youtube-video="https://www.youtube.com/watch?v=0wPaQ4IVpRc">
+            <img class="signature-video-poster" src="assets/images/Teeth Whitening.png" alt="" loading="lazy" decoding="async">
             <button class="video-play-button" type="button" data-play-video aria-label="Play Teeth Whitening Treatment video"><span></span></button>
             <small class="card-treatment-tag">Brightening</small>
           </div>
@@ -561,8 +596,8 @@
         </article>
         
         <article class="signature-card-new" data-treatment-category="restorative">
-          <div class="signature-video-new">
-            <video src="assets/videos/video-placeholder.mp4" poster="assets/images/Crowns & Bridges.png" preload="metadata" muted playsinline></video>
+          <div class="signature-video-new" data-youtube-video="https://www.youtube.com/watch?v=0wPaQ4IVpRc">
+            <img class="signature-video-poster" src="assets/images/Crowns & Bridges.png" alt="" loading="lazy" decoding="async">
             <button class="video-play-button" type="button" data-play-video aria-label="Play Crowns and Bridges video"><span></span></button>
             <small class="card-treatment-tag">Fixed Restoration</small>
           </div>
@@ -574,8 +609,8 @@
         </article>
         
         <article class="signature-card-new" data-treatment-category="restorative">
-          <div class="signature-video-new">
-            <video src="assets/videos/root_canal_testimonial.mp4" poster="assets/images/Root Canal Treatment.png" preload="metadata" muted playsinline></video>
+          <div class="signature-video-new" data-youtube-video="https://www.youtube.com/watch?v=0wPaQ4IVpRc">
+            <img class="signature-video-poster" src="assets/images/Root Canal Treatment.png" alt="" loading="lazy" decoding="async">
             <button class="video-play-button" type="button" data-play-video aria-label="Play Root Canal Treatment video"><span></span></button>
             <small class="card-treatment-tag">Endodontics</small>
           </div>
@@ -587,8 +622,8 @@
         </article>
         
         <article class="signature-card-new" data-treatment-category="restorative preventive">
-          <div class="signature-video-new">
-            <video src="assets/videos/video-placeholder.mp4" poster="assets/images/Dental Fillings.png" preload="metadata" muted playsinline></video>
+          <div class="signature-video-new" data-youtube-video="https://www.youtube.com/watch?v=0wPaQ4IVpRc">
+            <img class="signature-video-poster" src="assets/images/Dental Fillings.png" alt="" loading="lazy" decoding="async">
             <button class="video-play-button" type="button" data-play-video aria-label="Play Dental Fillings video"><span></span></button>
             <small class="card-treatment-tag">Cavity Care</small>
           </div>
@@ -600,8 +635,8 @@
         </article>
         
         <article class="signature-card-new" data-treatment-category="preventive">
-          <div class="signature-video-new">
-            <video src="assets/videos/general_dental_review.mp4" poster="assets/images/preventive dentistry.png" preload="metadata" muted playsinline></video>
+          <div class="signature-video-new" data-youtube-video="https://www.youtube.com/watch?v=0wPaQ4IVpRc">
+            <img class="signature-video-poster" src="assets/images/preventive dentistry.png" alt="" loading="lazy" decoding="async">
             <button class="video-play-button" type="button" data-play-video aria-label="Play Preventive Dentistry video"><span></span></button>
             <small class="card-treatment-tag">Checkups</small>
           </div>
@@ -613,8 +648,8 @@
         </article>
         
         <article class="signature-card-new" data-treatment-category="orthodontic">
-          <div class="signature-video-new">
-            <video src="assets/videos/general_dental_review.mp4" poster="assets/images/Clear Aligners.png" preload="metadata" muted playsinline></video>
+          <div class="signature-video-new" data-youtube-video="https://www.youtube.com/watch?v=0wPaQ4IVpRc">
+            <img class="signature-video-poster" src="assets/images/Clear Aligners.png" alt="" loading="lazy" decoding="async">
             <button class="video-play-button" type="button" data-play-video aria-label="Play Clear Aligners Treatment video"><span></span></button>
             <small class="card-treatment-tag">Invisible Alignment</small>
           </div>
@@ -626,8 +661,8 @@
         </article>
         
         <article class="signature-card-new" data-treatment-category="orthodontic">
-          <div class="signature-video-new">
-            <video src="assets/videos/clinic_tour_testimonial.mp4" poster="assets/images/Braces Treatment.png" preload="metadata" muted playsinline></video>
+          <div class="signature-video-new" data-youtube-video="https://www.youtube.com/watch?v=0wPaQ4IVpRc">
+            <img class="signature-video-poster" src="assets/images/Braces Treatment.png" alt="" loading="lazy" decoding="async">
             <button class="video-play-button" type="button" data-play-video aria-label="Play Braces Treatment video"><span></span></button>
             <small class="card-treatment-tag">Alignment</small>
           </div>
@@ -639,8 +674,8 @@
         </article>
         
         <article class="signature-card-new" data-treatment-category="surgical">
-          <div class="signature-video-new">
-            <video src="assets/videos/video-placeholder.mp4" poster="assets/images/Wisdom Tooth Removal.png" preload="metadata" muted playsinline></video>
+          <div class="signature-video-new" data-youtube-video="https://www.youtube.com/watch?v=0wPaQ4IVpRc">
+            <img class="signature-video-poster" src="assets/images/Wisdom Tooth Removal.png" alt="" loading="lazy" decoding="async">
             <button class="video-play-button" type="button" data-play-video aria-label="Play Wisdom Tooth Removal video"><span></span></button>
             <small class="card-treatment-tag">Oral Surgery</small>
           </div>
@@ -652,8 +687,8 @@
         </article>
         
         <article class="signature-card-new" data-treatment-category="preventive restorative">
-          <div class="signature-video-new">
-            <video src="assets/videos/video-placeholder.mp4" poster="assets/images/GumTreatement.png" preload="metadata" muted playsinline></video>
+          <div class="signature-video-new" data-youtube-video="https://www.youtube.com/watch?v=0wPaQ4IVpRc">
+            <img class="signature-video-poster" src="assets/images/GumTreatement.png" alt="" loading="lazy" decoding="async">
             <button class="video-play-button" type="button" data-play-video aria-label="Play Gum Treatment video"><span></span></button>
             <small class="card-treatment-tag">Gum Health</small>
           </div>
@@ -1463,7 +1498,7 @@
   <!-- ===========================
        FOOTER
        =========================== -->
-                                                                              <!-- Footer Section -->
+                                                                                                <!-- Footer Section -->
   <footer class="footer">
     <div class="container">
       <div class="footer-top">
@@ -1574,6 +1609,78 @@
       </span>
     </a>
   </div>
+
+
+
+  <!-- Script for Iconify (Only used for floating action icons) -->
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+  
+  
+
+
+
+  <!-- Script for Iconify (Only used for floating action icons) -->
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+  
+  
+
+
+
+  <!-- Script for Iconify (Only used for floating action icons) -->
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+  
+  
+
+
+
+  <!-- Script for Iconify (Only used for floating action icons) -->
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+  
+  
+
+
+
+  <!-- Script for Iconify (Only used for floating action icons) -->
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+  
+  
+
+
+
+  <!-- Script for Iconify (Only used for floating action icons) -->
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+  
+  
+
+
+
+  <!-- Script for Iconify (Only used for floating action icons) -->
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+  
+  
+
+
+
+  <!-- Script for Iconify (Only used for floating action icons) -->
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+  
+  
+
+
+
+  <!-- Script for Iconify (Only used for floating action icons) -->
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+  
+  
 
 
 

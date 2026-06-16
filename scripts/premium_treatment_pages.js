@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { renderTreatmentPageV2 } = require('./treatment_renderer_v2');
+const videoLibrary = require('../data/video-library.json');
 
 const clinic = {
   phone: '+91 9703294358',
@@ -18,6 +19,22 @@ const commonWhy = [
   ['High Success Rate', 'Evidence-led protocols, quality materials, and careful follow-up improve long-term outcomes.'],
   ['Personalized Care', 'Treatment choices are matched to your bite, smile goals, medical history, and budget.']
 ];
+
+const treatmentVideoThumbnails = {
+  'dental-implants': '/assets/images/Dental Implants_thumbnail.png',
+  dentures: '/assets/images/Denture Treatment_thumbnail.png',
+  'teeth-whitening': '/assets/images/Teeth Whitening_thumbnail.png',
+  'smile-makeover': '/assets/images/SmileMakeover_thumbnail.png',
+  'crowns-bridges': '/assets/images/Crowns & Bridges_thumbnail.png',
+  'dental-fillings': '/assets/images/Dental Fillings_thumbnail.png',
+  'preventive-dentistry': '/assets/images/Preventive Dentistry_thumbnail.png',
+  'root-canal-treatment': '/assets/images/Root Canal Treatment_thumbnail.png',
+  'braces-treatment': '/assets/images/Braces Treatment_thumbnail.png',
+  'clear-aligners': '/assets/images/Clear Aligners_thumbnail.png',
+  'wisdom-tooth-removal': '/assets/images/WisdomToothRemoval_thumbnail.png',
+  'gum-treatment': '/assets/images/GumTreatment_thumbnail.png',
+  'pediatric-dentistry': '/assets/images/Pediatric Dentistry_thubnail.png'
+};
 
 const treatmentPages = [
   {
@@ -2270,7 +2287,11 @@ const treatmentPages = [
       "Parent Oral Care Guidance"
     ]
   }
-];
+].map((page) => ({
+  ...page,
+  videoThumbnail: treatmentVideoThumbnails[page.slug] || page.image,
+  videoUrl: page.videoUrl || videoLibrary.treatments.bySlug[page.slug] || videoLibrary.treatments.defaultUrl
+}));
 
 function esc(value) {
   return String(value).replace(/[&<>"']/g, char => ({

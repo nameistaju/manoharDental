@@ -34,8 +34,11 @@ function imageOrPlaceholder(rootDir, image, alt, className = '') {
 }
 
 function videoCard(rootDir, page) {
-  const poster = assetExists(rootDir, page.image) ? ` poster="${page.image}"` : '';
-  return `<div class="tp-video-player" data-video-player><video class="tp-hero-video" src="/assets/videos/video-placeholder.mp4"${poster} preload="metadata" playsinline controls></video><div class="tp-video-shade"></div><button class="tp-play-button" type="button" data-play-video aria-label="Play ${esc(page.title)} video"><iconify-icon icon="solar:play-bold" aria-hidden="true"></iconify-icon></button><div class="tp-video-caption"><span>Doctor Explains</span><strong>${esc(page.title)}</strong><small>Video overview</small></div></div>`;
+  const thumbnail = page.videoThumbnail || page.image;
+  const posterImage = assetExists(rootDir, thumbnail)
+    ? `<img class="tp-hero-video" src="${thumbnail}" alt="${esc(page.title)} video thumbnail" width="1672" height="941" loading="eager" decoding="async">`
+    : imageOrPlaceholder(rootDir, thumbnail, `${page.title} video thumbnail`, 'tp-hero-video');
+  return `<div class="tp-video-player" data-video-player data-youtube-video="${esc(page.videoUrl)}">${posterImage}<div class="tp-video-shade"></div><button class="tp-play-button" type="button" data-play-video aria-label="Play ${esc(page.title)} video"><iconify-icon icon="solar:play-bold" aria-hidden="true"></iconify-icon></button><div class="tp-video-caption"><span>Doctor Explains</span><strong>${esc(page.title)}</strong><small>Video overview</small></div></div>`;
 }
 
 function resultMedia(rootDir, asset, label, depthPrefix) {

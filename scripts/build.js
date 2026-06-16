@@ -622,6 +622,7 @@ function buildSupportPages() {
     },
     {
       dir: 'results',
+      bodyClass: 'results-page',
       title: "Smile Transformations Before & After | Manohar Dental Clinic Vizag",
       desc: "View proven smile makeover results, orthodontic alignments, and implant transformations by Dr. Srinivas Manohar in Visakhapatnam.",
       h1: "Treatment Results",
@@ -932,42 +933,273 @@ function buildSupportPages() {
     },
     {
       dir: 'contact',
+      bodyClass: 'contact-page',
       title: "Contact Us & Book Appointment | Manohar Dental Clinic Visakhapatnam",
       desc: "Contact Manohar Dental Clinic Visakhapatnam. Check address, phone numbers, working hours, and book a free call-back slot.",
       h1: "Contact Our Clinic",
       breadcrumb: "Contact Us",
       body: `
-        <section class="section-padding reveal">
+        <section class="contact-section reveal">
           <div class="container">
-            <div class="service-split">
-              <!-- Contact Details -->
-              <div>
-                <h2 style="font-size: 2rem; margin-bottom: 16px;">We'd Love to Hear From You</h2>
-                <p style="color: var(--muted); margin-bottom: 32px; font-size: 1.05rem;">Get in touch with us to schedule your appointment, resolve billing queries, or inquire about emergency dental care.</p>
-                
-                <div class="grid grid-2" style="gap: 32px; margin-bottom: 40px;">
-                  <div class="card" style="padding: 24px;">
-                    <h4 style="margin-bottom: 8px; font-size: 1.15rem; color: var(--secondary);">Call Channels</h4>
-                    <p style="font-weight: 600; font-size: 1.15rem; color: var(--primary);">+91 9703294358</p>
-                    <p style="color: var(--muted); font-size: 0.85rem; margin-top: 4px;">Mon-Sat: 9:00 AM - 8:30 PM<br>Sun: 9:30 AM - 1:30 PM</p>
+            <div class="contact-grid">
+              <!-- LEFT COLUMN (Trust & Contact Information) -->
+              <div class="contact-info-column">
+                <span class="contact-badge">CONTACT MANOHAR DENTAL</span>
+                <h2 class="contact-headline">Ready To Improve Your Smile?</h2>
+                <p class="contact-subtext">Speak directly with our specialists and schedule a consultation tailored to your dental needs.</p>
+
+                <!-- Contact Details Grid -->
+                <div class="contact-details-grid">
+                  <!-- Card 1: Call Us -->
+                  <div class="contact-detail-card">
+                    <div class="contact-card-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 .7a2 2 0 0 1 2.2 16.92z"></path>
+                      </svg>
+                    </div>
+                    <div class="contact-card-info">
+                      <h4>Call Us</h4>
+                      <p><a href="tel:+919703294358">+91 9703294358</a></p>
+                      <p style="font-size: 0.8rem; margin-top: 4px; color: var(--muted);">Direct patient hotline</p>
+                    </div>
                   </div>
-                  
-                  <div class="card" style="padding: 24px;">
-                    <h4 style="margin-bottom: 8px; font-size: 1.15rem; color: var(--accent);">Clinic Location</h4>
-                    <p style="font-size: 0.95rem; color: var(--primary); line-height: 1.5;">50-94-27/A, Next to SBI, Near Gurudwara Road, Santhipuram, Dwaraka Nagar, Visakhapatnam - 530016</p>
+
+                  <!-- Card 2: WhatsApp -->
+                  <div class="contact-detail-card">
+                    <div class="contact-card-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                      </svg>
+                    </div>
+                    <div class="contact-card-info">
+                      <h4>WhatsApp</h4>
+                      <p><a href="https://api.whatsapp.com/send?phone=919703294358&text=Hello%20Manohar%20Dental%20Clinic,%20I%20have%20a%20question%20regarding%20my%20dental%20health." target="_blank">+91 9703294358</a></p>
+                      <p style="font-size: 0.8rem; margin-top: 4px; color: var(--muted);">Quick answers & queries</p>
+                    </div>
+                  </div>
+
+                  <!-- Card 3: Clinic Address -->
+                  <div class="contact-detail-card">
+                    <div class="contact-card-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                      </svg>
+                    </div>
+                    <div class="contact-card-info">
+                      <h4>Clinic Address</h4>
+                      <p>Santhipuram, Dwaraka Nagar, Visakhapatnam</p>
+                      <p style="font-size: 0.8rem; margin-top: 4px; color: var(--muted);">50-94-27/A, Next to SBI Bank</p>
+                    </div>
+                  </div>
+
+                  <!-- Card 4: Working Hours -->
+                  <div class="contact-detail-card">
+                    <div class="contact-card-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                      </svg>
+                    </div>
+                    <div class="contact-card-info">
+                      <h4>Working Hours</h4>
+                      <p>Mon - Sat: 9:00 AM - 8:30 PM</p>
+                      <p style="font-size: 0.8rem; margin-top: 4px; color: var(--muted);">Sun: 9:30 AM - 1:30 PM</p>
+                    </div>
                   </div>
                 </div>
 
-                <div class="card" style="background-color: var(--light-bg); padding: 32px;">
-                  <h4 style="margin-bottom: 12px; font-size: 1.2rem;">Quick Consultation</h4>
-                  <p style="color: var(--muted); margin-bottom: 20px; font-size: 0.95rem;">You can consult directly with our doctors on WhatsApp. Receive instant consultation guidance.</p>
-                  <a href="https://api.whatsapp.com/send?phone=919703294358&text=Hello%20Manohar%20Dental%20Clinic,%20I%20have%20a%20question%20regarding%20my%20dental%20health." target="_blank" class="btn btn-whatsapp">Message on WhatsApp</a>
+                <!-- Trust Statistics Chips -->
+                <div class="trust-stats-grid">
+                  <div class="stat-chip">
+                    <span class="stat-number">5000+</span>
+                    <span class="stat-label">Patients</span>
+                  </div>
+                  <div class="stat-chip">
+                    <span class="stat-number">15+ Yrs</span>
+                    <span class="stat-label">Experience</span>
+                  </div>
+                  <div class="stat-chip">
+                    <span class="stat-number">MDS</span>
+                    <span class="stat-label">Specialists</span>
+                  </div>
+                  <div class="stat-chip">
+                    <span class="stat-number">Advanced</span>
+                    <span class="stat-label">Tech</span>
+                  </div>
+                </div>
+
+                <!-- Google Rating Card -->
+                <div class="google-rating-card">
+                  <div class="rating-badge">★</div>
+                  <div class="rating-content">
+                    <div class="stars">★★★★★</div>
+                    <p class="rating-text">4.9/5 Google Rating</p>
+                    <p class="rating-subtext">Over 500+ verified patient reviews and testimonials for exceptional clinical care.</p>
+                  </div>
+                </div>
+
+                <!-- WhatsApp CTA Card -->
+                <div class="whatsapp-cta-card">
+                  <div class="whatsapp-card-text">
+                    <h4>Chat with Our Team</h4>
+                    <p>Get instant guidance and answers to your dental concerns directly from our desk.</p>
+                  </div>
+                  <a href="https://api.whatsapp.com/send?phone=919703294358&text=Hello%20Manohar%20Dental%20Clinic,%20I%20have%20a%20question%20regarding%20my%20dental%20health." target="_blank" class="btn-whatsapp-cta">
+                    <iconify-icon icon="mdi:whatsapp" style="font-size: 20px; display: inline-block; vertical-align: middle; margin-right: 4px;"></iconify-icon>
+                    <span>Chat With Us Now</span>
+                  </a>
                 </div>
               </div>
 
-              <!-- Form Widget -->
-              <div class="sidebar-card" style="position: static; padding:0;">
-                <!-- APPOINTMENT_FORM_PLACEHOLDER -->
+              <!-- RIGHT COLUMN (Sticky Consultation booking Panel) -->
+              <div class="consult-sidebar">
+                <div class="consult-card">
+                  <!-- Overlay stacked doctor avatars -->
+                  <div class="doctor-avatars-row">
+                    <div class="avatar-circle" title="Dr. Srinivas Manohar (MDS - Oral & Maxillofacial Surgeon)">
+                      <img src="/assets/images/doctors/srinivas-manohar.png" alt="Dr. Srinivas Manohar">
+                    </div>
+                    <div class="avatar-circle" title="Dr. Sirisha (MDS - Prosthodontist)">
+                      <img src="/assets/images/doctors/sirisha.png" alt="Dr. Sirisha">
+                    </div>
+                    <div class="avatar-circle" title="Dr. Usha Sri (MDS - Orthodontist)">
+                      <img src="/assets/images/doctors/usha-sri.png" alt="Dr. Usha Sri">
+                    </div>
+                  </div>
+
+                  <div class="consult-card-header">
+                    <h3>Book Free Consultation</h3>
+                    <p>Get a callback from our specialists within minutes.</p>
+                  </div>
+
+                  <form class="consult-form">
+                    <div class="form-group">
+                      <label class="form-label" for="form-name">Full Name</label>
+                      <input type="text" id="form-name" name="name" class="form-control" placeholder="Enter your full name" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-label" for="form-phone">Mobile Number</label>
+                      <input type="tel" id="form-phone" class="form-control" placeholder="Enter 10-digit mobile number" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-label" for="form-treatment">Select Treatment</label>
+                      <select id="form-treatment" class="form-control">
+                        <option value="Dental Implants">Dental Implants</option>
+                        <option value="Root Canal Treatment">Root Canal Treatment</option>
+                        <option value="Smile Makeover">Smile Makeover</option>
+                        <option value="Clear Aligners">Clear Aligners</option>
+                        <option value="Wisdom Tooth Removal">Wisdom Tooth Removal</option>
+                        <option value="Orthodontics Braces">Orthodontics Braces</option>
+                        <option value="Teeth Whitening">Teeth Whitening</option>
+                        <option value="Dentures">Dentures</option>
+                        <option value="Gum Care">Gum Care</option>
+                      </select>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-label" for="form-date">Preferred Date</label>
+                      <input type="date" id="form-date" class="form-control" required>
+                    </div>
+
+                    <button type="submit" class="form-submit-btn">
+                      <span>Book Free Consultation</span>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                      </svg>
+                    </button>
+                  </form>
+
+                  <div class="form-success-message" style="display: none; flex-direction: column; align-items: center; justify-content: center; padding: 48px 32px; text-align: center; animation: scaleIn 0.4s ease-out;">
+                    <div class="success-icon" style="width: 72px; height: 72px; background-color: rgba(16, 185, 129, 0.1); color: var(--success); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin-bottom: 24px;">✓</div>
+                    <h3>Request Submitted!</h3>
+                    <p style="color: var(--muted); margin-top: 10px;">Redirecting you to WhatsApp to confirm your appointment details...</p>
+                  </div>
+
+                  <!-- Trust Badges -->
+                  <div class="booking-badges-row">
+                    <div class="booking-badge-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                      <span>Quick Response Guaranteed</span>
+                    </div>
+                    <div class="booking-badge-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                      <span>MDS Specialists Support</span>
+                    </div>
+                    <div class="booking-badge-item">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                      <span>Free Consultation & Evaluation</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- BOTTOM MAPS & DIRECTIONS SECTION -->
+        <section class="maps-section reveal">
+          <div class="container">
+            <div class="maps-grid">
+              <!-- Left: Google Map Iframe Wrapper -->
+              <div class="map-frame-wrapper">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1900.0885979355346!2d83.30560533852162!3d17.73628809580294!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a3943630ce0b317%3A0x103c62a5ce902834!2sManohar%20Dental%20Care%20%7C%20Best%20Dentist%20In%20Visakhapatnam!5e0!3m2!1sen!2sin!4v1686054558333!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
+
+              <!-- Right: Clinic Directions Details Card -->
+              <div class="map-details-card">
+                <div class="map-details-header">
+                  <h3>Find Our Clinic</h3>
+                  <p class="map-details-address">
+                    50-94-27/A, Santhipuram, Near Gurudwara Road, Dwaraka Nagar, Visakhapatnam, Andhra Pradesh 530016
+                  </p>
+                  <a href="https://maps.google.com/?q=Manohar+Dental+Care+Visakhapatnam" target="_blank" class="btn-directions">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align: middle;">
+                      <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+                    </svg>
+                    <span>Get Directions</span>
+                  </a>
+                </div>
+
+                <div class="map-sub-details">
+                  <!-- Parking Detail -->
+                  <div class="map-detail-item">
+                    <div class="map-detail-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                      </svg>
+                    </div>
+                    <div class="map-detail-text">
+                      <h5>Parking Availability</h5>
+                      <p>Free Parking Available (Front & Side parking spaces for patients)</p>
+                    </div>
+                  </div>
+
+                  <!-- Landmark Detail -->
+                  <div class="map-detail-item">
+                    <div class="map-detail-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                      </svg>
+                    </div>
+                    <div class="map-detail-text">
+                      <h5>Nearby Landmarks</h5>
+                      <p>Located next to SBI Bank, near Gurudwara Junction on Santhipuram Main Road</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -1642,7 +1874,7 @@ function buildSupportPages() {
   <link rel="stylesheet" href="/assets/css/pages.css">
   ${seoSchemaHtml}
 </head>
-<body>
+<body${page.bodyClass ? ` class="${page.bodyClass}"` : ''}>
 
   <!-- Scroll Progress Indicator -->
   <div class="scroll-progress"></div>
