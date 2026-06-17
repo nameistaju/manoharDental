@@ -59,12 +59,12 @@ function rewritePaths(html, depth = 0) {
   rewritten = rewritten.replace(/<script[^>]+utilities\.js[^>]*><\/script>/gi, '');
 
   const scriptsBlock = `<!-- Scripts -->
-  <script src="${prefix}assets/js/main.js"></script>
-  <script src="${prefix}assets/js/navigation.js"></script>
-  <script src="${prefix}assets/js/animations.js"></script>
-  <script src="${prefix}assets/js/carousel.js"></script>
-  <script src="${prefix}assets/js/forms.js"></script>
-  <script src="${prefix}assets/js/utilities.js"></script>`;
+  <script src="${prefix}assets/js/main.js" defer></script>
+  <script src="${prefix}assets/js/navigation.js" defer></script>
+  <script src="${prefix}assets/js/animations.js" defer></script>
+  <script src="${prefix}assets/js/carousel.js" defer></script>
+  <script src="${prefix}assets/js/forms.js" defer></script>
+  <script src="${prefix}assets/js/utilities.js" defer></script>`;
 
   if (rewritten.includes('<!-- Scripts -->')) {
     rewritten = rewritten.replace(/<!-- Scripts -->[\s\S]*?(?=<\/body>)/i, scriptsBlock + '\n  ');
