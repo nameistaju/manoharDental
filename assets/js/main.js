@@ -1,5 +1,5 @@
 /* ==========================================================================
-   MANOHAR DENTAL CLINIC - MAIN ENTRY SCRIPT
+   VASANTHA DENTAL CLINIC - MAIN ENTRY SCRIPT
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -13,40 +13,36 @@ document.addEventListener('DOMContentLoaded', () => {
   // Animations Init
   if (window.Animations) {
     window.Animations.initScrollReveal();
-    window.Animations.initCounters();
+    window.Animations.initCountUp();
   }
 
-  // Carousel & Accordion Init
+  // Carousel, Sliders & Accordion Init
   if (window.Carousel) {
     window.Carousel.initBeforeAfterSlider();
     window.Carousel.initTestimonialCarousel();
-    window.Carousel.initHeroDoctorSlider();
-    window.Carousel.initTestimonialPremiumSlider();
+    window.Carousel.initHeroSlider();
     window.Carousel.initAccordion();
   }
 
-  // Forms Init
-  if (window.Forms) {
-    window.Forms.initConsultationForm();
+  // Booking Modal Init
+  if (window.BookingModal) {
+    window.BookingModal.init();
   }
 
   // Utilities Init
   if (window.Utilities) {
     window.Utilities.initScrollProgress();
-    window.Utilities.initActiveNavLink();
-    window.Utilities.initGalleryFilter();
-    window.Utilities.initDoctorBioModal();
-    window.Utilities.initHeroVideoPlayer();
-    window.Utilities.initVideoReels();
-    window.Utilities.initTreatmentVideoPreviews();
-    window.Utilities.initTreatmentExplorer();
-    window.Utilities.initVideoTestimonialSwitcher();
-    window.Utilities.initTreatmentCardFilters();
-    window.Utilities.initVideoModal();
-    window.Utilities.initUniversalVideoPlayers();
-    window.Utilities.initAppointmentPopup();
-    window.Utilities.initDeferredTestimonialVideos();
+    window.Utilities.initLightbox();
   }
-  
-  console.log('Manohar Dental Clinic app initialized successfully.');
+
+  console.log('Vasantha Dental Clinic app initialized successfully.');
+});
+
+// Hide Branded Loading Screen on Page Load
+window.addEventListener('load', () => {
+  const loader = document.getElementById('page-loader');
+  if (loader) {
+    loader.classList.add('hidden');
+    setTimeout(() => loader.remove(), 500);
+  }
 });

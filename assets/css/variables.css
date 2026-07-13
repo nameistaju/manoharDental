@@ -1,47 +1,49 @@
-/* variables.css - Brand Tokens for Manohar Dental Clinic */
+/* variables.css - Brand Tokens for Vasantha Dental Clinic & Implant Center */
 :root {
   /* Color Palette */
-  --primary: #1BA8E8;
-  --primary-rgb: 27, 168, 232;
-  --secondary: #0B1F4D;
-  --secondary-rgb: 11, 31, 77;
-  --accent: #14C6C6;
-  --accent-rgb: 20, 198, 198;
-  --background: #F7FAFC;
-  --light-bg: #FFFFFF;
+  --primary: #0B5CAD;
+  --primary-rgb: 11, 92, 173;
+  --secondary: #1CB9C8;
+  --secondary-rgb: 28, 185, 200;
+  --dark-blue: #123B74;
+  --accent: #EAF6FF;
+  --accent-rgb: 234, 246, 255;
+  --white: #FFFFFF;
+  --light-bg: #F8FBFF;
+  --text: #1F2937;
+  --text-rgb: 31, 41, 55;
+  --muted: #6B7280;
+  --border-light: #E5E7EB;
   --success: #10B981;
-  --text: #111827;
-  --text-rgb: 17, 24, 39;
-  --muted: #64748B;
-  --border-light: #E2E8F0;
   
   /* Fonts */
-  --font-headings: 'Poppins', sans-serif;
+  --font-headings: 'Manrope', sans-serif;
   --font-body: 'Inter', sans-serif;
   
   /* Layout Spacing */
-  --container-width: 1400px;
-  --header-height: 120px;
+  --container-width: 1280px;
+  --header-height: 90px;
   
   /* Shadows & Glassmorphism */
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.03);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.04);
-  --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 16px -8px rgba(0, 0, 0, 0.04);
-  --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.12);
-  --shadow-glow: 0 0 20px rgba(27, 168, 232, 0.15);
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.01);
+  --shadow-md: 0 4px 20px -2px rgba(11, 92, 173, 0.05), 0 2px 10px -3px rgba(11, 92, 173, 0.03);
+  --shadow-lg: 0 20px 40px -10px rgba(11, 92, 173, 0.08), 0 10px 20px -10px rgba(11, 92, 173, 0.04);
+  --shadow-xl: 0 30px 60px -15px rgba(11, 92, 173, 0.12);
+  --shadow-glow: 0 0 25px rgba(25, 183, 198, 0.2);
   
-  --glass-bg: rgba(255, 255, 255, 0.85);
+  /* Glassmorphism options (Apple inspired) */
+  --glass-bg: rgba(255, 255, 255, 0.75);
   --glass-border: rgba(255, 255, 255, 0.4);
-  --glass-shadow: 0 8px 32px 0 rgba(11, 31, 77, 0.08);
-  --glass-backdrop: blur(12px);
+  --glass-shadow: 0 8px 32px 0 rgba(11, 92, 173, 0.04);
+  --glass-backdrop: blur(20px);
   
   /* Transitions */
-  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   
   --radius-sm: 8px;
-  --radius-md: 20px;
-  --radius-lg: 20px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
   --radius-full: 9999px;
 }

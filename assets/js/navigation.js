@@ -1,5 +1,5 @@
 /* ==========================================================================
-   MANOHAR DENTAL CLINIC - NAVIGATION SCRIPTS
+   VASANTHA DENTAL CLINIC - NAVIGATION SCRIPTS
    ========================================================================== */
 
 function initStickyHeader() {
@@ -14,66 +14,18 @@ function initStickyHeader() {
     }
   };
 
-  window.addEventListener('scroll', checkScroll);
-  checkScroll(); // Run immediately in case of page refresh
+  window.addEventListener('scroll', checkScroll, { passive: true });
+  checkScroll();
 }
 
 function initMobileMenu() {
-  const mobileBtn = document.querySelector('.mobile-menu-btn');
-  const navLinks = document.querySelector('.nav-links');
-  const accordionTriggers = document.querySelectorAll('.mega-menu-trigger > .nav-link, .dropdown-trigger > .nav-link');
-  
-  if (!mobileBtn || !navLinks) return;
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const closeBtn = document.getElementById('mobile-menu-close');
 
-  const syncMobileButtonState = () => {
-    const isOpen = mobileBtn.getAttribute('aria-expanded') === 'true';
-    mobileBtn.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
-  };
+  if (!hamburger || !mobileMenu) return;
 
-  const buttonStateObserver = new MutationObserver(syncMobileButtonState);
-  buttonStateObserver.observe(mobileBtn, {
-    attributes: true,
-    attributeFilter: ['aria-expanded']
-  });
-  syncMobileButtonState();
-
-  let mobileHeader = navLinks.querySelector('.mobile-menu-header');
-  if (!mobileHeader) {
-    const desktopLogo = document.querySelector('.header-logo img, .logo img');
-    mobileHeader = document.createElement('div');
-    mobileHeader.className = 'mobile-menu-header';
-    mobileHeader.innerHTML = `
-      <a class="mobile-menu-logo" href="${desktopLogo?.closest('a')?.getAttribute('href') || '#'}" aria-label="Manohar Dental Clinic home">
-        ${desktopLogo ? `<img src="${desktopLogo.getAttribute('src')}" alt="Manohar Dental Clinic">` : ''}
-      </a>
-      <button class="mobile-menu-close" type="button" aria-label="Close navigation menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round">
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-        </svg>
-      </button>`;
-    navLinks.prepend(mobileHeader);
-  }
-
-  const closeButton = mobileHeader.querySelector('.mobile-menu-close');
-
-  let mobileFooter = navLinks.querySelector('.mobile-menu-footer');
-  if (!mobileFooter) {
-    mobileFooter = document.createElement('div');
-    mobileFooter.className = 'mobile-menu-footer';
-    mobileFooter.innerHTML = `
-      <button type="button" class="mobile-menu-book" data-open-appointment-popup>
-        <span>Book Appointment</span>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><line x1="16" y1="3" x2="16" y2="7"></line><line x1="8" y1="3" x2="8" y2="7"></line><line x1="3" y1="11" x2="21" y2="11"></line></svg>
-      </button>
-      <a class="mobile-menu-call" href="tel:+919703294358">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-        <span>Call Clinic</span>
-      </a>`;
-    navLinks.appendChild(mobileFooter);
-  }
-
-  // Create overlay for mobile drawer if it doesn't exist yet
+  // Create overlay
   let overlay = document.querySelector('.mobile-menu-overlay');
   if (!overlay) {
     overlay = document.createElement('div');
@@ -81,63 +33,31 @@ function initMobileMenu() {
     document.body.appendChild(overlay);
   }
 
-  const closeMenu = () => {
-    mobileBtn.setAttribute('aria-expanded', 'false');
-    navLinks.classList.remove('active');
-    overlay.classList.remove('active');
-    document.body.classList.remove('no-scroll');
-    accordionTriggers.forEach(trigger => {
-      trigger.parentElement.classList.remove('mobile-open');
-      trigger.setAttribute('aria-expanded', 'false');
-    });
-  };
-
   const openMenu = () => {
-    mobileBtn.setAttribute('aria-expanded', 'true');
-    navLinks.classList.add('active');
-    overlay.classList.add('active');
-    document.body.classList.add('no-scroll');
+    mobileMenu.classList.add('open');
+    overlay.classList.add('visible');
+    document.body.style.overflow = 'hidden';
+    hamburger.setAttribute('aria-expanded', 'true');
   };
 
-  const toggleMenu = () => {
-    const isExpanded = mobileBtn.getAttribute('aria-expanded') === 'true';
-    if (isExpanded) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
+  const closeMenu = () => {
+    mobileMenu.classList.remove('open');
+    overlay.classList.remove('visible');
+    document.body.style.overflow = '';
+    hamburger.setAttribute('aria-expanded', 'false');
   };
 
-  mobileBtn.addEventListener('click', toggleMenu);
-  closeButton?.addEventListener('click', closeMenu);
+  hamburger.addEventListener('click', openMenu);
+  closeBtn?.addEventListener('click', closeMenu);
   overlay.addEventListener('click', closeMenu);
 
-  accordionTriggers.forEach(trigger => {
-    trigger.setAttribute('aria-expanded', 'false');
-    trigger.addEventListener('click', (event) => {
-      if (window.innerWidth > 767) return;
-      event.preventDefault();
-      const item = trigger.parentElement;
-      const isOpen = item.classList.contains('mobile-open');
-      accordionTriggers.forEach(otherTrigger => {
-        if (otherTrigger !== trigger) {
-          otherTrigger.parentElement.classList.remove('mobile-open');
-          otherTrigger.setAttribute('aria-expanded', 'false');
-        }
-      });
-      item.classList.toggle('mobile-open', !isOpen);
-      trigger.setAttribute('aria-expanded', String(!isOpen));
-    });
+  // Close on any mobile-nav-link click
+  mobileMenu.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', closeMenu);
   });
 
-  navLinks.querySelectorAll('a[href]:not([href="#"])').forEach(link => {
-    link.addEventListener('click', () => {
-      if (window.innerWidth <= 767) closeMenu();
-    });
-  });
-
-  window.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') closeMenu();
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
   });
 }
 
@@ -147,69 +67,18 @@ function initSmoothScroll() {
     if (!link) return;
 
     const href = link.getAttribute('href');
-    if (!href) return;
+    if (!href || !href.startsWith('#')) return;
 
-    // Check if the link points to a homepage section anchor
-    const hashMatch = href.match(/(?:index\.html)?(#(?:results-section|testimonials-section|gallery-section|before-after-results|testimonials|clinic-gallery|home|treatments|doctors|contact|smile-journey|modern-facility|testimonial-videos|faq|appointment))$/);
-    if (!hashMatch) return;
+    const target = document.querySelector(href);
+    if (target) {
+      event.preventDefault();
 
-    const hash = hashMatch[1];
-    
-    // Check if we are currently on the homepage
-    const isHomepage = window.location.pathname === '/' || 
-                       window.location.pathname.endsWith('/index.html') || 
-                       window.location.pathname.includes('/dental-clinic-in-vizag/') ||
-                       (!document.querySelector('.about-hero') && !document.querySelector('.premium-treatment-hero') && !document.querySelector('.doctor-hero'));
+      const header = document.querySelector('.header');
+      const offset = header ? header.offsetHeight : 80;
+      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
 
-    if (isHomepage) {
-      const target = document.querySelector(hash);
-      if (target) {
-        event.preventDefault();
-        
-        // Close mobile menu if open
-        const navLinks = document.querySelector('.nav-links');
-        const mobileBtn = document.querySelector('.mobile-menu-btn');
-        const overlay = document.querySelector('.mobile-menu-overlay');
-        if (navLinks && navLinks.classList.contains('active')) {
-          mobileBtn?.setAttribute('aria-expanded', 'false');
-          navLinks.classList.remove('active');
-          overlay?.classList.remove('active');
-          document.body.classList.remove('no-scroll');
-        }
-        
-        // Scroll smoothly to target with sticky header offset
-        const header = document.querySelector('.header');
-        const offset = header ? header.offsetHeight : 80;
-        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
-
-        window.scrollTo({
-          top: targetPosition,
-          behavior: 'smooth'
-        });
-
-        // Update URL hash without reload
-        history.pushState(null, null, hash);
-      }
-    }
-  });
-
-  // Handle scroll position adjustment on page load if landing on a hash
-  window.addEventListener('load', () => {
-    if (window.location.hash) {
-      const hash = window.location.hash;
-      const target = document.querySelector(hash);
-      if (target) {
-        setTimeout(() => {
-          const header = document.querySelector('.header');
-          const offset = header ? header.offsetHeight : 80;
-          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
-          
-          window.scrollTo({
-            top: targetPosition,
-            behavior: 'auto'
-          });
-        }, 150);
-      }
+      window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+      history.pushState(null, null, href);
     }
   });
 }
